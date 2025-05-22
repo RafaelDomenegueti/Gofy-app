@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 4%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 4%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 4%;
+
+    --primary: 238.8 21% 45.7%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 281.3 16.8% 37.3%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 240 5% 96%;
+    --muted-foreground: 240 4% 46%;
+
+    --accent: 250 60% 96%;
+    --accent-foreground: 250 60% 42%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 240 6% 90%;
+    --input: 240 6% 90%;
+    --ring: 250 60% 52%;
+
+    --radius: 0.75rem;
+
+    /* Dark mode colors */
+    --background-dark: 222.2 84% 4.9%;
+    --foreground-dark: 210 40% 98%;
+    --card-dark: 222.2 84% 4.9%;
+    --card-foreground-dark: 210 40% 98%;
+    --popover-dark: 222.2 84% 4.9%;
+    --popover-foreground-dark: 210 40% 98%;
+    --primary-dark: 240 21.3% 17.5%;
+    --primary-dark-foreground: 222.2 47.4% 11.2%;
+    --secondary-dark: 217.2 32.6% 17.5%;
+    --secondary-dark-foreground: 210 40% 98%;
+    --muted-dark: 217.2 32.6% 17.5%;
+    --muted-dark-foreground: 215 20.2% 65.1%;
+    --accent-dark: 217.2 32.6% 17.5%;
+    --accent-dark-foreground: 210 40% 98%;
+    --destructive-dark: 0 62.8% 30.6%;
+    --destructive-dark-foreground: 210 40% 98%;
+    --border-dark: 217.2 32.6% 17.5%;
+    --input-dark: 217.2 32.6% 17.5%;
+    --ring-dark: 224.3 76.3% 48%;
+  }
+
+  .dark {
+    --background: 120 100% 98.4%;
+    --foreground: 0 0% 96%;
+
+    --card: 240 10% 6%;
+    --card-foreground: 0 0% 96%;
+
+    --popover: 240 10% 6%;
+    --popover-foreground: 0 0% 96%;
+
+    --primary: 238.8,21%,45.7%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 281.3 16.8% 37.3%;
+    --secondary-foreground: 0 0% 96%;
+
+    --muted: 240 4% 12%;
+    --muted-foreground: 240 5% 65%;
+
+    --accent: 250 10% 12%;
+    --accent-foreground: 250 60% 72%;
+
+    --destructive: 0 74% 42%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 240 4% 16%;
+    --input: 240 4% 16%;
+    --ring: 250 60% 62%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background dark:bg-background-dark text-foreground font-sans antialiased;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/50 rounded-full;
+  }
+
+  /* App container */
+  .app-container {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  /* Card styles */
+  .card-gradient {
+    @apply bg-gradient-to-br from-card to-card/80 shadow-sm;
+  }
+}
