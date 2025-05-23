@@ -1,8 +1,9 @@
-import { Clock, Download, Pause, Play, Tag, User } from "lucide-react-native";
+import { Clock, Download, Pause, Play, Tag, Trash2, User } from "lucide-react-native";
 import React, { useEffect, useState } from "react";
 import { ActivityIndicator, Text, TouchableOpacity, View } from "react-native";
 import { Card } from "../../components/ui/card";
 import { H3 } from "../../components/ui/typography";
+import { useContent } from "../../hooks/useContent";
 import { Content } from "../../hooks/useContent/types";
 import { usePlayer } from "../../hooks/usePlayer";
 import { useColorScheme } from "../../lib/useColorScheme";
@@ -20,12 +21,16 @@ export const ContentItem = ({ content }: IProps) => {
     resume,
     download,
     isDownloaded,
-    isDownloading
+    isDownloading,
+    stop,
+    deleteDownloadedContent
   } = usePlayer();
+  const { deleteContent } = useContent();
   const { isDarkColorScheme } = useColorScheme();
 
   const [downloaded, setDownloaded] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const isCurrentContent = currentContent?.id === content.id;
   const isCurrentlyPlaying = isCurrentContent && isPlaying;
@@ -61,6 +66,26 @@ export const ContentItem = ({ content }: IProps) => {
       }
     } else {
       await play(content);
+    }
+  };
+
+  const handleDelete = async () => {
+    try {
+      setIsDeleting(true);
+
+      if (currentContent?.id === content.id) {
+        await stop();
+
+      }
+
+      if (downloaded) {
+        await deleteDownloadedContent(content.id);
+      }
+      await deleteContent(content.id);
+    } catch (error) {
+      console.error("Error deleting content:", error);
+    } finally {
+      setIsDeleting(false);
     }
   };
 
@@ -106,7 +131,21 @@ export const ContentItem = ({ content }: IProps) => {
         </TouchableOpacity>
 
         <View className="flex-1 min-w-0">
-          <H3 className="font-medium mb-1 line-clamp-1 text-foreground dark:text-foreground-dark">{content.title}</H3>
+          <View className="flex-row justify-between items-center mb-1">
+            <H3 className="font-medium line-clamp-1 text-foreground dark:text-foreground-dark flex-1">{content.title}</H3>
+            <TouchableOpacity
+              onPress={handleDelete}
+              className="p-2"
+              activeOpacity={0.7}
+              disabled={isDeleting}
+            >
+              {isDeleting ? (
+                <ActivityIndicator size="small" color={isDarkColorScheme ? "#232336" : "#5c5d8d"} />
+              ) : (
+                <Trash2 size={20} color={isDarkColorScheme ? "#232336" : "#5c5d8d"} />
+              )}
+            </TouchableOpacity>
+          </View>
 
           <Text className="text-sm text-muted-foreground dark:text-muted-dark-foreground line-clamp-2 mb-2" numberOfLines={2}>
             {content.description}

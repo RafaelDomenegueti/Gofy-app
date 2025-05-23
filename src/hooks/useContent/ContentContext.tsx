@@ -1,7 +1,7 @@
 import { createContext, useState } from 'react';
-import { Content, ContentContextData, IContentProviderProps } from './types';
 import Toast from 'react-native-toast-message';
 import { ContentService } from '../../services/content';
+import { Content, ContentContextData, IContentProviderProps } from './types';
 
 export const ContentContext = createContext({} as ContentContextData);
 
@@ -53,12 +53,30 @@ export function ContentProvider({ children }: IContentProviderProps) {
     }
   };
 
+  const deleteContent = async (contentId: string) => {
+    try {
+      await ContentService.cancelPurchase(contentId);
+      setContents(data => data.filter(content => content.id !== contentId));
+    } catch (error: any) {
+      const message = error?.response?.data?.message;
+
+      Toast.show({
+        autoHide: true,
+        text1: "Error deleting content",
+        text2: message,
+        swipeable: true,
+        type: "error"
+      });
+    }
+  };
+
   return (
     <ContentContext.Provider
       value={{
         contents,
         createContent,
         getAllPurchases,
+        deleteContent,
         isLoading,
       }}
     >

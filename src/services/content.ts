@@ -1,5 +1,4 @@
 import { IPurchasesContentDataResponse } from "../hooks/purchase/types";
-import { ILoginData, IRegisterData, LoginDataResponse } from "../hooks/useAuth/types";
 import { Content } from "../hooks/useContent/types";
 import { getStorage, storageKeys } from "../utils/storage";
 import { api } from "./api";
@@ -44,4 +43,19 @@ async function getAllPurchase() {
   });
 }
 
-export const ContentService = { create, find, getTags, search, getAllPurchase }
+async function cancelPurchase(id: string) {
+  return api.delete(`purchase/cancel/${id}`, {
+    headers: {
+      Authorization: "Bearer " + await getStorage(storageKeys.token)
+    }
+  });
+}
+
+export const ContentService = {
+  create,
+  find,
+  getTags,
+  search,
+  getAllPurchase,
+  cancelPurchase
+};

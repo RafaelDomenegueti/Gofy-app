@@ -371,6 +371,32 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     }
   }, [getGofyDownloadsDir, playerState.downloadedContent, safeUpdateStorage, cancelDownload]);
 
+  const deleteDownloadedContent = useCallback(async (contentId: string): Promise<void> => {
+    try {
+      const isContentDownloaded = await isDownloaded(contentId);
+      if (!isContentDownloaded) return;
+
+      const filePath = `${getGofyDownloadsDir()}content_${contentId}.mp3`;
+
+      // Delete the file if it exists
+      if (await RNFS.exists(filePath)) {
+        await RNFS.unlink(filePath);
+      }
+
+      // Update state and storage
+      const updatedDownloadedContent = playerState.downloadedContent.filter(id => id !== contentId);
+      await safeUpdateStorage(GOFY_DOWNLOADS_KEY, updatedDownloadedContent);
+
+      setPlayerState(prev => ({
+        ...prev,
+        downloadedContent: updatedDownloadedContent
+      }));
+    } catch (error) {
+      console.error("Error deleting downloaded content:", error);
+      throw error;
+    }
+  }, [isDownloaded, getGofyDownloadsDir, playerState.downloadedContent, safeUpdateStorage]);
+
   // Memoize context value to prevent unnecessary re-renders
   const contextValue = useMemo(() => ({
     ...playerState,
@@ -381,7 +407,8 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     seekTo,
     download,
     isDownloaded,
-    isDownloading
+    isDownloading,
+    deleteDownloadedContent
   }), [
     playerState,
     play,
@@ -391,7 +418,8 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     seekTo,
     download,
     isDownloaded,
-    isDownloading
+    isDownloading,
+    deleteDownloadedContent
   ]);
 
   return (

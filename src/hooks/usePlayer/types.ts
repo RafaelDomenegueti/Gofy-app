@@ -24,4 +24,5 @@ export interface PlayerContextType extends PlayerState {
   download: (content: Content) => Promise<void>;
   isDownloaded: (contentId: string) => Promise<boolean>;
   isDownloading: (contentId: string) => boolean;
+  deleteDownloadedContent: (contentId: string) => Promise<void>;
 }

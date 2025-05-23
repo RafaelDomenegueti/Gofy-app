@@ -32,7 +32,8 @@ export type ContentInfo = {
 
 export type ContentContextData = {
   contents: Content[];
-  createContent: (content: Omit<Content, 'id'>) => void;
+  createContent: (content: Omit<Content, 'id'>) => Promise<void>;
   getAllPurchases: () => void;
+  deleteContent: (contentId: string) => Promise<void>;
   isLoading: boolean;
 };
