@@ -43,6 +43,10 @@ export function AuthProvider({ children }: IAuthProviderProps) {
           setStorage(storageKeys.token, response.data.token),
           setStorage(storageKeys.refreshToken, response.data.refreshToken)
         ]);
+
+        setUser(response.data.user);
+        setSigned(true);
+
         return true;
       }
 
