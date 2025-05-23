@@ -1,5 +1,6 @@
 import React from "react";
 import { View } from "react-native";
+import Animated, { FadeInDown } from "react-native-reanimated";
 import { useContent } from "../../hooks/useContent";
 import { ContentItem } from "./content";
 
@@ -9,7 +10,12 @@ export function ContentList() {
   return (
     <View className="space-y-4">
       {[...contents].map((content, index) => (
-        <ContentItem key={index} content={content} />
+        <Animated.View
+          key={index}
+          entering={FadeInDown.delay(index * 100).springify()}
+        >
+          <ContentItem content={content} />
+        </Animated.View>
       ))}
     </View>
   );
