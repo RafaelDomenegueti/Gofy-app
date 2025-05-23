@@ -8,6 +8,8 @@ import { PlayerContextType, PlayerState } from "./types";
 
 // Constants for file management
 const GOFY_DOWNLOADS_KEY = '@gofy/downloads';
+const GOFY_APP_DIR = 'Gofy';
+const GOFY_AUDIO_DIR = 'Audio';
 
 export const PlayerContext = createContext<PlayerContextType | null>(null);
 
@@ -56,9 +58,11 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   }, []);
 
   const getGofyDownloadsDir = useCallback(() => {
-    return Platform.OS === 'ios'
-      ? `${RNFS.DocumentDirectoryPath}/gofy_downloads/`
-      : `${RNFS.DownloadDirectoryPath}/gofy_downloads/`;
+    const baseDir = Platform.OS === 'ios'
+      ? RNFS.DocumentDirectoryPath
+      : RNFS.ExternalDirectoryPath;
+
+    return `${baseDir}/${GOFY_APP_DIR}/${GOFY_AUDIO_DIR}/`;
   }, []);
 
   useEffect(() => {
@@ -67,7 +71,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         const dir = getGofyDownloadsDir();
         const exists = await RNFS.exists(dir);
         if (!exists) {
-          await RNFS.mkdir(dir);
+          await RNFS.mkdir(dir, { NSURLIsExcludedFromBackupKey: true });
         }
 
         const downloadedContent = await AsyncStorage.getItem(GOFY_DOWNLOADS_KEY);
