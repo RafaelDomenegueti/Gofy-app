@@ -2,7 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { createContext, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Platform } from "react-native";
 import RNFS from 'react-native-fs';
-import TrackPlayer, { Event, State, useProgress, useTrackPlayerEvents } from "react-native-track-player";
+import TrackPlayer, { Capability, Event, State, useProgress, useTrackPlayerEvents } from "react-native-track-player";
 import { Content } from "../useContent/types";
 import { PlayerContextType, PlayerState } from "./types";
 
@@ -177,9 +177,24 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         url: filePath,
         title: content.title || "Unknown Title",
         artist: content.author || "Unknown Artist",
+        artwork: content.banner || undefined,
       };
 
       await TrackPlayer.add(track);
+      await TrackPlayer.updateNowPlayingMetadata({
+        title: track.title,
+        artist: track.artist,
+        artwork: track.artwork,
+      });
+      TrackPlayer.updateOptions({
+        alwaysPauseOnInterruption: true,
+        capabilities: [Capability.Play, Capability.Pause, Capability.SeekTo],
+        compactCapabilities: [
+          Capability.Play,
+          Capability.Pause,
+          Capability.SeekTo,
+        ],
+      });
       await TrackPlayer.play();
 
       setPlayerState(prev => ({

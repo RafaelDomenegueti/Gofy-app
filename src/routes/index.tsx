@@ -59,9 +59,9 @@ const AppStack = () => (
 );
 
 const RootNavigator = () => {
-  const { signed, isLoading } = useAuth();
+  const { signed, isLoading, user } = useAuth();
 
-  if (isLoading) {
+  if (isLoading || (signed && !user)) {
     return <LoadingScreen />;
   }
 

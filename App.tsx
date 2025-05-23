@@ -24,15 +24,13 @@ const App = () => {
   TrackPlayer.setupPlayer();
 
   return (
-    <ContextProvider>
-      <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
+    <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
+      <ContextProvider>
         <StatusBar />
-
         <Routes />
-
         <Toast />
-      </ThemeProvider>
-    </ContextProvider>
+      </ContextProvider>
+    </ThemeProvider>
   );
 };
 

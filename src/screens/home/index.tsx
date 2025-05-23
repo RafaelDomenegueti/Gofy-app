@@ -35,7 +35,7 @@ export const HomeScreen = () => {
       ) : contents.length === 0 ? (
         <EmptyState />
       ) : (
-        <View className="p-4 flex flex-col gap-3">
+        <View key={contents.length + 1} className="p-4 flex flex-col gap-3">
           <View className="bg-primary/10 dark:bg-primary-dark/40 rounded-lg p-4 mb-4">
             <View className="flex-row items-center gap-3">
               <View className="bg-primary/20 dark:bg-primary-dark/20 p-2 rounded-full">
