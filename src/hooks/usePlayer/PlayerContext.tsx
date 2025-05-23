@@ -3,14 +3,11 @@ import React, { createContext, useCallback, useEffect, useMemo, useRef, useState
 import { Platform } from "react-native";
 import RNFS from 'react-native-fs';
 import TrackPlayer, { Event, State, useProgress, useTrackPlayerEvents } from "react-native-track-player";
-import { API_URL } from "../../utils/constants";
 import { Content } from "../useContent/types";
 import { PlayerContextType, PlayerState } from "./types";
 
 // Constants for file management
 const GOFY_DOWNLOADS_KEY = '@gofy/downloads';
-const GOFY_DOWNLOAD_PROGRESS_KEY = '@gofy/download_progress';
-const DOWNLOAD_TIMEOUT = 60000; // 1 minute timeout
 
 export const PlayerContext = createContext<PlayerContextType | null>(null);
 
@@ -265,7 +262,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     }
 
     const contentId = content.id;
-    const downloadUrl = `${API_URL}audio/extract?url=${encodeURIComponent(content.url)}`;
+    const downloadUrl = content.url;
     const localFilePath = `${getGofyDownloadsDir()}content_${contentId}.mp3`;
 
     try {

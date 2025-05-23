@@ -1,14 +1,12 @@
 import { Formik } from "formik";
-import { LinkIcon, YoutubeIcon } from "lucide-react-native";
+import { LinkIcon } from "lucide-react-native";
 import { ActivityIndicator, Text, View } from "react-native";
-import Toast from "react-native-toast-message";
 import * as Yup from "yup";
 import { Button } from "../../components/ui/button";
 import { CardContent, CardFooter } from "../../components/ui/card";
 import { Input } from "../../components/ui/input";
 import { Label } from "../../components/ui/label";
 import { useColorScheme } from "../../lib/useColorScheme";
-import { AudioService } from "../../services/audio";
 
 interface IProps {
   handleFirstStep: (data: any) => void;
@@ -24,30 +22,14 @@ export const ContentFormFirstStep = ({ handleFirstStep }: IProps) => {
   const { colorScheme } = useColorScheme();
 
   const handleSubmit = async (values: { url: string }, { setSubmitting }: any) => {
-    try {
-      const response = await AudioService.getInfo(values.url, "youtube");
+    handleFirstStep({
+      url: values.url,
+      banner: "",
+      title: "",
+      description: "",
+    });
 
-      handleFirstStep({
-        url: values.url,
-        banner: response.data.thumbnails[response.data.thumbnails.length - 1].url,
-        title: response.data.title.substring(0, 254),
-        description: response.data.description.substring(0, 254),
-      });
-    } catch (error) {
-      Toast.show({
-        type: "info",
-        text1: "Não foi possível pegar dinamicamente as informações do vídeo",
-      });
-
-      handleFirstStep({
-        url: values.url,
-        banner: "",
-        title: "",
-        description: "",
-      });
-    } finally {
-      setSubmitting(false);
-    }
+    setSubmitting(false);
   };
 
   return (
@@ -81,11 +63,8 @@ export const ContentFormFirstStep = ({ handleFirstStep }: IProps) => {
                   value={values.url}
                   onChangeText={handleChange("url")}
                   onBlur={handleBlur("url")}
-                  className="pl-11 bg-muted/30 dark:bg-muted-dark/30 border-primary/20 dark:border-primary-dark/20 focus:border-primary dark:focus:border-primary-dark h-12"
+                  className="bg-muted/30 dark:bg-muted-dark/30 border-primary/20 dark:border-primary-dark/20 focus:border-primary dark:focus:border-primary-dark h-12"
                 />
-                <View className="absolute left-3 top-3">
-                  <YoutubeIcon size={20} color={colorScheme === 'dark' ? '#b91c1c' : '#ef4444'} />
-                </View>
               </View>
 
               {touched.url && errors.url && (

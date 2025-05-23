@@ -76,6 +76,7 @@ export const ContentFormSecondStep = ({ handleSubmit, dataForm }: IProps) => {
               <Input
                 id="title"
                 value={values.title}
+                placeholder="Digite o título do conteúdo"
                 onChangeText={(text) => setFieldValue("title", text)}
                 className="bg-muted/30 dark:bg-muted-dark/30 border-primary/20 dark:border-primary-dark/20 focus:border-primary dark:focus:border-primary-dark h-12"
                 maxLength={255}
@@ -95,6 +96,7 @@ export const ContentFormSecondStep = ({ handleSubmit, dataForm }: IProps) => {
               <Input
                 id="author"
                 value={values.author}
+                placeholder="Digite o nome do autor"
                 onChangeText={(text) => setFieldValue("author", text)}
                 className="bg-muted/30 dark:bg-muted-dark/30 border-primary/20 dark:border-primary-dark/20 focus:border-primary dark:focus:border-primary-dark h-12"
                 maxLength={255}
@@ -145,14 +147,14 @@ export const ContentFormSecondStep = ({ handleSubmit, dataForm }: IProps) => {
                       setFieldValue("tags", newTags);
                     }}
                     className={`rounded-full ${values.tags?.includes(tag.id)
-                        ? "bg-primary dark:bg-primary-dark"
-                        : "bg-transparent border-primary/20 dark:border-primary-dark/20"
+                      ? "bg-primary dark:bg-primary-dark"
+                      : "bg-transparent border-primary/20 dark:border-primary-dark/20"
                       }`}
                   >
                     <Text
                       className={`${values.tags?.includes(tag.id)
-                          ? "text-white"
-                          : "text-primary dark:text-primary-dark"
+                        ? "text-white"
+                        : "text-primary dark:text-primary-dark"
                         }`}
                     >
                       {tag.name}

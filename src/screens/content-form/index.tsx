@@ -55,7 +55,7 @@ export const ContentFormScreen = () => {
               <Button size="icon" variant="ghost" onPress={goBack} className="rounded-full h-10 w-10">
                 <ArrowLeft size={20} color={colorScheme === 'dark' ? '#fff' : '#000'} />
               </Button>
-              <CardTitle className={`text-xl font-bold ${step === 2 ? "text-primary dark:text-primary-dark" : "text-foreground dark:text-foreground-dark"}`}>
+              <CardTitle className={`text-xl font-bold text-foreground dark:text-foreground-dark`}>
                 {step === 1 ? "Adicionar conteúdo" : "Detalhes do conteúdo"}
               </CardTitle>
               <View className="w-10" />
