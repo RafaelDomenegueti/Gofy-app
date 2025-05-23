@@ -26,7 +26,7 @@ export const ContentFormScreen = () => {
   };
 
   const handleSubmit = async (currentData: any) => {
-    createContent({
+    await createContent({
       ...dataForm,
       ...currentData,
       isPublic: false,
