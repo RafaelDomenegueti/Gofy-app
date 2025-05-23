@@ -32,8 +32,11 @@ export const ContentFormScreen = () => {
       isPublic: false,
     });
 
-    // Navigate back to home
-    navigation.navigate('HomeStack');
+    // Navigate back to home and reset navigation history
+    navigation.reset({
+      index: 0,
+      routes: [{ name: 'HomeStack' }],
+    });
   };
 
   const goBack = () => {
