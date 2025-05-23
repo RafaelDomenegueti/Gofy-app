@@ -97,7 +97,7 @@ export const ContentItem = ({ content }: IProps) => {
     <Card className="overflow-hidden card-gradient animate-fade-in mb-4">
       <View className="flex flex-row items-start p-4 gap-3">
         <TouchableOpacity
-          className={`w-16 h-16 rounded ${isCurrentContent ? "border-2 border-primary/60" : "border border-primary/20"} ${isCurrentlyPlaying ? 'bg-primary' : downloading ? 'bg-transparent' : 'bg-primary/10'} flex-shrink-0 overflow-hidden flex items-center justify-center`}
+          className={`w-16 h-16 rounded ${isCurrentContent ? "border-2 border-primary/60" : "border border-primary/20"} ${isCurrentlyPlaying ? 'bg-primary dark:bg-primary-dark' : downloading ? 'bg-transparent' : 'bg-primary/10 dark:bg-primary-dark/10'} flex-shrink-0 overflow-hidden flex items-center justify-center`}
           onPress={handlePlayClick}
           disabled={downloading || isLoading}
           activeOpacity={0.9}
