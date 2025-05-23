@@ -35,7 +35,7 @@ export const LoginScreen = () => {
                   width={80}
                   height={80}
                   withText
-                  textStyle="text-6xl text-primary dark:text-primary-dark"
+                  textStyle="text-6xl text-primary dark:text-muted-dark-foreground"
                 />
               </View>
               <P className="text-center text-muted-foreground dark:text-muted-dark-foreground text-base max-w-[280px]">

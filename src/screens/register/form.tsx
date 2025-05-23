@@ -165,7 +165,7 @@ export function RegisterForm({ onToggleForm }: LoginFormProps) {
                 onPress={onToggleForm}
               >
                 <View className="flex-row items-center gap-2">
-                  <ArrowLeft size={16} color={colorScheme === 'dark' ? "#232336" : "#5c5d8d"} />
+                  <ArrowLeft size={16} color={colorScheme === 'dark' ? "#fff" : "#5c5d8d"} />
                   <Text className="text-primary dark:text-white font-medium">Já tenho uma conta</Text>
                 </View>
               </Button>

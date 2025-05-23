@@ -140,9 +140,9 @@ export const ContentItem = ({ content }: IProps) => {
               disabled={isDeleting}
             >
               {isDeleting ? (
-                <ActivityIndicator size="small" color={isDarkColorScheme ? "#232336" : "#5c5d8d"} />
+                <ActivityIndicator size="small" color={isDarkColorScheme ? "#94a3b8" : "#5c5d8d"} />
               ) : (
-                <Trash2 size={20} color={isDarkColorScheme ? "#232336" : "#5c5d8d"} />
+                <Trash2 size={20} color={isDarkColorScheme ? "#94a3b8" : "#5c5d8d"} />
               )}
             </TouchableOpacity>
           </View>
@@ -154,19 +154,19 @@ export const ContentItem = ({ content }: IProps) => {
           <View className="flex-row flex-wrap gap-2">
             {content.author && (
               <View className="flex-row flex gap-1 items-center bg-muted/50 dark:bg-muted-dark/50 rounded-full px-2 py-1">
-                <User size={12} className="mr-1 text-muted-foreground dark:text-muted-dark-foreground" color={isDarkColorScheme ? "#232336" : "#5c5d8d"} />
+                <User size={12} className="mr-1 text-muted-foreground dark:text-muted-dark-foreground" color={isDarkColorScheme ? "#94a3b8" : "#5c5d8d"} />
                 <Text className="text-xs text-muted-foreground dark:text-muted-dark-foreground">{content.author}</Text>
               </View>
             )}
 
             <View className="flex-row flex gap-1 items-center bg-muted/50 dark:bg-muted-dark/50 rounded-full px-2 py-1">
-              <Clock size={12} className="mr-1 text-muted-foreground dark:text-muted-dark-foreground" color={isDarkColorScheme ? "#232336" : "#5c5d8d"} />
+              <Clock size={12} className="mr-1 text-muted-foreground dark:text-muted-dark-foreground" color={isDarkColorScheme ? "#94a3b8" : "#5c5d8d"} />
               <Text className="text-xs text-muted-foreground dark:text-muted-dark-foreground">{formatDate(content.created_at)}</Text>
             </View>
 
             {content.tags && content.tags.length > 0 && (
               <View className="flex-row flex gap-1 items-center bg-muted/50 dark:bg-muted-dark/50 rounded-full px-2 py-1">
-                <Tag size={12} className="mr-1 text-muted-foreground dark:text-muted-dark-foreground" color={isDarkColorScheme ? "#232336" : "#5c5d8d"} />
+                <Tag size={12} className="mr-1 text-muted-foreground dark:text-muted-dark-foreground" color={isDarkColorScheme ? "#94a3b8" : "#5c5d8d"} />
                 <Text className="text-xs text-muted-foreground dark:text-white">{content.tags[0]}</Text>
               </View>
             )}

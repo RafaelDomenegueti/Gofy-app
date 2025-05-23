@@ -19,7 +19,7 @@ export const Logo: React.FC<LogoProps> = ({ style, width = 120, height = 120, is
     <View className='flex-row items-center gap-2'>
       <Image
         source={require('../assets/gofy-logo.png')}
-        style={[{ width, height, resizeMode: 'contain', tintColor: isWhite ? 'white' : isDarkColorScheme ? "#232336" : "#5c5d8d" }, style]}
+        style={[{ width, height, resizeMode: 'contain', tintColor: isWhite ? 'white' : isDarkColorScheme ? "#94a3b8" : "#5c5d8d" }, style]}
         accessibilityLabel="Gofy Logo"
       />
 
