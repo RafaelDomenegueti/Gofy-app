@@ -1,8 +1,10 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
-import { SafeAreaView } from 'react-native';
+import { SafeAreaView, StatusBar } from 'react-native';
+import { CustomStatusBar } from '../components/custom-status-bar';
 import { useAuth } from '../hooks/useAuth';
+import { useColorScheme } from '../lib/useColorScheme';
 import { ContentFormScreen } from '../screens/content-form';
 import { HomeScreen } from '../screens/home';
 import { LoginScreen } from '../screens/login';
@@ -16,35 +18,57 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 const HomeStack = createNativeStackNavigator<HomeStackParamList>();
 const ContentFormStack = createNativeStackNavigator<ContentFormStackParamList>();
 
-const HomeStackNavigator = () => (
-  <>
-    <HomeStack.Navigator>
-      <HomeStack.Screen
-        name="Home"
-        component={HomeScreen}
-        options={{ header: CustomHeader }}
-      />
-    </HomeStack.Navigator>
-    <CustomTabBar />
-  </>
-);
+const HomeStackNavigator = () => {
+  const { isDarkColorScheme } = useColorScheme();
 
-const ContentFormStackNavigator = () => (
-  <ContentFormStack.Navigator>
-    <ContentFormStack.Screen
-      name="ContentForm"
-      component={ContentFormScreen}
-      options={{ header: () => <SafeAreaView /> }}
-    />
-  </ContentFormStack.Navigator>
-);
+  return (
+    <>
+      <CustomStatusBar backgroundColor={isDarkColorScheme ? "#232336" : "#5c5d8d"} barStyle={"light-content"} />
 
-const AuthStack = () => (
-  <Stack.Navigator screenOptions={{ headerShown: false }}>
-    <Stack.Screen name="Login" component={LoginScreen} />
-    <Stack.Screen name="Register" component={RegisterScreen} />
-  </Stack.Navigator>
-);
+      <HomeStack.Navigator>
+        <HomeStack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{ header: CustomHeader }}
+        />
+      </HomeStack.Navigator>
+      <CustomTabBar />
+    </>
+  );
+};
+
+const ContentFormStackNavigator = () => {
+  const { isDarkColorScheme } = useColorScheme();
+
+  return (
+    <>
+      <CustomStatusBar backgroundColor={isDarkColorScheme ? "#232336" : "#5c5d8d"} barStyle={"light-content"} />
+
+      <ContentFormStack.Navigator>
+        <ContentFormStack.Screen
+          name="ContentForm"
+          component={ContentFormScreen}
+          options={{ header: () => <SafeAreaView /> }}
+        />
+      </ContentFormStack.Navigator>
+    </>
+  )
+};
+
+const AuthStack = () => {
+  const { isDarkColorScheme } = useColorScheme();
+
+  return (
+    <>
+      <StatusBar barStyle={isDarkColorScheme ? "light-content" : "dark-content"} translucent backgroundColor="transparent" />
+
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Register" component={RegisterScreen} />
+      </Stack.Navigator>
+    </>
+  );
+};
 
 const AppStack = () => (
   <Stack.Navigator screenOptions={{ headerShown: false }}>

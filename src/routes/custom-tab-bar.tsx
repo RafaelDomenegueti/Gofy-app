@@ -1,5 +1,5 @@
 import { View } from "react-native";
-import { PlayerControls } from "../components/PlayerControls";
+import { PlayerControls } from "../components/player-controls";
 import { usePlayer } from "../hooks/usePlayer";
 
 export function CustomTabBar() {

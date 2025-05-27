@@ -2,12 +2,10 @@ import { useNavigation } from "@react-navigation/native"
 import { KeyboardAvoidingView, Platform, ScrollView, View } from "react-native"
 import { Logo } from "../../components/logo"
 import { P } from "../../components/ui/typography"
-import { useColorScheme } from '../../lib/useColorScheme'
 import { RegisterForm } from "./form"
 
 export const RegisterScreen = () => {
   const navigation = useNavigation()
-  const { colorScheme } = useColorScheme()
 
   const toggleForm = () => {
     navigation.goBack()
