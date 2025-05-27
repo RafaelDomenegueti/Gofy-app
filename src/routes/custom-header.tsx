@@ -9,9 +9,6 @@ export const CustomHeader = ({ navigation }: any) => {
   const { setColorScheme, isDarkColorScheme } = useColorScheme();
   const { logout } = useAuth();
 
-  // Calculate status bar height for Android
-  const statusBarHeight = Platform.OS === 'android' ? StatusBar.currentHeight || 0 : 0;
-
   return (
     <>
       <StatusBar
@@ -20,7 +17,7 @@ export const CustomHeader = ({ navigation }: any) => {
       />
       <SafeAreaView className="dark:bg-background-dark bg-background">
         <View
-          className={`flex flex-row w-full justify-between items-center p-4 px-5 bg-primary dark:bg-primary-dark ${Platform.OS === 'android' ? 'pt-10' : ''}`}
+          className={`flex flex-row w-full justify-between items-center p-4 px-5 bg-primary dark:bg-primary-dark`}
           style={{ borderBottomLeftRadius: 10, borderBottomRightRadius: 10 }}
         >
           <Logo
