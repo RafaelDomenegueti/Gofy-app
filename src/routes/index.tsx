@@ -1,7 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
-import { ActivityIndicator, SafeAreaView, View } from 'react-native';
+import { SafeAreaView } from 'react-native';
 import { useAuth } from '../hooks/useAuth';
 import { ContentFormScreen } from '../screens/content-form';
 import { HomeScreen } from '../screens/home';
@@ -10,16 +10,11 @@ import { RegisterScreen } from '../screens/register';
 import { ContentFormStackParamList, HomeStackParamList, RootStackParamList } from '../types/navigation';
 import { CustomHeader } from './custom-header';
 import { CustomTabBar } from './custom-tab-bar';
+import { LoadingScreen } from './loading-screen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 const HomeStack = createNativeStackNavigator<HomeStackParamList>();
 const ContentFormStack = createNativeStackNavigator<ContentFormStackParamList>();
-
-const LoadingScreen = () => (
-  <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-    <ActivityIndicator size="large" />
-  </View>
-);
 
 const HomeStackNavigator = () => (
   <>
