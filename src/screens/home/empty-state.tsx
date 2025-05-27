@@ -21,7 +21,7 @@ export function EmptyState() {
       </Animated.View>
 
       <Animated.View entering={FadeInUp.delay(400).springify()} className="flex flex-col items-center justify-center">
-        <H2 className="text-3xl font-bold mb-4 text-primary">
+        <H2 className="text-3xl font-bold mb-4 text-primary text-center">
           Nenhum conteúdo adicionado
         </H2>
 
