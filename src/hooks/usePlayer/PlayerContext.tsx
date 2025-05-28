@@ -33,6 +33,49 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const { position, duration } = useProgress();
 
   useEffect(() => {
+    const initializePlayer = async () => {
+      try {
+        const state = await TrackPlayer.getState();
+        const currentTrackIndex = await TrackPlayer.getCurrentTrack();
+        if (currentTrackIndex !== null) {
+          const track = await TrackPlayer.getTrack(currentTrackIndex);
+          if (track && track.id) {
+            const contentId = track.id.toString();
+            const isContentDownloaded = await isDownloaded(contentId);
+
+            if (isContentDownloaded) {
+              const currentContent: Partial<Content> = {
+                id: contentId,
+                title: track.title || "",
+                author: track.artist || "",
+                banner: track.artwork as string,
+                url: track.url,
+              };
+
+              const currentTrack = {
+                ...track,
+                title: track.title || "",
+                artist: track.artist || "",
+              };
+
+              setPlayerState(prev => ({
+                ...prev,
+                currentTrack,
+                currentContent: currentContent as Content,
+                isPlaying: state === State.Playing,
+              }));
+            }
+          }
+        }
+      } catch (error) {
+        console.warn("Failed to initialize player state:", error);
+      }
+    };
+
+    initializePlayer();
+  }, [playerState?.downloadedContent]);
+
+  useEffect(() => {
     setPlayerState(prev => ({
       ...prev,
       progress: position,
