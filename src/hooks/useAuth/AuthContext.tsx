@@ -136,17 +136,23 @@ export function AuthProvider({ children }: IAuthProviderProps) {
         return;
       }
 
-      // Validate token with backend
-      const response = await AuthService.validateToken(token);
+      try {
+        const response = await AuthService.validateToken(token);
 
-      if (response.status === 201 || response.status === 200) {
-        setUser(response.data.user);
-        setSigned(true);
-      } else {
-        const refreshed = await refreshToken();
-
-        if (!refreshed) {
-          await logout();
+        if (response.status === 201 || response.status === 200) {
+          setUser(response.data.user);
+          setSigned(true);
+        } else {
+          throw new Error('Invalid token');
+        }
+      } catch (error: any) {
+        if (error?.response?.status === 401) {
+          const refreshed = await refreshToken();
+          if (!refreshed) {
+            await logout();
+          }
+        } else {
+          throw error;
         }
       }
     } catch (error) {
