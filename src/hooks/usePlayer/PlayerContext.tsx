@@ -11,6 +11,7 @@ const GOFY_DOWNLOADS_KEY = '@gofy/downloads';
 const GOFY_APP_DIR = 'Gofy';
 const GOFY_AUDIO_DIR = 'Audio';
 const DEFAULT_ARTWORK = require('../../assets/artwork.png');
+const PROGRESS_KEY = '@gofy/progress';
 
 export const PlayerContext = createContext<PlayerContextType | null>(null);
 
@@ -147,6 +148,21 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     return playerState.downloadingContent.includes(contentId);
   }, [playerState.downloadingContent]);
 
+
+  const loadProgress = useCallback(async (contentId: string): Promise<number> => {
+    try {
+      const progressData = await AsyncStorage.getItem(PROGRESS_KEY);
+      if (!progressData) return 0;
+
+      const progress = JSON.parse(progressData);
+      return progress[contentId] || 0;
+    } catch (error) {
+      console.warn("Failed to load progress:", error);
+      return 0;
+    }
+  }, []);
+
+
   const play = useCallback(async (content: Content): Promise<void> => {
     if (!content?.id) {
       throw new Error("Invalid content for playback");
@@ -175,6 +191,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       }
 
       const track = {
+        id: content.id,
         url: filePath,
         title: content.title || "Unknown Title",
         artist: content.author || "Unknown Artist",
@@ -196,6 +213,13 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
           Capability.SeekTo,
         ],
       });
+
+      // Load and seek to saved progress
+      const savedProgress = await loadProgress(content.id);
+      if (savedProgress > 0) {
+        await TrackPlayer.seekTo(savedProgress);
+      }
+
       await TrackPlayer.play();
 
       setPlayerState(prev => ({
@@ -203,11 +227,12 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         currentTrack: track,
         currentContent: content,
         isPlaying: true,
+        currentTime: savedProgress,
       }));
     } catch (error) {
       throw error;
     }
-  }, [isDownloaded, getGofyDownloadsDir]);
+  }, [isDownloaded, getGofyDownloadsDir, loadProgress]);
 
   const pause = useCallback(async (): Promise<void> => {
     try {
@@ -382,6 +407,14 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       // Delete the file if it exists
       if (await RNFS.exists(filePath)) {
         await RNFS.unlink(filePath);
+      }
+
+      // Delete progress data
+      const progressData = await AsyncStorage.getItem(PROGRESS_KEY);
+      if (progressData) {
+        const progress = JSON.parse(progressData);
+        delete progress[contentId];
+        await AsyncStorage.setItem(PROGRESS_KEY, JSON.stringify(progress));
       }
 
       // Update state and storage
