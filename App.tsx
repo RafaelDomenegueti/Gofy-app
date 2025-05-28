@@ -1,5 +1,6 @@
 import { DarkTheme, DefaultTheme, Theme, ThemeProvider } from '@react-navigation/native';
-import React from 'react';
+import React, { useEffect } from 'react';
+import SplashScreen from 'react-native-splash-screen';
 import Toast from 'react-native-toast-message';
 import TrackPlayer from 'react-native-track-player';
 import './global.css';
@@ -20,7 +21,10 @@ const DARK_THEME: Theme = {
 const App = () => {
   const { isDarkColorScheme } = useColorScheme();
 
-  TrackPlayer.setupPlayer();
+  useEffect(() => {
+    TrackPlayer.setupPlayer();
+    SplashScreen.hide();
+  }, []);
 
   return (
     <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
