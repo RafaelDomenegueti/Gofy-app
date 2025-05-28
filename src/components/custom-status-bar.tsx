@@ -4,7 +4,7 @@ export const CustomStatusBar = ({ backgroundColor, barStyle }: { backgroundColor
   return (
     <View style={{ backgroundColor, height: StatusBar.currentHeight }}>
       <SafeAreaView>
-        <StatusBar backgroundColor={backgroundColor} barStyle={barStyle} />
+        <StatusBar backgroundColor={backgroundColor} barStyle={barStyle} translucent />
       </SafeAreaView>
     </View>
   );
