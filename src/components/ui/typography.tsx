@@ -32,7 +32,7 @@ const H2 = React.forwardRef<TextRef, SlottableTextProps>(
         role='heading'
         aria-level='2'
         className={cn(
-          'web:scroll-m-20 border-b border-border pb-2 text-3xl text-foreground font-semibold tracking-tight first:mt-0 web:select-text',
+          'web:scroll-m-20 border-b border-border dark:border-border-dark pb-2 text-3xl text-foreground font-semibold tracking-tight first:mt-0 web:select-text',
           className
         )}
         ref={ref}
@@ -107,7 +107,7 @@ const BlockQuote = React.forwardRef<TextRef, SlottableTextProps>(
         // @ts-ignore - role of blockquote renders blockquote element on the web
         role={Platform.OS === 'web' ? 'blockquote' : undefined}
         className={cn(
-          'mt-6 native:mt-4 border-l-2 border-border pl-6 native:pl-3 text-base text-foreground italic web:select-text',
+          'mt-6 native:mt-4 border-l-2 border-border dark:border-border-dark pl-6 native:pl-3 text-base text-foreground italic web:select-text',
           className
         )}
         ref={ref}
