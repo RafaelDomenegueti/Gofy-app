@@ -10,6 +10,7 @@ import { PlayerContextType, PlayerState } from "./types";
 const GOFY_DOWNLOADS_KEY = '@gofy/downloads';
 const GOFY_APP_DIR = 'Gofy';
 const GOFY_AUDIO_DIR = 'Audio';
+const DEFAULT_ARTWORK = require('../../assets/artwork.png');
 
 export const PlayerContext = createContext<PlayerContextType | null>(null);
 
@@ -177,7 +178,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         url: filePath,
         title: content.title || "Unknown Title",
         artist: content.author || "Unknown Artist",
-        artwork: content.banner || undefined,
+        artwork: content.banner || DEFAULT_ARTWORK,
       };
 
       await TrackPlayer.add(track);
