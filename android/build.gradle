@@ -18,4 +18,13 @@ buildscript {
     }
 }
 
+subprojects {
+    configurations.all {
+        resolutionStrategy {
+            force 'androidx.core:core:1.9.0'
+            exclude group: 'com.android.support'
+        }
+    }
+}
+
 apply plugin: "com.facebook.react.rootproject"

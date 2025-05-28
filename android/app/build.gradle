@@ -118,4 +118,5 @@ dependencies {
     }
 
     implementation project(':react-native-fs')
+    implementation project(':react-native-splash-screen')
 }
