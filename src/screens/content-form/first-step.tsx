@@ -64,11 +64,20 @@ export const ContentFormFirstStep = ({ handleFirstStep }: IProps) => {
                   onChangeText={handleChange("url")}
                   onBlur={handleBlur("url")}
                   className="bg-muted/30 dark:bg-muted-dark/30 border-primary/20 dark:border-primary-dark/20 focus:border-primary dark:focus:border-primary-dark h-12"
+                  returnKeyType="done"
+                  onSubmitEditing={() => handleSubmit()}
+                  keyboardType="url"
+                  autoCapitalize="none"
+                  autoCorrect={false}
+                  autoComplete="url"
+                  accessibilityLabel="Campo de link do YouTube"
+                  accessibilityHint="Digite o link do vídeo do YouTube que você deseja converter em áudio"
+                  accessibilityRole="none"
                 />
               </View>
 
               {touched.url && errors.url && (
-                <Text className="text-red-500 text-sm mt-1">{errors.url}</Text>
+                <Text className="text-red-500 text-sm mt-1" accessibilityRole="alert">{errors.url}</Text>
               )}
             </View>
           </CardContent>
@@ -78,6 +87,10 @@ export const ContentFormFirstStep = ({ handleFirstStep }: IProps) => {
               className="w-full h-12 rounded-xl"
               disabled={isSubmitting || !values.url}
               onPress={() => handleSubmit()}
+              accessibilityLabel="Botão continuar"
+              accessibilityHint="Toque para processar o link do vídeo"
+              accessibilityRole="button"
+              accessibilityState={{ disabled: isSubmitting || !values.url }}
             >
               {isSubmitting ? (
                 <View className="flex-row items-center gap-2">

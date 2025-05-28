@@ -1,6 +1,7 @@
 import { Formik } from 'formik';
 import { ArrowRight, Lock, Mail } from "lucide-react-native";
-import { View } from "react-native";
+import { useRef } from 'react';
+import { TextInput, View } from "react-native";
 import * as yup from 'yup';
 import { Button } from "../../components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../../components/ui/card";
@@ -18,6 +19,7 @@ export function LoginForm({ onToggleForm }: LoginFormProps) {
   const { login, isLoading } = useAuth();
   const { colorScheme } = useColorScheme()
   const initialValues = { email: '', password: '' }
+  const passwordRef = useRef<TextInput>(null);
 
   const loginSchema = yup.object().shape({
     email: yup
@@ -64,6 +66,11 @@ export function LoginForm({ onToggleForm }: LoginFormProps) {
                     value={values.email}
                     onChangeText={(v) => setFieldValue("email", v)}
                     className={`pl-11 ${touched.email && errors.email ? 'border-red-500' : 'border-input'}`}
+                    returnKeyType="next"
+                    onSubmitEditing={() => passwordRef.current?.focus()}
+                    autoCapitalize="none"
+                    keyboardType="email-address"
+                    autoComplete="email"
                   />
                   <View className="absolute left-3 top-3.5">
                     <Mail size={18} color={colorScheme === 'dark' ? '#fff' : '#000'} />
@@ -79,11 +86,15 @@ export function LoginForm({ onToggleForm }: LoginFormProps) {
                 </Label>
                 <View className="relative">
                   <Input
+                    ref={passwordRef}
                     placeholder="••••••••"
                     value={values.password}
                     onChangeText={(v) => setFieldValue("password", v)}
                     secureTextEntry
                     className={`pl-11 ${touched.password && errors.password ? 'border-red-500' : 'border-input'}`}
+                    returnKeyType="done"
+                    onSubmitEditing={() => handleSubmit()}
+                    autoComplete="password"
                   />
                   <View className="absolute left-3 top-3.5">
                     <Lock size={18} color={colorScheme === 'dark' ? '#fff' : '#000'} />

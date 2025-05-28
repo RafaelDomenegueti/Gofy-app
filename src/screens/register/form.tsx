@@ -1,7 +1,8 @@
 import { CommonActions, useNavigation } from "@react-navigation/native";
 import { Formik } from "formik";
 import { ArrowLeft, Lock, Mail, User } from "lucide-react-native";
-import { View } from "react-native";
+import { useRef } from 'react';
+import { TextInput, View } from "react-native";
 import * as yup from 'yup';
 import { Button } from "../../components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../../components/ui/card";
@@ -19,6 +20,9 @@ export function RegisterForm({ onToggleForm }: LoginFormProps) {
   const { register, isLoading } = useAuth();
   const navigation = useNavigation()
   const { colorScheme } = useColorScheme()
+  const emailRef = useRef<TextInput>(null);
+  const passwordRef = useRef<TextInput>(null);
+  const confirmPasswordRef = useRef<TextInput>(null);
 
   const initialValues = { name: '', email: '', password: '', confirmPassword: '' }
 
@@ -82,6 +86,12 @@ export function RegisterForm({ onToggleForm }: LoginFormProps) {
                     value={values.name}
                     onChangeText={(v) => setFieldValue("name", v)}
                     className={`pl-11 ${touched.name && errors.name ? 'border-red-500' : 'border-input'}`}
+                    returnKeyType="next"
+                    onSubmitEditing={() => emailRef.current?.focus()}
+                    autoCapitalize="words"
+                    autoComplete="name"
+                    accessibilityLabel="Campo de nome"
+                    accessibilityHint="Digite seu nome completo"
                   />
                   <View className="absolute left-3 top-3.5">
                     <User size={18} color={colorScheme === 'dark' ? '#fff' : '#000'} />
@@ -97,10 +107,18 @@ export function RegisterForm({ onToggleForm }: LoginFormProps) {
                 </Label>
                 <View className="relative">
                   <Input
+                    ref={emailRef}
                     placeholder="seu@email.com"
                     value={values.email}
                     onChangeText={(v) => setFieldValue("email", v)}
                     className={`pl-11 ${touched.email && errors.email ? 'border-red-500' : 'border-input'}`}
+                    returnKeyType="next"
+                    onSubmitEditing={() => passwordRef.current?.focus()}
+                    autoCapitalize="none"
+                    keyboardType="email-address"
+                    autoComplete="email"
+                    accessibilityLabel="Campo de email"
+                    accessibilityHint="Digite seu endereço de email"
                   />
                   <View className="absolute left-3 top-3.5">
                     <Mail size={18} color={colorScheme === 'dark' ? '#fff' : '#000'} />
@@ -116,11 +134,17 @@ export function RegisterForm({ onToggleForm }: LoginFormProps) {
                 </Label>
                 <View className="relative">
                   <Input
+                    ref={passwordRef}
                     placeholder="••••••••"
                     value={values.password}
                     onChangeText={(v) => setFieldValue("password", v)}
                     secureTextEntry
                     className={`pl-11 ${touched.password && errors.password ? 'border-red-500' : 'border-input'}`}
+                    returnKeyType="next"
+                    onSubmitEditing={() => confirmPasswordRef.current?.focus()}
+                    autoComplete="password-new"
+                    accessibilityLabel="Campo de senha"
+                    accessibilityHint="Digite sua senha"
                   />
                   <View className="absolute left-3 top-3.5">
                     <Lock size={18} color={colorScheme === 'dark' ? '#fff' : '#000'} />
@@ -136,11 +160,17 @@ export function RegisterForm({ onToggleForm }: LoginFormProps) {
                 </Label>
                 <View className="relative">
                   <Input
+                    ref={confirmPasswordRef}
                     placeholder="••••••••"
                     value={values.confirmPassword}
                     onChangeText={(v) => setFieldValue("confirmPassword", v)}
                     secureTextEntry
                     className={`pl-11 ${touched.confirmPassword && errors.confirmPassword ? 'border-red-500' : 'border-input'}`}
+                    returnKeyType="done"
+                    onSubmitEditing={() => handleSubmit()}
+                    autoComplete="password-new"
+                    accessibilityLabel="Campo de confirmação de senha"
+                    accessibilityHint="Digite novamente sua senha para confirmar"
                   />
                   <View className="absolute left-3 top-3.5">
                     <Lock size={18} color={colorScheme === 'dark' ? '#fff' : '#000'} />

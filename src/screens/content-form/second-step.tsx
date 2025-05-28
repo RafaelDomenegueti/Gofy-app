@@ -1,6 +1,7 @@
 import { Formik } from "formik"
 import { BookText, Headphones, Save, Tag as TagIcon, User } from "lucide-react-native"
-import { ActivityIndicator, Image, ScrollView, View } from "react-native"
+import { useRef } from "react"
+import { ActivityIndicator, Image, ScrollView, TextInput, View } from "react-native"
 import * as Yup from "yup"
 import { Button } from "../../components/ui/button"
 import { CardContent, CardFooter } from "../../components/ui/card"
@@ -33,6 +34,8 @@ const validationSchema = Yup.object().shape({
 
 export const ContentFormSecondStep = ({ handleSubmit, dataForm }: IProps) => {
   const { colorScheme } = useColorScheme();
+  const authorRef = useRef<TextInput>(null);
+  const descriptionRef = useRef<TextInput>(null);
 
   const initialValues = {
     ...dataForm,
@@ -58,6 +61,8 @@ export const ContentFormSecondStep = ({ handleSubmit, dataForm }: IProps) => {
                   source={{ uri: values.banner }}
                   className="w-full h-full rounded-xl"
                   resizeMode="cover"
+                  accessibilityLabel="Banner do conteúdo"
+                  accessibilityRole="image"
                 />
                 <View className="absolute inset-0 bg-black/40 flex items-center justify-center">
                   <Headphones size={32} color={colorScheme === 'dark' ? '#fff' : '#000'} />
@@ -80,9 +85,14 @@ export const ContentFormSecondStep = ({ handleSubmit, dataForm }: IProps) => {
                 onChangeText={(text) => setFieldValue("title", text)}
                 className="bg-muted/30 dark:bg-muted-dark/30 border-primary/20 dark:border-primary-dark/20 focus:border-primary dark:focus:border-primary-dark h-12"
                 maxLength={255}
+                returnKeyType="next"
+                onSubmitEditing={() => authorRef.current?.focus()}
+                autoCapitalize="words"
+                accessibilityLabel="Campo de título"
+                accessibilityHint="Digite o título do conteúdo"
               />
               {errors.title && (
-                <Text className="text-red-500 text-sm">{errors.title}</Text>
+                <Text className="text-red-500 text-sm" accessibilityRole="alert">{errors.title}</Text>
               )}
             </View>
 
@@ -95,14 +105,20 @@ export const ContentFormSecondStep = ({ handleSubmit, dataForm }: IProps) => {
               </Label>
               <Input
                 id="author"
+                ref={authorRef}
                 value={values.author}
                 placeholder="Digite o nome do autor"
                 onChangeText={(text) => setFieldValue("author", text)}
                 className="bg-muted/30 dark:bg-muted-dark/30 border-primary/20 dark:border-primary-dark/20 focus:border-primary dark:focus:border-primary-dark h-12"
                 maxLength={255}
+                returnKeyType="next"
+                onSubmitEditing={() => descriptionRef.current?.focus()}
+                autoCapitalize="words"
+                accessibilityLabel="Campo de autor"
+                accessibilityHint="Digite o nome do autor do conteúdo"
               />
               {errors.author && (
-                <Text className="text-red-500 text-sm">{errors.author}</Text>
+                <Text className="text-red-500 text-sm" accessibilityRole="alert">{errors.author}</Text>
               )}
             </View>
 
@@ -115,26 +131,31 @@ export const ContentFormSecondStep = ({ handleSubmit, dataForm }: IProps) => {
               </Label>
               <Textarea
                 id="description"
+                ref={descriptionRef}
                 placeholder="Descreva do que se trata este conteúdo..."
                 value={values.description}
                 onChangeText={(text) => setFieldValue("description", text)}
                 className="bg-muted/30 dark:bg-muted-dark/30 border-primary/20 dark:border-primary-dark/20 focus:border-primary dark:focus:border-primary-dark min-h-24"
                 maxLength={255}
+                returnKeyType="default"
+                autoCapitalize="sentences"
+                accessibilityLabel="Campo de descrição"
+                accessibilityHint="Digite uma descrição para o conteúdo"
               />
               {errors.description && (
-                <Text className="text-red-500 text-sm">{errors.description}</Text>
+                <Text className="text-red-500 text-sm" accessibilityRole="alert">{errors.description}</Text>
               )}
             </View>
 
             <View className="flex flex-col gap-1">
-              <Label htmlFor="description" className="text-sm font-medium flex flex-row items-center gap-2">
+              <Label htmlFor="tags" className="text-sm font-medium flex flex-row items-center gap-2">
                 <View className="text-sm font-medium flex flex-row items-center gap-2">
                   <TagIcon size={16} color={colorScheme === 'dark' ? '#d2d2d2' : '#000'} />
                   <Text className="text-muted-foreground dark:text-muted-foreground-dark font-bold">Tags</Text>
                 </View>
               </Label>
 
-              <View className="flex-row flex-wrap gap-2">
+              <View className="flex-row flex-wrap gap-2" accessibilityRole="radiogroup">
                 {tags.map((tag) => (
                   <Button
                     key={tag.id}
@@ -150,6 +171,10 @@ export const ContentFormSecondStep = ({ handleSubmit, dataForm }: IProps) => {
                       ? "bg-primary dark:bg-primary-dark"
                       : "bg-transparent border-primary/20 dark:border-primary-dark/20"
                       }`}
+                    accessibilityLabel={`Tag ${tag.name}`}
+                    accessibilityHint={values.tags?.includes(tag.id) ? "Toque para remover esta tag" : "Toque para adicionar esta tag"}
+                    accessibilityRole="radio"
+                    accessibilityState={{ checked: values.tags?.includes(tag.id) }}
                   >
                     <Text
                       className={`${values.tags?.includes(tag.id)
@@ -163,7 +188,7 @@ export const ContentFormSecondStep = ({ handleSubmit, dataForm }: IProps) => {
                 ))}
               </View>
               {errors.tags && (
-                <Text className="text-red-500 text-sm">{errors.tags}</Text>
+                <Text className="text-red-500 text-sm" accessibilityRole="alert">{errors.tags}</Text>
               )}
             </View>
           </CardContent>
@@ -173,6 +198,10 @@ export const ContentFormSecondStep = ({ handleSubmit, dataForm }: IProps) => {
               className="w-full h-12 rounded-xl"
               onPress={() => handleSubmit()}
               disabled={isSubmitting}
+              accessibilityLabel="Botão salvar conteúdo"
+              accessibilityHint="Toque para salvar o conteúdo"
+              accessibilityRole="button"
+              accessibilityState={{ disabled: isSubmitting }}
             >
               {isSubmitting ? (
                 <View className="flex-row items-center gap-2">
