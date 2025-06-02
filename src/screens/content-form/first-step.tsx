@@ -15,6 +15,27 @@ interface IProps {
 const validationSchema = Yup.object().shape({
   url: Yup.string()
     .url("Insira uma URL válida.")
+    .test('not-video-platforms', 'Este provedor não é permitido. Por favor, insira um link direto para um arquivo de áudio.', function (value) {
+      if (!value) return true;
+      const blockedDomains = [
+        { domain: 'youtube.com', name: 'YouTube' },
+        { domain: 'youtu.be', name: 'YouTube' },
+        { domain: 'vimeo.com', name: 'Vimeo' },
+        { domain: 'dailymotion.com', name: 'Dailymotion' },
+        { domain: 'twitch.tv', name: 'Twitch' },
+        { domain: 'facebook.com/watch', name: 'Facebook Watch' },
+        { domain: 'instagram.com/reel', name: 'Instagram Reels' },
+        { domain: 'tiktok.com', name: 'TikTok' }
+      ];
+
+      const matchedDomain = blockedDomains.find(({ domain }) => value.toLowerCase().includes(domain));
+      if (matchedDomain) {
+        return this.createError({
+          message: `O ${matchedDomain.name} não é permitido. Por favor, insira um link direto para um arquivo de áudio.`
+        });
+      }
+      return true;
+    })
     .required("O link é obrigatório."),
 });
 
@@ -43,7 +64,7 @@ export const ContentFormFirstStep = ({ handleFirstStep }: IProps) => {
           <CardContent className="flex flex-col gap-5 px-5">
             <View className="bg-primary/5 p-4 rounded-xl border border-primary/10 mb-2">
               <Text className="text-sm text-muted-foreground leading-relaxed">
-                Insira abaixo o link de qualquer vídeo do YouTube para transformá-lo em áudio.
+                Insira abaixo o link do áudio que você deseja adicionar.
                 Você poderá ouvi-lo como um podcast, mesmo com o app em segundo plano.
               </Text>
             </View>
@@ -59,7 +80,7 @@ export const ContentFormFirstStep = ({ handleFirstStep }: IProps) => {
               <View className="relative">
                 <Input
                   id="url"
-                  placeholder="https://www.youtube.com/watch?v=..."
+                  placeholder="https://exemplo.com/audio.mp3"
                   value={values.url}
                   onChangeText={handleChange("url")}
                   onBlur={handleBlur("url")}
