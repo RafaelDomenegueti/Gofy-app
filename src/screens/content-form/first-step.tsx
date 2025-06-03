@@ -1,11 +1,14 @@
+import * as DocumentPicker from '@react-native-documents/picker';
 import { Formik } from "formik";
-import { LinkIcon } from "lucide-react-native";
-import { ActivityIndicator, Text, View } from "react-native";
+import { LinkIcon, UploadIcon } from "lucide-react-native";
+import { useState } from "react";
+import { ActivityIndicator, Pressable, Text, View } from "react-native";
 import * as Yup from "yup";
 import { Button } from "../../components/ui/button";
-import { CardContent, CardFooter } from "../../components/ui/card";
+import { CardContent } from "../../components/ui/card";
 import { Input } from "../../components/ui/input";
 import { Label } from "../../components/ui/label";
+import { RadioGroup, RadioGroupItem } from "../../components/ui/radio-group";
 import { useColorScheme } from "../../lib/useColorScheme";
 
 interface IProps {
@@ -41,6 +44,7 @@ const validationSchema = Yup.object().shape({
 
 export const ContentFormFirstStep = ({ handleFirstStep }: IProps) => {
   const { colorScheme } = useColorScheme();
+  const [inputType, setInputType] = useState<'url' | 'file'>('url');
 
   const handleSubmit = async (values: { url: string }, { setSubmitting }: any) => {
     handleFirstStep({
@@ -53,6 +57,31 @@ export const ContentFormFirstStep = ({ handleFirstStep }: IProps) => {
     setSubmitting(false);
   };
 
+  const handleFilePick = async () => {
+    try {
+      const result = await DocumentPicker.pick({
+        type: ['audio/*'],
+        allowMultiSelection: false,
+        copyTo: 'cachesDirectory'
+      });
+
+      const file = result[0];
+      handleFirstStep({
+        url: file.uri,
+        banner: "",
+        title: file.name?.split(".")[0] || "",
+        description: "",
+      });
+    } catch (error: any) {
+      // Ignore cancellation errors
+      if (error.code === 'CANCELLED') {
+        return;
+      }
+
+      console.error('Error picking file:', error);
+    }
+  };
+
   return (
     <Formik
       initialValues={{ url: "" }}
@@ -61,68 +90,126 @@ export const ContentFormFirstStep = ({ handleFirstStep }: IProps) => {
     >
       {({ handleChange, handleBlur, handleSubmit, values, errors, touched, isSubmitting }) => (
         <View>
-          <CardContent className="flex flex-col gap-5 px-5">
-            <View className="bg-primary/5 p-4 rounded-xl border border-primary/10 mb-2">
+          <CardContent className="flex flex-col px-5">
+            <View className="bg-primary/5 p-4 rounded-xl border border-primary/10">
               <Text className="text-sm text-muted-foreground leading-relaxed">
-                Insira abaixo o link do áudio que você deseja adicionar.
+                Você pode inserir um link direto para um arquivo de áudio ou escolher um arquivo do seu dispositivo.
                 Você poderá ouvi-lo como um podcast, mesmo com o app em segundo plano.
               </Text>
             </View>
 
-            <View className="flex flex-col gap-1">
-              <Label htmlFor="url">
-                <View className="text-sm font-medium flex flex-row items-center gap-2">
-                  <LinkIcon size={16} color={colorScheme === 'dark' ? '#d2d2d2' : '#000'} />
-                  <Text className="text-muted-foreground dark:text-muted-foreground-dark font-bold">Link do vídeo</Text>
-                </View>
-              </Label>
+            <View className="mt-5">
+              <RadioGroup
+                value={inputType}
+                onValueChange={(value) => setInputType(value as 'url' | 'file')}
+                className="flex-row gap-4"
+              >
+                <Pressable
+                  className={`flex-1 flex-row items-center space-x-2 border rounded-lg p-3 ${inputType === 'url' ? 'border-primary bg-primary/5' : 'border-gray-200 dark:border-gray-700'}`}
+                  onPress={() => setInputType('url')}
+                >
+                  <View className="flex-row items-center gap-3">
+                    <RadioGroupItem value="url" id="url" />
+                    <Label htmlFor="url" className="flex-row items-center gap-2">
+                      <View className="flex-row items-center gap-2">
+                        <LinkIcon size={16} color={colorScheme === 'dark' ? '#d2d2d2' : '#000'} />
+                        <Text className="text-muted-foreground dark:text-muted-foreground-dark">URL</Text>
+                      </View>
+                    </Label>
+                  </View>
+                </Pressable>
 
-              <View className="relative">
-                <Input
-                  id="url"
-                  placeholder="https://exemplo.com/audio.mp3"
-                  value={values.url}
-                  onChangeText={handleChange("url")}
-                  onBlur={handleBlur("url")}
-                  className="bg-muted/30 dark:bg-muted-dark/30 border-primary/20 dark:border-primary-dark/20 focus:border-primary dark:focus:border-primary-dark h-12"
-                  returnKeyType="done"
-                  onSubmitEditing={() => handleSubmit()}
-                  keyboardType="url"
-                  autoCapitalize="none"
-                  autoCorrect={false}
-                  autoComplete="url"
-                  accessibilityLabel="Campo de link do YouTube"
-                  accessibilityHint="Digite o link do vídeo do YouTube que você deseja converter em áudio"
-                  accessibilityRole="none"
-                />
-              </View>
-
-              {touched.url && errors.url && (
-                <Text className="text-red-500 text-sm mt-1" accessibilityRole="alert">{errors.url}</Text>
-              )}
+                <Pressable
+                  className={`flex-1 flex-row items-center space-x-2 border rounded-lg p-3 ${inputType === 'file' ? 'border-primary bg-primary/5' : 'border-gray-200 dark:border-gray-700'
+                    }`}
+                  onPress={() => setInputType('file')}
+                >
+                  <View className="flex-row items-center gap-3">
+                    <RadioGroupItem value="file" id="file" />
+                    <Label htmlFor="file">
+                      <View className="flex-row items-center gap-2">
+                        <UploadIcon size={16} color={colorScheme === 'dark' ? '#d2d2d2' : '#000'} />
+                        <Text className="text-muted-foreground dark:text-muted-foreground-dark">Arquivo</Text>
+                      </View>
+                    </Label>
+                  </View>
+                </Pressable>
+              </RadioGroup>
             </View>
-          </CardContent>
 
-          <CardFooter className="p-5 pt-0">
-            <Button
-              className="w-full h-12 rounded-xl"
-              disabled={isSubmitting || !values.url}
-              onPress={() => handleSubmit()}
-              accessibilityLabel="Botão continuar"
-              accessibilityHint="Toque para processar o link do vídeo"
-              accessibilityRole="button"
-              accessibilityState={{ disabled: isSubmitting || !values.url }}
-            >
-              {isSubmitting ? (
-                <View className="flex-row items-center gap-2">
-                  <ActivityIndicator color="white" size="small" />
-                  <Text className="text-white font-medium">Processando...</Text>
+            {inputType === 'url' ? (
+              <View className="flex flex-col gap-1 mt-5">
+                <Label htmlFor="url">
+                  <View className="text-sm font-medium flex flex-row items-center gap-2">
+                    <LinkIcon size={16} color={colorScheme === 'dark' ? '#d2d2d2' : '#000'} />
+                    <Text className="text-muted-foreground dark:text-muted-foreground-dark font-bold">Link do áudio</Text>
+                  </View>
+                </Label>
+
+                <View className="relative">
+                  <Input
+                    id="url"
+                    placeholder="https://exemplo.com/audio.mp3"
+                    value={values.url}
+                    onChangeText={handleChange("url")}
+                    onBlur={handleBlur("url")}
+                    className="bg-muted/30 dark:bg-muted-dark/30 border-primary/20 dark:border-primary-dark/20 focus:border-primary dark:focus:border-primary-dark h-12"
+                    returnKeyType="done"
+                    onSubmitEditing={() => handleSubmit()}
+                    keyboardType="url"
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    autoComplete="url"
+                    accessibilityLabel="Campo de link do áudio"
+                    accessibilityHint="Digite o link do áudio que você deseja adicionar"
+                    accessibilityRole="none"
+                  />
                 </View>
-              ) : (
-                "Continuar"
-              )}
-            </Button>
-          </CardFooter>
+
+                {touched.url && errors.url && (
+                  <Text className="text-red-500 text-sm mt-1" accessibilityRole="alert">{errors.url}</Text>
+                )}
+
+                <Button
+                  className="w-full h-12 rounded-xl mt-5"
+                  disabled={isSubmitting || (inputType === 'url' && !values.url)}
+                  onPress={() => inputType === 'url' ? handleSubmit() : handleFilePick()}
+                  accessibilityLabel="Botão continuar"
+                  accessibilityHint="Toque para processar o link do áudio"
+                  accessibilityRole="button"
+                  accessibilityState={{ disabled: isSubmitting || (inputType === 'url' && !values.url) }}
+                >
+                  {isSubmitting ? (
+                    <View className="flex-row items-center gap-2">
+                      <ActivityIndicator color="white" size="small" />
+                      <Text className="text-white font-medium">Processando...</Text>
+                    </View>
+                  ) : (
+                    "Continuar"
+                  )}
+                </Button>
+              </View>
+            ) : (
+              <Pressable
+                onPress={handleFilePick}
+                className="mt-5 border-2 border-dashed border-primary/20 dark:border-primary-dark/20 rounded-xl p-6 bg-primary/5 dark:bg-primary-dark/5"
+              >
+                <View className="flex items-center justify-center gap-3">
+                  <View className="w-12 h-12 rounded-full bg-primary/10 dark:bg-primary-dark/10 flex items-center justify-center">
+                    <UploadIcon size={24} color={colorScheme === 'dark' ? '#d2d2d2' : '#000'} />
+                  </View>
+                  <View className="flex items-center gap-1">
+                    <Text className="text-base font-medium text-foreground dark:text-foreground-dark">
+                      Escolha um arquivo de áudio
+                    </Text>
+                    <Text className="text-sm text-muted-foreground dark:text-muted-foreground-dark text-center">
+                      Toque para selecionar um arquivo do seu dispositivo
+                    </Text>
+                  </View>
+                </View>
+              </Pressable>
+            )}
+          </CardContent>
         </View>
       )}
     </Formik>

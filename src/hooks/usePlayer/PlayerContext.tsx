@@ -480,6 +480,19 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     }
   }, [isDownloaded, getGofyDownloadsDir, playerState.downloadedContent, safeUpdateStorage]);
 
+  const setDownloadedContent = useCallback(async (contentId: string) => {
+    const updatedDownloadedContent = [...playerState.downloadedContent, contentId];
+    await safeUpdateStorage(GOFY_DOWNLOADS_KEY, updatedDownloadedContent);
+
+    setPlayerState(prev => {
+      const newState = {
+        ...prev,
+        downloadedContent: updatedDownloadedContent
+      };
+      return newState;
+    });
+  }, [playerState.downloadedContent, safeUpdateStorage]);
+
   // Memoize context value to prevent unnecessary re-renders
   const contextValue = useMemo(() => ({
     ...playerState,
@@ -491,7 +504,9 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     download,
     isDownloaded,
     isDownloading,
-    deleteDownloadedContent
+    deleteDownloadedContent,
+    setDownloadedContent,
+    getGofyDownloadsDir,
   }), [
     playerState,
     play,
@@ -502,7 +517,9 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     download,
     isDownloaded,
     isDownloading,
-    deleteDownloadedContent
+    deleteDownloadedContent,
+    setDownloadedContent,
+    getGofyDownloadsDir,
   ]);
 
   return (

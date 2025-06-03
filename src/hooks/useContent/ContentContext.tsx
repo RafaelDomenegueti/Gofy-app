@@ -1,11 +1,14 @@
 import { createContext, useState } from 'react';
+import RNFS from 'react-native-fs';
 import Toast from 'react-native-toast-message';
 import { ContentService } from '../../services/content';
+import { usePlayer } from '../usePlayer';
 import { Content, ContentContextData, IContentProviderProps } from './types';
 
 export const ContentContext = createContext({} as ContentContextData);
 
 export function ContentProvider({ children }: IContentProviderProps) {
+  const { setDownloadedContent, getGofyDownloadsDir } = usePlayer();
   const [contents, setContents] = useState<Content[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -29,15 +32,37 @@ export function ContentProvider({ children }: IContentProviderProps) {
         type: "error"
       })
     }
-
   }
 
   const createContent = async (content: Omit<Content, 'id'>) => {
     try {
       setIsLoading(true)
 
-      const { data: createdContent } = await ContentService.create(content)
+      let currentUrl = content.url;
+
+      if (!content.url?.startsWith("http")) {
+        currentUrl = null;
+      }
+
+      const { data: createdContent } = await ContentService.create({
+        ...content,
+        url: currentUrl
+      })
       setContents(data => [...data, createdContent])
+
+      if (!content.url?.startsWith("http")) {
+        const dir = getGofyDownloadsDir();
+        if (!(await RNFS.exists(dir))) {
+          await RNFS.mkdir(dir);
+        }
+
+        const fileName = `content_${createdContent.id}.mp3`;
+        const destinationPath = `${dir}${fileName}`;
+
+        await RNFS.copyFile(content.url!, destinationPath);
+
+        setDownloadedContent(createdContent.id);
+      }
 
       setIsLoading(false)
     } catch (error: any) {

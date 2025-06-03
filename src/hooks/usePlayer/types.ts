@@ -25,4 +25,6 @@ export interface PlayerContextType extends PlayerState {
   isDownloaded: (contentId: string) => Promise<boolean>;
   isDownloading: (contentId: string) => boolean;
   deleteDownloadedContent: (contentId: string) => Promise<void>;
+  setDownloadedContent: (contentId: string) => Promise<void>;
+  getGofyDownloadsDir: () => string;
 }

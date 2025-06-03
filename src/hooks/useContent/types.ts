@@ -6,7 +6,7 @@ export interface IContentProviderProps {
 
 export type Content = {
   id: string;
-  url: string;
+  url: string | null;
   title: string;
   description: string;
   banner?: string;
@@ -29,7 +29,6 @@ export type ContentInfo = {
   title: string;
   description: string;
 }
-
 export type ContentContextData = {
   contents: Content[];
   createContent: (content: Omit<Content, 'id'>) => Promise<void>;

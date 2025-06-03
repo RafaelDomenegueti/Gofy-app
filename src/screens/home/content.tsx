@@ -1,6 +1,7 @@
-import { Clock, Download, Pause, Play, Tag, Trash2, User } from "lucide-react-native";
+import { AlertCircle, Clock, Download, Pause, Play, Tag, Trash2, User } from "lucide-react-native";
 import React, { useEffect, useState } from "react";
 import { ActivityIndicator, Text, TouchableOpacity, View } from "react-native";
+import Toast from "react-native-toast-message";
 import { Card } from "../../components/ui/card";
 import { H3 } from "../../components/ui/typography";
 import { useContent } from "../../hooks/useContent";
@@ -53,6 +54,14 @@ export const ContentItem = ({ content }: IProps) => {
   }, [content.id, downloading]);
 
   const handlePlayClick = async () => {
+    if (!content.url && !downloaded) {
+      Toast.show({
+        text1: "Este conteúdo não possui um arquivo de áudio.",
+        type: "error"
+      });
+      return;
+    }
+
     if (!downloaded) {
       await download(content);
       return;
@@ -105,6 +114,10 @@ export const ContentItem = ({ content }: IProps) => {
 
     if (downloading) {
       return <ActivityIndicator size="small" color="#5c5d8d" />;
+    }
+
+    if (!content.url && !downloaded) {
+      return <AlertCircle size={24} color="#5c5d8d" />;
     }
 
     if (!downloaded) {
