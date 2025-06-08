@@ -110,5 +110,11 @@
     "humor": "ユーモア",
     "religionSpirituality": "宗教とスピリチュアリティ",
     "scienceTechnology": "科学と技術"
+  },
+  "community": {
+    "underConstruction": "開発中",
+    "constructionDescription": "新しいコミュニティ機能を開発中です。まもなく他のユーザーと交流し、経験を共有できるようになります。",
+    "donationDescription": "GoFyは寄付によって維持されています。プロジェクトを気に入っていただけたなら、寄付をご検討ください。",
+    "donate": "寄付する"
   }
 }

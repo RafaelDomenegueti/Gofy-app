@@ -110,5 +110,11 @@
     "humor": "Humor",
     "religionSpirituality": "Religion & Spiritualität",
     "scienceTechnology": "Wissenschaft & Technologie"
+  },
+  "community": {
+    "underConstruction": "In Bearbeitung",
+    "constructionDescription": "Wir arbeiten an neuen Community-Funktionen. Bald können Sie mit anderen Benutzern interagieren und Ihre Erfahrungen teilen.",
+    "donationDescription": "GoFy wird durch Spenden finanziert. Wenn Ihnen das Projekt gefällt und Sie helfen möchten, erwägen Sie eine Spende.",
+    "donate": "Spenden"
   }
 }

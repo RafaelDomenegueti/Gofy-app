@@ -110,5 +110,11 @@
     "humor": "幽默",
     "religionSpirituality": "宗教与灵性",
     "scienceTechnology": "科学与技术"
+  },
+  "community": {
+    "underConstruction": "正在建设中",
+    "constructionDescription": "我们正在开发新的社区功能。很快您就可以与其他用户互动并分享您的经验。",
+    "donationDescription": "GoFy 通过捐赠维持运营。如果您喜欢这个项目并想提供帮助，请考虑进行捐赠。",
+    "donate": "进行捐赠"
   }
 }
