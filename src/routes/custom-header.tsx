@@ -1,13 +1,11 @@
-import { LogOut, Moon, Plus, Sun } from "lucide-react-native";
+import { Moon, Plus, Sun } from "lucide-react-native";
 import React from "react";
 import { SafeAreaView, TouchableOpacity, View } from "react-native";
 import { Logo } from "../components/logo";
-import { useAuth } from "../hooks/useAuth";
 import { useColorScheme } from "../lib/useColorScheme";
 
 export const CustomHeader = ({ navigation }: any) => {
   const { setColorScheme, isDarkColorScheme } = useColorScheme();
-  const { logout } = useAuth();
 
   return (
     <SafeAreaView className="dark:bg-background-dark bg-background">
@@ -25,23 +23,16 @@ export const CustomHeader = ({ navigation }: any) => {
         <View className="flex flex-row items-center gap-3">
           <TouchableOpacity
             className="relative w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center"
-            onPress={() => navigation.navigate("ContentFormStack")}
-          >
-            <Plus size={20} color={"#fff"} />
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            className="relative w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center"
             onPress={() => setColorScheme(isDarkColorScheme ? "light" : "dark")}
           >
             {!isDarkColorScheme ? <Moon size={20} color={"#fff"} /> : <Sun size={20} color={"#fff"} />}
           </TouchableOpacity>
 
           <TouchableOpacity
-            className="relative w-10 h-10 rounded-full bg-red-500/10 flex items-center justify-center"
-            onPress={() => logout()}
+            className="relative w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center"
+            onPress={() => navigation.navigate("ContentFormStack")}
           >
-            <LogOut size={18} color={isDarkColorScheme ? "#ef4444" : "#dc2626"} />
+            <Plus size={20} color={"#fff"} />
           </TouchableOpacity>
         </View>
       </View>
