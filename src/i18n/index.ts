@@ -60,16 +60,16 @@ i18n
   });
 
 const languageList = [
-  { label: 'English', value: 'en' },
-  { label: 'Português', value: 'pt' },
-  { label: 'Español', value: 'es' },
-  { label: 'Français', value: 'fr' },
-  { label: 'हिंदी', value: 'hi' },
-  { label: 'Deutsch', value: 'de' },
-  { label: 'Русский', value: 'ru' },
-  { label: '中文', value: 'zh' },
-  { label: '日本語', value: 'ja' },
-  { label: '한국어', value: 'ko' }
+  { label: 'English', value: 'en', icon: '🇺🇸' },
+  { label: 'Português', value: 'pt', icon: '🇵🇹' },
+  { label: 'Español', value: 'es', icon: '🇪🇸' },
+  { label: 'Français', value: 'fr', icon: '🇫🇷' },
+  { label: 'हिंदी', value: 'hi', icon: '🇮🇳' },
+  { label: 'Deutsch', value: 'de', icon: '🇩🇪' },
+  { label: 'Русский', value: 'ru', icon: '🇷🇺' },
+  { label: '中文', value: 'zh', icon: '🇨🇳' },
+  { label: '日本語', value: 'ja', icon: '🇯🇵' },
+  { label: '한국어', value: 'ko', icon: '🇰🇷' }
 ];
 
 export default i18n;

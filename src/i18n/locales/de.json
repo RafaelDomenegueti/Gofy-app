@@ -32,6 +32,24 @@
     "settings": "Einstellungen",
     "community": "Community"
   },
+  "settings": {
+    "profile": {
+      "title": "Profil",
+      "description": "Verwalten Sie Ihre Kontoinformationen",
+      "phone": "Telefon",
+      "editProfile": "Profil bearbeiten",
+      "changePassword": "Passwort ändern"
+    },
+    "preferences": {
+      "title": "Einstellungen",
+      "description": "Passen Sie Ihre App-Erfahrung an",
+      "theme": "Design",
+      "light": "Hell",
+      "dark": "Dunkel",
+      "themeDescription": "Zwischen hellem und dunklem Design wechseln"
+    },
+    "logout": "Abmelden"
+  },
   "login": {
     "tagline": "Verwandeln Sie Ihre Lieblings-Audios in ein immersives Audioerlebnis"
   },

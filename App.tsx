@@ -1,4 +1,5 @@
 import { DarkTheme, DefaultTheme, Theme, ThemeProvider } from '@react-navigation/native';
+import { PortalHost } from '@rn-primitives/portal';
 import React, { useEffect } from 'react';
 import SplashScreen from 'react-native-splash-screen';
 import Toast from 'react-native-toast-message';
@@ -28,12 +29,15 @@ const App = () => {
   }, []);
 
   return (
-    <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
-      <ContextProvider>
-        <Routes />
-        <Toast />
-      </ContextProvider>
-    </ThemeProvider>
+    <>
+      <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
+        <ContextProvider>
+          <Routes />
+          <Toast />
+        </ContextProvider>
+      </ThemeProvider>
+      <PortalHost name="root" />
+    </>
   );
 };
 

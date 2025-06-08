@@ -32,6 +32,24 @@
     "settings": "Settings",
     "community": "Community"
   },
+  "settings": {
+    "profile": {
+      "title": "Profile",
+      "description": "Manage your account information",
+      "phone": "Phone",
+      "editProfile": "Edit Profile",
+      "changePassword": "Change Password"
+    },
+    "preferences": {
+      "title": "Preferences",
+      "description": "Customize your app experience",
+      "theme": "Theme",
+      "light": "Light",
+      "dark": "Dark",
+      "themeDescription": "Switch between light and dark theme"
+    },
+    "logout": "Log Out"
+  },
   "login": {
     "tagline": "Transform your favorite audios into an immersive audio experience"
   },

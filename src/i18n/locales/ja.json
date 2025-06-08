@@ -32,6 +32,24 @@
     "settings": "設定",
     "community": "コミュニティ"
   },
+  "settings": {
+    "profile": {
+      "title": "プロフィール",
+      "description": "アカウント情報の管理",
+      "phone": "電話番号",
+      "editProfile": "プロフィールを編集",
+      "changePassword": "パスワードを変更"
+    },
+    "preferences": {
+      "title": "設定",
+      "description": "アプリの使用体験をカスタマイズ",
+      "theme": "テーマ",
+      "light": "ライト",
+      "dark": "ダーク",
+      "themeDescription": "ライトテーマとダークテーマを切り替え"
+    },
+    "logout": "ログアウト"
+  },
   "login": {
     "tagline": "お気に入りのオーディオを没入感のある音声体験に変換"
   },

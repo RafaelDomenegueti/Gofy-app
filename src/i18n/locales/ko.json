@@ -32,6 +32,24 @@
     "settings": "설정",
     "community": "커뮤니티"
   },
+  "settings": {
+    "profile": {
+      "title": "프로필",
+      "description": "계정 정보 관리",
+      "phone": "전화번호",
+      "editProfile": "프로필 수정",
+      "changePassword": "비밀번호 변경"
+    },
+    "preferences": {
+      "title": "설정",
+      "description": "앱 사용 경험을 맞춤 설정",
+      "theme": "테마",
+      "light": "라이트",
+      "dark": "다크",
+      "themeDescription": "라이트 테마와 다크 테마 전환"
+    },
+    "logout": "로그아웃"
+  },
   "login": {
     "tagline": "좋아하는 오디오를 몰입감 있는 음성 경험으로 변환하세요"
   },

@@ -32,6 +32,24 @@
     "settings": "设置",
     "community": "社区"
   },
+  "settings": {
+    "profile": {
+      "title": "个人资料",
+      "description": "管理您的账户信息",
+      "phone": "电话",
+      "editProfile": "编辑资料",
+      "changePassword": "修改密码"
+    },
+    "preferences": {
+      "title": "偏好设置",
+      "description": "自定义您的应用体验",
+      "theme": "主题",
+      "light": "浅色",
+      "dark": "深色",
+      "themeDescription": "在浅色和深色主题之间切换"
+    },
+    "logout": "退出登录"
+  },
   "login": {
     "tagline": "将您喜爱的音频转换为沉浸式音频体验"
   },

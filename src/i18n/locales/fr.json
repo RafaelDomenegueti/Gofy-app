@@ -32,6 +32,24 @@
     "settings": "Paramètres",
     "community": "Communauté"
   },
+  "settings": {
+    "profile": {
+      "title": "Profil",
+      "description": "Gérez vos informations de compte",
+      "phone": "Téléphone",
+      "editProfile": "Modifier le Profil",
+      "changePassword": "Changer le Mot de Passe"
+    },
+    "preferences": {
+      "title": "Préférences",
+      "description": "Personnalisez votre expérience dans l'application",
+      "theme": "Thème",
+      "light": "Clair",
+      "dark": "Sombre",
+      "themeDescription": "Basculer entre le thème clair et sombre"
+    },
+    "logout": "Déconnexion"
+  },
   "login": {
     "tagline": "Transformez vos audios préférés en une expérience audio immersive"
   },
