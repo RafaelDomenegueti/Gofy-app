@@ -1,0 +1,113 @@
+{
+  "common": {
+    "welcome": "ようこそ",
+    "loading": "読み込み中...",
+    "error": "エラー",
+    "success": "成功"
+  },
+  "auth": {
+    "login": "ログイン",
+    "signup": "新規登録",
+    "email": "メールアドレス",
+    "password": "パスワード",
+    "forgotPassword": "パスワードをお忘れですか？",
+    "welcomeBack": "おかえりなさい！",
+    "enterCredentials": "続行するには認証情報を入力してください",
+    "emailPlaceholder": "あなたの@メール.com",
+    "passwordPlaceholder": "••••••••",
+    "signingIn": "ログイン中...",
+    "createAccount": "アカウント作成",
+    "name": "名前",
+    "namePlaceholder": "あなたの名前",
+    "confirmPassword": "パスワードの確認",
+    "confirmPasswordPlaceholder": "••••••••",
+    "createAccountTitle": "アカウント作成",
+    "fillDataToStart": "開始するには以下の情報を入力してください",
+    "creatingAccount": "アカウント作成中...",
+    "alreadyHaveAccount": "すでにアカウントをお持ちです"
+  },
+  "navigation": {
+    "home": "ホーム",
+    "profile": "プロフィール",
+    "settings": "設定"
+  },
+  "login": {
+    "tagline": "お気に入りのオーディオを没入感のある音声体験に変換"
+  },
+  "register": {
+    "tagline": "お気に入りの動画を没入感のある音声体験に変換"
+  },
+  "validation": {
+    "nameRequired": "名前は必須です",
+    "nameMinLength": "名前は2文字以上必要です",
+    "emailRequired": "メールアドレスは必須です",
+    "emailInvalid": "有効なメールアドレスを入力してください",
+    "passwordRequired": "パスワードは必須です",
+    "passwordMinLength": "パスワードは8文字以上必要です",
+    "confirmPasswordRequired": "パスワードを確認してください",
+    "passwordsDoNotMatch": "パスワードが一致しません"
+  },
+  "home": {
+    "loading": "コンテンツを読み込み中...",
+    "noContent": "コンテンツがありません",
+    "noContentDescription": "最初の動画を追加して、ポッドキャストに変換し、いつでも聴けるようにしましょう。",
+    "addNewContent": "新しいコンテンツを追加",
+    "helpKeepGofy": "Gofyをサポートしましょう！",
+    "helpKeepGofyDescription": "アプリが気に入ったら、開発をサポートするためにコーヒーを一杯おごってください。",
+    "buyCoffee": "コーヒーを一杯 ☕",
+    "contentAvailable": "{{count}}件のコンテンツを聴くことができます",
+    "contentsAvailable": "{{count}}件のコンテンツを聴くことができます",
+    "noAudioFile": "このコンテンツには音声ファイルがありません。"
+  },
+  "contentForm": {
+    "addContent": "コンテンツを追加",
+    "contentDetails": "コンテンツの詳細",
+    "step1Description": "音声に変換したい動画のリンクを入力してください。",
+    "step2Description": "コンテンツの詳細を確認して調整してください。",
+    "url": "URL",
+    "file": "ファイル",
+    "audioLink": "音声リンク",
+    "audioLinkPlaceholder": "https://example.com/audio.mp3",
+    "audioLinkDescription": "音声ファイルの直接リンクを入力するか、デバイスからファイルを選択できます。アプリがバックグラウンドで動作していても、ポッドキャストとして聴くことができます。",
+    "chooseAudioFile": "音声ファイルを選択",
+    "chooseFileDescription": "タップしてデバイスからファイルを選択",
+    "continue": "続ける",
+    "processing": "処理中...",
+    "title": "タイトル",
+    "titlePlaceholder": "コンテンツのタイトルを入力",
+    "author": "作者",
+    "authorPlaceholder": "作者名を入力",
+    "description": "説明",
+    "descriptionPlaceholder": "このコンテンツについて説明してください...",
+    "tags": "タグ",
+    "saveContent": "コンテンツを保存",
+    "saving": "保存中...",
+    "validation": {
+      "urlRequired": "リンクは必須です",
+      "urlInvalid": "有効なURLを入力してください",
+      "urlNotAllowed": "このプロバイダーは許可されていません。音声ファイルの直接リンクを入力してください。",
+      "titleRequired": "タイトルは必須です",
+      "titleMaxLength": "タイトルは255文字以内で入力してください",
+      "descriptionMaxLength": "説明は255文字以内で入力してください",
+      "authorRequired": "作者は必須です",
+      "authorMaxLength": "作者名は255文字以内で入力してください",
+      "tagsRequired": "少なくとも1つのタグを選択してください"
+    }
+  },
+  "tags": {
+    "fantasy": "ファンタジー",
+    "scienceFiction": "SF",
+    "dystopian": "ディストピア",
+    "actionAdventure": "アクション＆アドベンチャー",
+    "mystery": "ミステリー",
+    "horror": "ホラー",
+    "thrillerSuspense": "スリラー＆サスペンス",
+    "historicalFiction": "歴史小説",
+    "romance": "ロマンス",
+    "trueCrime": "実録犯罪",
+    "history": "歴史",
+    "humor": "ユーモア",
+    "religionSpirituality": "宗教とスピリチュアリティ",
+    "scienceTechnology": "科学と技術"
+  }
+}

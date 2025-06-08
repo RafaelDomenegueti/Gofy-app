@@ -1,5 +1,6 @@
 import { useNavigation } from "@react-navigation/native"
 import { NativeStackNavigationProp } from "@react-navigation/native-stack"
+import { useTranslation } from "react-i18next"
 import { KeyboardAvoidingView, Platform, ScrollView, View } from "react-native"
 import { Logo } from "../../components/logo"
 import { P } from "../../components/ui/typography"
@@ -10,6 +11,7 @@ type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
 export const LoginScreen = () => {
   const navigation = useNavigation<NavigationProp>()
+  const { t } = useTranslation()
 
   const toggleForm = () => {
     navigation.navigate('Register')
@@ -37,7 +39,7 @@ export const LoginScreen = () => {
                 />
               </View>
               <P className="text-center text-muted-foreground dark:text-muted-dark-foreground text-base max-w-[280px]">
-                Transforme seus áudios favoritos em uma experiência de áudio imersiva
+                {t('login.tagline')}
               </P>
             </View>
           </View>

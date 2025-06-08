@@ -1,4 +1,5 @@
 import { useNavigation } from "@react-navigation/native"
+import { useTranslation } from "react-i18next"
 import { KeyboardAvoidingView, Platform, ScrollView, View } from "react-native"
 import { Logo } from "../../components/logo"
 import { P } from "../../components/ui/typography"
@@ -6,6 +7,7 @@ import { RegisterForm } from "./form"
 
 export const RegisterScreen = () => {
   const navigation = useNavigation()
+  const { t } = useTranslation()
 
   const toggleForm = () => {
     navigation.goBack()
@@ -33,7 +35,7 @@ export const RegisterScreen = () => {
                 />
               </View>
               <P className="text-center text-muted-foreground dark:text-muted-dark-foreground text-base max-w-[280px]">
-                Transforme seus vídeos favoritos em uma experiência de áudio imersiva
+                {t('register.tagline')}
               </P>
             </View>
           </View>

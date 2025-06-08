@@ -1,6 +1,7 @@
 import { Formik } from 'formik';
 import { ArrowRight, Lock, Mail } from "lucide-react-native";
 import { useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { TextInput, View } from "react-native";
 import * as yup from 'yup';
 import { Button } from "../../components/ui/button";
@@ -17,19 +18,20 @@ type LoginFormProps = {
 
 export function LoginForm({ onToggleForm }: LoginFormProps) {
   const { login, isLoading } = useAuth();
-  const { colorScheme } = useColorScheme()
+  const { colorScheme } = useColorScheme();
+  const { t } = useTranslation();
   const initialValues = { email: '', password: '' }
   const passwordRef = useRef<TextInput>(null);
 
   const loginSchema = yup.object().shape({
     email: yup
       .string()
-      .email('Digite um e-mail válido')
-      .required('O e-mail é obrigatório'),
+      .email(t('auth.email'))
+      .required(t('auth.email')),
     password: yup
       .string()
-      .min(8, 'A senha deve ter no mínimo 8 caracteres')
-      .required('A senha é obrigatória'),
+      .min(8, t('auth.password'))
+      .required(t('auth.password')),
   });
 
   const handleLogin = async (data: typeof initialValues) => {
@@ -43,9 +45,11 @@ export function LoginForm({ onToggleForm }: LoginFormProps) {
   return (
     <Card className="w-full max-w-md mx-auto shadow-lg animate-fade-in dark:bg-card-dark/50">
       <CardHeader className="space-y-2 pb-6">
-        <CardTitle className="text-2xl font-bold text-center dark:text-foreground-dark">Bem-vindo de volta!</CardTitle>
+        <CardTitle className="text-2xl font-bold text-center dark:text-foreground-dark">
+          {t('auth.welcomeBack')}
+        </CardTitle>
         <CardDescription className="text-center dark:text-muted-dark-foreground">
-          Entre com suas credenciais para continuar
+          {t('auth.enterCredentials')}
         </CardDescription>
       </CardHeader>
       <Formik
@@ -58,11 +62,11 @@ export function LoginForm({ onToggleForm }: LoginFormProps) {
             <CardContent className="flex flex-col gap-5">
               <View className="flex flex-col gap-2">
                 <Label className="text-sm font-medium dark:text-foreground-dark">
-                  Email
+                  {t('auth.email')}
                 </Label>
                 <View className="relative">
                   <Input
-                    placeholder="seu@email.com"
+                    placeholder={t('auth.emailPlaceholder')}
                     value={values.email}
                     onChangeText={(v) => setFieldValue("email", v)}
                     className={`pl-11 ${touched.email && errors.email ? 'border-red-500' : 'border-input'}`}
@@ -82,12 +86,12 @@ export function LoginForm({ onToggleForm }: LoginFormProps) {
               </View>
               <View className="flex flex-col gap-2">
                 <Label className="text-sm font-medium dark:text-foreground-dark">
-                  Senha
+                  {t('auth.password')}
                 </Label>
                 <View className="relative">
                   <Input
                     ref={passwordRef}
-                    placeholder="••••••••"
+                    placeholder={t('auth.passwordPlaceholder')}
                     value={values.password}
                     onChangeText={(v) => setFieldValue("password", v)}
                     secureTextEntry
@@ -111,7 +115,7 @@ export function LoginForm({ onToggleForm }: LoginFormProps) {
                 disabled={isLoading}
                 onPress={() => handleSubmit()}
               >
-                {isLoading ? "Entrando..." : "Entrar"}
+                {isLoading ? t('auth.signingIn') : t('auth.login')}
               </Button>
               <Button
                 variant="link"
@@ -119,7 +123,7 @@ export function LoginForm({ onToggleForm }: LoginFormProps) {
                 onPress={onToggleForm}
               >
                 <View className="flex-row items-center gap-2">
-                  <Text className="text-primary dark:text-white font-medium">Criar uma conta</Text>
+                  <Text className="text-primary dark:text-white font-medium">{t('auth.createAccount')}</Text>
                   <ArrowRight color={colorScheme === 'dark' ? "#fff" : "#5c5d8d"} size={16} />
                 </View>
               </Button>

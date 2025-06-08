@@ -1,0 +1,113 @@
+{
+  "common": {
+    "welcome": "欢迎",
+    "loading": "加载中...",
+    "error": "错误",
+    "success": "成功"
+  },
+  "auth": {
+    "login": "登录",
+    "signup": "注册",
+    "email": "电子邮箱",
+    "password": "密码",
+    "forgotPassword": "忘记密码？",
+    "welcomeBack": "欢迎回来！",
+    "enterCredentials": "输入您的凭据以继续",
+    "emailPlaceholder": "您的@邮箱.com",
+    "passwordPlaceholder": "••••••••",
+    "signingIn": "正在登录...",
+    "createAccount": "创建账户",
+    "name": "姓名",
+    "namePlaceholder": "您的姓名",
+    "confirmPassword": "确认密码",
+    "confirmPasswordPlaceholder": "••••••••",
+    "createAccountTitle": "创建账户",
+    "fillDataToStart": "填写以下数据开始使用",
+    "creatingAccount": "正在创建账户...",
+    "alreadyHaveAccount": "我已有账户"
+  },
+  "navigation": {
+    "home": "首页",
+    "profile": "个人资料",
+    "settings": "设置"
+  },
+  "login": {
+    "tagline": "将您喜爱的音频转换为沉浸式音频体验"
+  },
+  "register": {
+    "tagline": "将您喜爱的视频转换为沉浸式音频体验"
+  },
+  "validation": {
+    "nameRequired": "姓名是必填项",
+    "nameMinLength": "姓名至少需要2个字符",
+    "emailRequired": "电子邮箱是必填项",
+    "emailInvalid": "请输入有效的电子邮箱地址",
+    "passwordRequired": "密码是必填项",
+    "passwordMinLength": "密码至少需要8个字符",
+    "confirmPasswordRequired": "请确认您的密码",
+    "passwordsDoNotMatch": "密码不匹配"
+  },
+  "home": {
+    "loading": "正在加载您的内容...",
+    "noContent": "暂无内容",
+    "noContentDescription": "添加您的第一个视频，将其转换为播客并随时收听。",
+    "addNewContent": "添加新内容",
+    "helpKeepGofy": "帮助支持Gofy！",
+    "helpKeepGofyDescription": "如果您喜欢这个应用，考虑买杯咖啡来支持开发。",
+    "buyCoffee": "买杯咖啡 ☕",
+    "contentAvailable": "{{count}}个内容可供收听",
+    "contentsAvailable": "{{count}}个内容可供收听",
+    "noAudioFile": "此内容没有音频文件。"
+  },
+  "contentForm": {
+    "addContent": "添加内容",
+    "contentDetails": "内容详情",
+    "step1Description": "输入您想要转换为音频的视频链接。",
+    "step2Description": "检查并调整内容详情。",
+    "url": "网址",
+    "file": "文件",
+    "audioLink": "音频链接",
+    "audioLinkPlaceholder": "https://示例.com/音频.mp3",
+    "audioLinkDescription": "您可以输入音频文件的直接链接或从设备中选择文件。即使应用在后台运行，您也可以将其作为播客收听。",
+    "chooseAudioFile": "选择音频文件",
+    "chooseFileDescription": "点击从设备中选择文件",
+    "continue": "继续",
+    "processing": "处理中...",
+    "title": "标题",
+    "titlePlaceholder": "输入内容标题",
+    "author": "作者",
+    "authorPlaceholder": "输入作者姓名",
+    "description": "描述",
+    "descriptionPlaceholder": "描述这个内容是关于什么的...",
+    "tags": "标签",
+    "saveContent": "保存内容",
+    "saving": "保存中...",
+    "validation": {
+      "urlRequired": "链接是必填项",
+      "urlInvalid": "请输入有效的网址",
+      "urlNotAllowed": "不允许此提供商。请输入音频文件的直接链接。",
+      "titleRequired": "标题是必填项",
+      "titleMaxLength": "标题不能超过255个字符",
+      "descriptionMaxLength": "描述不能超过255个字符",
+      "authorRequired": "作者是必填项",
+      "authorMaxLength": "作者名称不能超过255个字符",
+      "tagsRequired": "请至少选择一个标签"
+    }
+  },
+  "tags": {
+    "fantasy": "奇幻",
+    "scienceFiction": "科幻",
+    "dystopian": "反乌托邦",
+    "actionAdventure": "动作冒险",
+    "mystery": "悬疑",
+    "horror": "恐怖",
+    "thrillerSuspense": "惊悚悬疑",
+    "historicalFiction": "历史小说",
+    "romance": "浪漫",
+    "trueCrime": "真实犯罪",
+    "history": "历史",
+    "humor": "幽默",
+    "religionSpirituality": "宗教与灵性",
+    "scienceTechnology": "科学与技术"
+  }
+}

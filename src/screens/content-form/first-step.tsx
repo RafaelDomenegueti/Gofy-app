@@ -2,6 +2,7 @@ import * as DocumentPicker from '@react-native-documents/picker';
 import { Formik } from "formik";
 import { LinkIcon, UploadIcon } from "lucide-react-native";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { ActivityIndicator, Pressable, Text, View } from "react-native";
 import * as Yup from "yup";
 import { Button } from "../../components/ui/button";
@@ -15,36 +16,37 @@ interface IProps {
   handleFirstStep: (data: any) => void;
 }
 
-const validationSchema = Yup.object().shape({
-  url: Yup.string()
-    .url("Insira uma URL válida.")
-    .test('not-video-platforms', 'Este provedor não é permitido. Por favor, insira um link direto para um arquivo de áudio.', function (value) {
-      if (!value) return true;
-      const blockedDomains = [
-        { domain: 'youtube.com', name: 'YouTube' },
-        { domain: 'youtu.be', name: 'YouTube' },
-        { domain: 'vimeo.com', name: 'Vimeo' },
-        { domain: 'dailymotion.com', name: 'Dailymotion' },
-        { domain: 'twitch.tv', name: 'Twitch' },
-        { domain: 'facebook.com/watch', name: 'Facebook Watch' },
-        { domain: 'instagram.com/reel', name: 'Instagram Reels' },
-        { domain: 'tiktok.com', name: 'TikTok' }
-      ];
-
-      const matchedDomain = blockedDomains.find(({ domain }) => value.toLowerCase().includes(domain));
-      if (matchedDomain) {
-        return this.createError({
-          message: `O ${matchedDomain.name} não é permitido. Por favor, insira um link direto para um arquivo de áudio.`
-        });
-      }
-      return true;
-    })
-    .required("O link é obrigatório."),
-});
-
 export const ContentFormFirstStep = ({ handleFirstStep }: IProps) => {
   const { colorScheme } = useColorScheme();
   const [inputType, setInputType] = useState<'url' | 'file'>('url');
+  const { t } = useTranslation();
+
+  const validationSchema = Yup.object().shape({
+    url: Yup.string()
+      .url(t('contentForm.validation.urlInvalid'))
+      .test('not-video-platforms', t('contentForm.validation.urlNotAllowed'), function (value) {
+        if (!value) return true;
+        const blockedDomains = [
+          { domain: 'youtube.com', name: 'YouTube' },
+          { domain: 'youtu.be', name: 'YouTube' },
+          { domain: 'vimeo.com', name: 'Vimeo' },
+          { domain: 'dailymotion.com', name: 'Dailymotion' },
+          { domain: 'twitch.tv', name: 'Twitch' },
+          { domain: 'facebook.com/watch', name: 'Facebook Watch' },
+          { domain: 'instagram.com/reel', name: 'Instagram Reels' },
+          { domain: 'tiktok.com', name: 'TikTok' }
+        ];
+
+        const matchedDomain = blockedDomains.find(({ domain }) => value.toLowerCase().includes(domain));
+        if (matchedDomain) {
+          return this.createError({
+            message: t('contentForm.validation.urlNotAllowed')
+          });
+        }
+        return true;
+      })
+      .required(t('contentForm.validation.urlRequired')),
+  });
 
   const handleSubmit = async (values: { url: string }, { setSubmitting }: any) => {
     handleFirstStep({
@@ -93,8 +95,7 @@ export const ContentFormFirstStep = ({ handleFirstStep }: IProps) => {
           <CardContent className="flex flex-col px-5">
             <View className="bg-primary/5 p-4 rounded-xl border border-primary/10">
               <Text className="text-sm text-muted-foreground leading-relaxed">
-                Você pode inserir um link direto para um arquivo de áudio ou escolher um arquivo do seu dispositivo.
-                Você poderá ouvi-lo como um podcast, mesmo com o app em segundo plano.
+                {t('contentForm.audioLinkDescription')}
               </Text>
             </View>
 
@@ -113,15 +114,14 @@ export const ContentFormFirstStep = ({ handleFirstStep }: IProps) => {
                     <Label htmlFor="url" className="flex-row items-center gap-2">
                       <View className="flex-row items-center gap-2">
                         <LinkIcon size={16} color={colorScheme === 'dark' ? '#d2d2d2' : '#000'} />
-                        <Text className="text-muted-foreground dark:text-muted-foreground-dark">URL</Text>
+                        <Text className="text-muted-foreground dark:text-muted-foreground-dark">{t('contentForm.url')}</Text>
                       </View>
                     </Label>
                   </View>
                 </Pressable>
 
                 <Pressable
-                  className={`flex-1 flex-row items-center space-x-2 border rounded-lg p-3 ${inputType === 'file' ? 'border-primary bg-primary/5' : 'border-gray-200 dark:border-gray-700'
-                    }`}
+                  className={`flex-1 flex-row items-center space-x-2 border rounded-lg p-3 ${inputType === 'file' ? 'border-primary bg-primary/5' : 'border-gray-200 dark:border-gray-700'}`}
                   onPress={() => setInputType('file')}
                 >
                   <View className="flex-row items-center gap-3">
@@ -129,7 +129,7 @@ export const ContentFormFirstStep = ({ handleFirstStep }: IProps) => {
                     <Label htmlFor="file">
                       <View className="flex-row items-center gap-2">
                         <UploadIcon size={16} color={colorScheme === 'dark' ? '#d2d2d2' : '#000'} />
-                        <Text className="text-muted-foreground dark:text-muted-foreground-dark">Arquivo</Text>
+                        <Text className="text-muted-foreground dark:text-muted-foreground-dark">{t('contentForm.file')}</Text>
                       </View>
                     </Label>
                   </View>
@@ -142,14 +142,14 @@ export const ContentFormFirstStep = ({ handleFirstStep }: IProps) => {
                 <Label htmlFor="url">
                   <View className="text-sm font-medium flex flex-row items-center gap-2">
                     <LinkIcon size={16} color={colorScheme === 'dark' ? '#d2d2d2' : '#000'} />
-                    <Text className="text-muted-foreground dark:text-muted-foreground-dark font-bold">Link do áudio</Text>
+                    <Text className="text-muted-foreground dark:text-muted-foreground-dark font-bold">{t('contentForm.audioLink')}</Text>
                   </View>
                 </Label>
 
                 <View className="relative">
                   <Input
                     id="url"
-                    placeholder="https://exemplo.com/audio.mp3"
+                    placeholder={t('contentForm.audioLinkPlaceholder')}
                     value={values.url}
                     onChangeText={handleChange("url")}
                     onBlur={handleBlur("url")}
@@ -160,8 +160,8 @@ export const ContentFormFirstStep = ({ handleFirstStep }: IProps) => {
                     autoCapitalize="none"
                     autoCorrect={false}
                     autoComplete="url"
-                    accessibilityLabel="Campo de link do áudio"
-                    accessibilityHint="Digite o link do áudio que você deseja adicionar"
+                    accessibilityLabel={t('contentForm.audioLink')}
+                    accessibilityHint={t('contentForm.audioLinkDescription')}
                     accessibilityRole="none"
                   />
                 </View>
@@ -174,18 +174,18 @@ export const ContentFormFirstStep = ({ handleFirstStep }: IProps) => {
                   className="w-full h-12 rounded-xl mt-5"
                   disabled={isSubmitting || (inputType === 'url' && !values.url)}
                   onPress={() => inputType === 'url' ? handleSubmit() : handleFilePick()}
-                  accessibilityLabel="Botão continuar"
-                  accessibilityHint="Toque para processar o link do áudio"
+                  accessibilityLabel={t('contentForm.continue')}
+                  accessibilityHint={t('contentForm.audioLinkDescription')}
                   accessibilityRole="button"
                   accessibilityState={{ disabled: isSubmitting || (inputType === 'url' && !values.url) }}
                 >
                   {isSubmitting ? (
                     <View className="flex-row items-center gap-2">
                       <ActivityIndicator color="white" size="small" />
-                      <Text className="text-white font-medium">Processando...</Text>
+                      <Text className="text-white font-medium">{t('contentForm.processing')}</Text>
                     </View>
                   ) : (
-                    "Continuar"
+                    t('contentForm.continue')
                   )}
                 </Button>
               </View>
@@ -200,10 +200,10 @@ export const ContentFormFirstStep = ({ handleFirstStep }: IProps) => {
                   </View>
                   <View className="flex items-center gap-1">
                     <Text className="text-base font-medium text-foreground dark:text-foreground-dark">
-                      Escolha um arquivo de áudio
+                      {t('contentForm.chooseAudioFile')}
                     </Text>
                     <Text className="text-sm text-muted-foreground dark:text-muted-foreground-dark text-center">
-                      Toque para selecionar um arquivo do seu dispositivo
+                      {t('contentForm.chooseFileDescription')}
                     </Text>
                   </View>
                 </View>

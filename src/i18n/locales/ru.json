@@ -1,0 +1,113 @@
+{
+  "common": {
+    "welcome": "Добро пожаловать",
+    "loading": "Загрузка...",
+    "error": "Ошибка",
+    "success": "Успех"
+  },
+  "auth": {
+    "login": "Войти",
+    "signup": "Регистрация",
+    "email": "Эл. почта",
+    "password": "Пароль",
+    "forgotPassword": "Забыли пароль?",
+    "welcomeBack": "С возвращением!",
+    "enterCredentials": "Введите свои данные для продолжения",
+    "emailPlaceholder": "ваш@email.com",
+    "passwordPlaceholder": "••••••••",
+    "signingIn": "Выполняется вход...",
+    "createAccount": "Создать аккаунт",
+    "name": "Имя",
+    "namePlaceholder": "Ваше имя",
+    "confirmPassword": "Подтвердите пароль",
+    "confirmPasswordPlaceholder": "••••••••",
+    "createAccountTitle": "Создать аккаунт",
+    "fillDataToStart": "Заполните данные ниже, чтобы начать",
+    "creatingAccount": "Создание аккаунта...",
+    "alreadyHaveAccount": "У меня уже есть аккаунт"
+  },
+  "navigation": {
+    "home": "Главная",
+    "profile": "Профиль",
+    "settings": "Настройки"
+  },
+  "login": {
+    "tagline": "Превратите свои любимые аудио в иммерсивный аудио-опыт"
+  },
+  "register": {
+    "tagline": "Превратите свои любимые видео в иммерсивный аудио-опыт"
+  },
+  "validation": {
+    "nameRequired": "Имя обязательно",
+    "nameMinLength": "Имя должно содержать минимум 2 символа",
+    "emailRequired": "Эл. почта обязательна",
+    "emailInvalid": "Пожалуйста, введите действительный адрес эл. почты",
+    "passwordRequired": "Пароль обязателен",
+    "passwordMinLength": "Пароль должен содержать минимум 8 символов",
+    "confirmPasswordRequired": "Пожалуйста, подтвердите пароль",
+    "passwordsDoNotMatch": "Пароли не совпадают"
+  },
+  "home": {
+    "loading": "Загрузка вашего контента...",
+    "noContent": "Нет добавленного контента",
+    "noContentDescription": "Добавьте свои первые видео, чтобы преобразовать их в подкасты и слушать когда угодно.",
+    "addNewContent": "Добавить новый контент",
+    "helpKeepGofy": "Помогите поддерживать Gofy!",
+    "helpKeepGofyDescription": "Если вам нравится приложение, рассмотрите возможность купить кофе для поддержки разработки.",
+    "buyCoffee": "Купить кофе ☕",
+    "contentAvailable": "{{count}} контент доступен для прослушивания",
+    "contentsAvailable": "{{count}} контентов доступно для прослушивания",
+    "noAudioFile": "У этого контента нет аудиофайла."
+  },
+  "contentForm": {
+    "addContent": "Добавить контент",
+    "contentDetails": "Детали контента",
+    "step1Description": "Введите ссылку на видео, которое хотите преобразовать в аудио.",
+    "step2Description": "Проверьте и настройте детали контента.",
+    "url": "URL",
+    "file": "Файл",
+    "audioLink": "Ссылка на аудио",
+    "audioLinkPlaceholder": "https://пример.com/аудио.mp3",
+    "audioLinkDescription": "Вы можете ввести прямую ссылку на аудиофайл или выбрать файл с вашего устройства. Вы сможете слушать его как подкаст, даже когда приложение в фоновом режиме.",
+    "chooseAudioFile": "Выбрать аудиофайл",
+    "chooseFileDescription": "Нажмите, чтобы выбрать файл с вашего устройства",
+    "continue": "Продолжить",
+    "processing": "Обработка...",
+    "title": "Название",
+    "titlePlaceholder": "Введите название контента",
+    "author": "Автор",
+    "authorPlaceholder": "Введите имя автора",
+    "description": "Описание",
+    "descriptionPlaceholder": "Опишите, о чем этот контент...",
+    "tags": "Теги",
+    "saveContent": "Сохранить контент",
+    "saving": "Сохранение...",
+    "validation": {
+      "urlRequired": "Ссылка обязательна",
+      "urlInvalid": "Пожалуйста, введите действительный URL",
+      "urlNotAllowed": "Этот провайдер не разрешен. Пожалуйста, введите прямую ссылку на аудиофайл.",
+      "titleRequired": "Название обязательно",
+      "titleMaxLength": "Название не может быть длиннее 255 символов",
+      "descriptionMaxLength": "Описание не может быть длиннее 255 символов",
+      "authorRequired": "Автор обязателен",
+      "authorMaxLength": "Имя автора не может быть длиннее 255 символов",
+      "tagsRequired": "Выберите хотя бы один тег"
+    }
+  },
+  "tags": {
+    "fantasy": "Фэнтези",
+    "scienceFiction": "Научная фантастика",
+    "dystopian": "Антиутопия",
+    "actionAdventure": "Боевик и приключения",
+    "mystery": "Детектив",
+    "horror": "Ужасы",
+    "thrillerSuspense": "Триллер и саспенс",
+    "historicalFiction": "Историческая фантастика",
+    "romance": "Романтика",
+    "trueCrime": "Правдивые преступления",
+    "history": "История",
+    "humor": "Юмор",
+    "religionSpirituality": "Религия и духовность",
+    "scienceTechnology": "Наука и технологии"
+  }
+}

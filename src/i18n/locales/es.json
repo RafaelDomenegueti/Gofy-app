@@ -1,0 +1,113 @@
+{
+  "common": {
+    "welcome": "Bienvenido",
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "Éxito"
+  },
+  "auth": {
+    "login": "Iniciar sesión",
+    "signup": "Registrarse",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "welcomeBack": "¡Bienvenido de nuevo!",
+    "enterCredentials": "Ingresa tus credenciales para continuar",
+    "emailPlaceholder": "tu@email.com",
+    "passwordPlaceholder": "••••••••",
+    "signingIn": "Iniciando sesión...",
+    "createAccount": "Crear una cuenta",
+    "name": "Nombre",
+    "namePlaceholder": "Tu Nombre",
+    "confirmPassword": "Confirmar Contraseña",
+    "confirmPasswordPlaceholder": "••••••••",
+    "createAccountTitle": "Crear Cuenta",
+    "fillDataToStart": "Completa los datos a continuación para comenzar",
+    "creatingAccount": "Creando cuenta...",
+    "alreadyHaveAccount": "Ya tengo una cuenta"
+  },
+  "navigation": {
+    "home": "Inicio",
+    "profile": "Perfil",
+    "settings": "Configuración"
+  },
+  "login": {
+    "tagline": "Transforma tus audios favoritos en una experiencia de audio inmersiva"
+  },
+  "register": {
+    "tagline": "Transforma tus videos favoritos en una experiencia de audio inmersiva"
+  },
+  "validation": {
+    "nameRequired": "El nombre es obligatorio",
+    "nameMinLength": "El nombre debe tener al menos 2 caracteres",
+    "emailRequired": "El correo electrónico es obligatorio",
+    "emailInvalid": "Por favor, ingresa un correo electrónico válido",
+    "passwordRequired": "La contraseña es obligatoria",
+    "passwordMinLength": "La contraseña debe tener al menos 8 caracteres",
+    "confirmPasswordRequired": "Por favor, confirma tu contraseña",
+    "passwordsDoNotMatch": "Las contraseñas no coinciden"
+  },
+  "home": {
+    "loading": "Cargando tus contenidos...",
+    "noContent": "No hay contenido agregado",
+    "noContentDescription": "Agrega tus primeros videos para transformarlos en podcasts y escucharlos cuando quieras.",
+    "addNewContent": "Agregar nuevo contenido",
+    "helpKeepGofy": "¡Ayuda a mantener Gofy!",
+    "helpKeepGofyDescription": "Si te gusta la aplicación, considera comprar un café para apoyar el desarrollo.",
+    "buyCoffee": "Comprar un café ☕",
+    "contentAvailable": "{{count}} contenido disponible para escuchar",
+    "contentsAvailable": "{{count}} contenidos disponibles para escuchar",
+    "noAudioFile": "Este contenido no tiene un archivo de audio."
+  },
+  "contentForm": {
+    "addContent": "Agregar contenido",
+    "contentDetails": "Detalles del contenido",
+    "step1Description": "Ingresa el enlace del video que deseas transformar en audio.",
+    "step2Description": "Verifica y personaliza los detalles del contenido.",
+    "url": "URL",
+    "file": "Archivo",
+    "audioLink": "Enlace del audio",
+    "audioLinkPlaceholder": "https://ejemplo.com/audio.mp3",
+    "audioLinkDescription": "Puedes ingresar un enlace directo a un archivo de audio o elegir un archivo de tu dispositivo. Podrás escucharlo como un podcast, incluso con la aplicación en segundo plano.",
+    "chooseAudioFile": "Elegir un archivo de audio",
+    "chooseFileDescription": "Toca para seleccionar un archivo de tu dispositivo",
+    "continue": "Continuar",
+    "processing": "Procesando...",
+    "title": "Título",
+    "titlePlaceholder": "Ingresa el título del contenido",
+    "author": "Autor",
+    "authorPlaceholder": "Ingresa el nombre del autor",
+    "description": "Descripción",
+    "descriptionPlaceholder": "Describe de qué trata este contenido...",
+    "tags": "Etiquetas",
+    "saveContent": "Guardar contenido",
+    "saving": "Guardando...",
+    "validation": {
+      "urlRequired": "El enlace es obligatorio",
+      "urlInvalid": "Por favor, ingresa una URL válida",
+      "urlNotAllowed": "Este proveedor no está permitido. Por favor, ingresa un enlace directo a un archivo de audio.",
+      "titleRequired": "El título es obligatorio",
+      "titleMaxLength": "El título no puede tener más de 255 caracteres",
+      "descriptionMaxLength": "La descripción no puede tener más de 255 caracteres",
+      "authorRequired": "El autor es obligatorio",
+      "authorMaxLength": "El nombre del autor no puede tener más de 255 caracteres",
+      "tagsRequired": "Selecciona al menos una etiqueta"
+    }
+  },
+  "tags": {
+    "fantasy": "Fantasía",
+    "scienceFiction": "Ciencia Ficción",
+    "dystopian": "Distopía",
+    "actionAdventure": "Acción y Aventura",
+    "mystery": "Misterio",
+    "horror": "Terror",
+    "thrillerSuspense": "Suspenso y Thriller",
+    "historicalFiction": "Ficción Histórica",
+    "romance": "Romance",
+    "trueCrime": "Crimen Real",
+    "history": "Historia",
+    "humor": "Humor",
+    "religionSpirituality": "Religión y Espiritualidad",
+    "scienceTechnology": "Ciencia y Tecnología"
+  }
+}

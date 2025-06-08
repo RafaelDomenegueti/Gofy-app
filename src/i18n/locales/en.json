@@ -1,0 +1,113 @@
+{
+  "common": {
+    "welcome": "Welcome",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success"
+  },
+  "auth": {
+    "login": "Login",
+    "signup": "Sign Up",
+    "email": "Email",
+    "password": "Password",
+    "forgotPassword": "Forgot Password?",
+    "welcomeBack": "Welcome back!",
+    "enterCredentials": "Enter your credentials to continue",
+    "emailPlaceholder": "your@email.com",
+    "passwordPlaceholder": "••••••••",
+    "signingIn": "Signing in...",
+    "createAccount": "Create an account",
+    "name": "Name",
+    "namePlaceholder": "Your Name",
+    "confirmPassword": "Confirm Password",
+    "confirmPasswordPlaceholder": "••••••••",
+    "createAccountTitle": "Create Account",
+    "fillDataToStart": "Fill in the data below to get started",
+    "creatingAccount": "Creating account...",
+    "alreadyHaveAccount": "I already have an account"
+  },
+  "navigation": {
+    "home": "Home",
+    "profile": "Profile",
+    "settings": "Settings"
+  },
+  "login": {
+    "tagline": "Transform your favorite audios into an immersive audio experience"
+  },
+  "register": {
+    "tagline": "Transform your favorite videos into an immersive audio experience"
+  },
+  "validation": {
+    "nameRequired": "Name is required",
+    "nameMinLength": "Name must be at least 2 characters",
+    "emailRequired": "Email is required",
+    "emailInvalid": "Please enter a valid email",
+    "passwordRequired": "Password is required",
+    "passwordMinLength": "Password must be at least 8 characters",
+    "confirmPasswordRequired": "Please confirm your password",
+    "passwordsDoNotMatch": "Passwords do not match"
+  },
+  "home": {
+    "loading": "Loading your content...",
+    "noContent": "No content added",
+    "noContentDescription": "Add your first videos to transform them into podcasts and listen whenever you want.",
+    "addNewContent": "Add new content",
+    "helpKeepGofy": "Help keep Gofy!",
+    "helpKeepGofyDescription": "If you like the app, consider buying a coffee to support development.",
+    "buyCoffee": "Buy a coffee ☕",
+    "contentAvailable": "{{count}} content available to listen",
+    "contentsAvailable": "{{count}} contents available to listen",
+    "noAudioFile": "This content doesn't have an audio file."
+  },
+  "contentForm": {
+    "addContent": "Add content",
+    "contentDetails": "Content details",
+    "step1Description": "Enter the link of the video you want to transform into audio.",
+    "step2Description": "Check and customize the content details.",
+    "url": "URL",
+    "file": "File",
+    "audioLink": "Audio link",
+    "audioLinkPlaceholder": "https://example.com/audio.mp3",
+    "audioLinkDescription": "You can enter a direct link to an audio file or choose a file from your device. You'll be able to listen to it as a podcast, even with the app in the background.",
+    "chooseAudioFile": "Choose an audio file",
+    "chooseFileDescription": "Tap to select a file from your device",
+    "continue": "Continue",
+    "processing": "Processing...",
+    "title": "Title",
+    "titlePlaceholder": "Enter the content title",
+    "author": "Author",
+    "authorPlaceholder": "Enter the author's name",
+    "description": "Description",
+    "descriptionPlaceholder": "Describe what this content is about...",
+    "tags": "Tags",
+    "saveContent": "Save content",
+    "saving": "Saving...",
+    "validation": {
+      "urlRequired": "The link is required",
+      "urlInvalid": "Please enter a valid URL",
+      "urlNotAllowed": "This provider is not allowed. Please enter a direct link to an audio file.",
+      "titleRequired": "Title is required",
+      "titleMaxLength": "Title cannot be longer than 255 characters",
+      "descriptionMaxLength": "Description cannot be longer than 255 characters",
+      "authorRequired": "Author is required",
+      "authorMaxLength": "Author name cannot be longer than 255 characters",
+      "tagsRequired": "Select at least one tag"
+    }
+  },
+  "tags": {
+    "fantasy": "Fantasy",
+    "scienceFiction": "Science Fiction",
+    "dystopian": "Dystopian",
+    "actionAdventure": "Action & Adventure",
+    "mystery": "Mystery",
+    "horror": "Horror",
+    "thrillerSuspense": "Thriller & Suspense",
+    "historicalFiction": "Historical Fiction",
+    "romance": "Romance",
+    "trueCrime": "True Crime",
+    "history": "History",
+    "humor": "Humor",
+    "religionSpirituality": "Religion & Spirituality",
+    "scienceTechnology": "Science & Technology"
+  }
+}

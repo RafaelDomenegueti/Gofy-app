@@ -1,5 +1,6 @@
 import { AlertCircle, Clock, Download, Pause, Play, Tag, Trash2, User } from "lucide-react-native";
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { ActivityIndicator, Text, TouchableOpacity, View } from "react-native";
 import Toast from "react-native-toast-message";
 import { Card } from "../../components/ui/card";
@@ -28,6 +29,7 @@ export const ContentItem = ({ content }: IProps) => {
   } = usePlayer();
   const { deleteContent } = useContent();
   const { isDarkColorScheme } = useColorScheme();
+  const { t } = useTranslation();
 
   const [downloaded, setDownloaded] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -56,7 +58,7 @@ export const ContentItem = ({ content }: IProps) => {
   const handlePlayClick = async () => {
     if (!content.url && !downloaded) {
       Toast.show({
-        text1: "Este conteúdo não possui um arquivo de áudio.",
+        text1: t('home.noAudioFile'),
         type: "error"
       });
       return;
@@ -84,7 +86,6 @@ export const ContentItem = ({ content }: IProps) => {
 
       if (currentContent?.id === content.id) {
         await stop();
-
       }
 
       if (downloaded) {

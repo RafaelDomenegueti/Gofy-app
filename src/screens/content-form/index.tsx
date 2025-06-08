@@ -1,6 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { ArrowLeft } from "lucide-react-native";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { SafeAreaView, ScrollView, View } from "react-native";
 import { Button } from "../../components/ui/button";
 import { Card, CardDescription, CardHeader, CardTitle } from "../../components/ui/card";
@@ -16,6 +17,7 @@ export const ContentFormScreen = () => {
   const navigation = useNavigation<NavigationProp>();
   const [dataForm, setDataForm] = useState<Partial<Content>>({});
   const { colorScheme } = useColorScheme();
+  const { t } = useTranslation();
 
   const handleFirstStep = async (currentData: any) => {
     setStep(2);
@@ -59,14 +61,14 @@ export const ContentFormScreen = () => {
                 <ArrowLeft size={20} color={colorScheme === 'dark' ? '#fff' : '#000'} />
               </Button>
               <CardTitle className={`text-xl font-bold text-foreground dark:text-foreground-dark`}>
-                {step === 1 ? "Adicionar conteúdo" : "Detalhes do conteúdo"}
+                {step === 1 ? t('contentForm.addContent') : t('contentForm.contentDetails')}
               </CardTitle>
               <View className="w-10" />
             </View>
             <CardDescription className="text-center text-muted-foreground dark:text-muted-foreground-dark">
               {step === 1
-                ? "Insira o link do vídeo que deseja transformar em áudio."
-                : "Verifique e personalize os detalhes do conteúdo."
+                ? t('contentForm.step1Description')
+                : t('contentForm.step2Description')
               }
             </CardDescription>
 

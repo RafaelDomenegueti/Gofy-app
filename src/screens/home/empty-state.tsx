@@ -1,5 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import { Headphones, Plus } from "lucide-react-native";
+import { useTranslation } from "react-i18next";
 import { View } from "react-native";
 import Animated, { FadeInDown, FadeInUp } from "react-native-reanimated";
 import { Button } from "../../components/ui/button";
@@ -8,6 +9,7 @@ import { H2, P } from "../../components/ui/typography";
 
 export function EmptyState() {
   const navigation = useNavigation<NavigationProp>();
+  const { t } = useTranslation();
 
   return (
     <View className="flex flex-col items-center justify-center h-[70vh] text-center p-6">
@@ -22,11 +24,11 @@ export function EmptyState() {
 
       <Animated.View entering={FadeInUp.delay(400).springify()} className="flex flex-col items-center justify-center">
         <H2 className="text-3xl font-bold mb-4 text-primary text-center">
-          Nenhum conteúdo adicionado
+          {t('home.noContent')}
         </H2>
 
         <P className="text-muted-foreground mb-8 max-w-xs text-center leading-relaxed text-base">
-          Adicione seus primeiros vídeos para transformá-los em podcasts e ouvir quando quiser.
+          {t('home.noContentDescription')}
         </P>
       </Animated.View>
 
@@ -37,7 +39,7 @@ export function EmptyState() {
         >
           <View className="flex flex-row items-center justify-center gap-2">
             <Plus size={20} color={"#fff"} />
-            <Text className="text-white font-semibold text-base">Adicionar novo conteúdo</Text>
+            <Text className="text-white font-semibold text-base">{t('home.addNewContent')}</Text>
           </View>
         </Button>
       </Animated.View>

@@ -5,6 +5,7 @@ import Toast from 'react-native-toast-message';
 import TrackPlayer from 'react-native-track-player';
 import './global.css';
 import ContextProvider from './src/hooks/contextProvider';
+import './src/i18n';
 import { NAV_THEME } from './src/lib/constants';
 import { useColorScheme } from './src/lib/useColorScheme';
 import { Routes } from './src/routes';

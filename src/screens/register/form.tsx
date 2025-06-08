@@ -2,6 +2,7 @@ import { CommonActions, useNavigation } from "@react-navigation/native";
 import { Formik } from "formik";
 import { ArrowLeft, Lock, Mail, User } from "lucide-react-native";
 import { useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { TextInput, View } from "react-native";
 import * as yup from 'yup';
 import { Button } from "../../components/ui/button";
@@ -20,6 +21,7 @@ export function RegisterForm({ onToggleForm }: LoginFormProps) {
   const { register, isLoading } = useAuth();
   const navigation = useNavigation()
   const { colorScheme } = useColorScheme()
+  const { t } = useTranslation()
   const emailRef = useRef<TextInput>(null);
   const passwordRef = useRef<TextInput>(null);
   const confirmPasswordRef = useRef<TextInput>(null);
@@ -29,20 +31,20 @@ export function RegisterForm({ onToggleForm }: LoginFormProps) {
   const registerSchema = yup.object().shape({
     name: yup
       .string()
-      .required('O nome é obrigatório')
-      .min(2, 'O nome deve ter pelo menos 2 caracteres'),
+      .required(t('validation.nameRequired'))
+      .min(2, t('validation.nameMinLength')),
     email: yup
       .string()
-      .email('Digite um e-mail válido')
-      .required('O e-mail é obrigatório'),
+      .email(t('validation.emailInvalid'))
+      .required(t('validation.emailRequired')),
     password: yup
       .string()
-      .min(8, 'A senha deve ter no mínimo 8 caracteres')
-      .required('A senha é obrigatória'),
+      .min(8, t('validation.passwordMinLength'))
+      .required(t('validation.passwordRequired')),
     confirmPassword: yup
       .string()
-      .oneOf([yup.ref('password')], 'As senhas não coincidem')
-      .required('Confirme a senha'),
+      .oneOf([yup.ref('password')], t('validation.passwordsDoNotMatch'))
+      .required(t('validation.confirmPasswordRequired')),
   });
 
   const handleRegister = async (data: typeof initialValues) => {
@@ -63,9 +65,11 @@ export function RegisterForm({ onToggleForm }: LoginFormProps) {
   return (
     <Card className="w-full max-w-md mx-auto shadow-lg animate-fade-in dark:bg-card-dark/50">
       <CardHeader className="space-y-2 pb-6">
-        <CardTitle className="text-2xl font-bold text-center dark:text-foreground-dark">Criar Conta</CardTitle>
+        <CardTitle className="text-2xl font-bold text-center dark:text-foreground-dark">
+          {t('auth.createAccountTitle')}
+        </CardTitle>
         <CardDescription className="text-center dark:text-muted-dark-foreground">
-          Preencha os dados abaixo para começar
+          {t('auth.fillDataToStart')}
         </CardDescription>
       </CardHeader>
       <Formik
@@ -78,11 +82,11 @@ export function RegisterForm({ onToggleForm }: LoginFormProps) {
             <CardContent className="flex flex-col gap-5">
               <View className="flex flex-col gap-2">
                 <Label className="text-sm font-medium dark:text-foreground-dark">
-                  Nome
+                  {t('auth.name')}
                 </Label>
                 <View className="relative">
                   <Input
-                    placeholder="Seu Nome"
+                    placeholder={t('auth.namePlaceholder')}
                     value={values.name}
                     onChangeText={(v) => setFieldValue("name", v)}
                     className={`pl-11 ${touched.name && errors.name ? 'border-red-500' : 'border-input'}`}
@@ -90,8 +94,8 @@ export function RegisterForm({ onToggleForm }: LoginFormProps) {
                     onSubmitEditing={() => emailRef.current?.focus()}
                     autoCapitalize="words"
                     autoComplete="name"
-                    accessibilityLabel="Campo de nome"
-                    accessibilityHint="Digite seu nome completo"
+                    accessibilityLabel={t('auth.name')}
+                    accessibilityHint={t('auth.namePlaceholder')}
                   />
                   <View className="absolute left-3 top-3.5">
                     <User size={18} color={colorScheme === 'dark' ? '#fff' : '#000'} />
@@ -103,12 +107,12 @@ export function RegisterForm({ onToggleForm }: LoginFormProps) {
               </View>
               <View className="flex flex-col gap-2">
                 <Label className="text-sm font-medium dark:text-foreground-dark">
-                  Email
+                  {t('auth.email')}
                 </Label>
                 <View className="relative">
                   <Input
                     ref={emailRef}
-                    placeholder="seu@email.com"
+                    placeholder={t('auth.emailPlaceholder')}
                     value={values.email}
                     onChangeText={(v) => setFieldValue("email", v)}
                     className={`pl-11 ${touched.email && errors.email ? 'border-red-500' : 'border-input'}`}
@@ -117,8 +121,8 @@ export function RegisterForm({ onToggleForm }: LoginFormProps) {
                     autoCapitalize="none"
                     keyboardType="email-address"
                     autoComplete="email"
-                    accessibilityLabel="Campo de email"
-                    accessibilityHint="Digite seu endereço de email"
+                    accessibilityLabel={t('auth.email')}
+                    accessibilityHint={t('auth.emailPlaceholder')}
                   />
                   <View className="absolute left-3 top-3.5">
                     <Mail size={18} color={colorScheme === 'dark' ? '#fff' : '#000'} />
@@ -130,12 +134,12 @@ export function RegisterForm({ onToggleForm }: LoginFormProps) {
               </View>
               <View className="flex flex-col gap-2">
                 <Label className="text-sm font-medium dark:text-foreground-dark">
-                  Senha
+                  {t('auth.password')}
                 </Label>
                 <View className="relative">
                   <Input
                     ref={passwordRef}
-                    placeholder="••••••••"
+                    placeholder={t('auth.passwordPlaceholder')}
                     value={values.password}
                     onChangeText={(v) => setFieldValue("password", v)}
                     secureTextEntry
@@ -143,8 +147,8 @@ export function RegisterForm({ onToggleForm }: LoginFormProps) {
                     returnKeyType="next"
                     onSubmitEditing={() => confirmPasswordRef.current?.focus()}
                     autoComplete="password-new"
-                    accessibilityLabel="Campo de senha"
-                    accessibilityHint="Digite sua senha"
+                    accessibilityLabel={t('auth.password')}
+                    accessibilityHint={t('auth.passwordPlaceholder')}
                   />
                   <View className="absolute left-3 top-3.5">
                     <Lock size={18} color={colorScheme === 'dark' ? '#fff' : '#000'} />
@@ -156,12 +160,12 @@ export function RegisterForm({ onToggleForm }: LoginFormProps) {
               </View>
               <View className="flex flex-col gap-2">
                 <Label className="text-sm font-medium dark:text-foreground-dark">
-                  Confirme sua Senha
+                  {t('auth.confirmPassword')}
                 </Label>
                 <View className="relative">
                   <Input
                     ref={confirmPasswordRef}
-                    placeholder="••••••••"
+                    placeholder={t('auth.confirmPasswordPlaceholder')}
                     value={values.confirmPassword}
                     onChangeText={(v) => setFieldValue("confirmPassword", v)}
                     secureTextEntry
@@ -169,8 +173,8 @@ export function RegisterForm({ onToggleForm }: LoginFormProps) {
                     returnKeyType="done"
                     onSubmitEditing={() => handleSubmit()}
                     autoComplete="password-new"
-                    accessibilityLabel="Campo de confirmação de senha"
-                    accessibilityHint="Digite novamente sua senha para confirmar"
+                    accessibilityLabel={t('auth.confirmPassword')}
+                    accessibilityHint={t('auth.confirmPasswordPlaceholder')}
                   />
                   <View className="absolute left-3 top-3.5">
                     <Lock size={18} color={colorScheme === 'dark' ? '#fff' : '#000'} />
@@ -187,7 +191,7 @@ export function RegisterForm({ onToggleForm }: LoginFormProps) {
                 disabled={isLoading}
                 onPress={() => handleSubmit()}
               >
-                {isLoading ? "Criando conta..." : "Criar conta"}
+                {isLoading ? t('auth.creatingAccount') : t('auth.createAccount')}
               </Button>
               <Button
                 variant="link"
@@ -196,7 +200,7 @@ export function RegisterForm({ onToggleForm }: LoginFormProps) {
               >
                 <View className="flex-row items-center gap-2">
                   <ArrowLeft size={16} color={colorScheme === 'dark' ? "#fff" : "#5c5d8d"} />
-                  <Text className="text-primary dark:text-white font-medium">Já tenho uma conta</Text>
+                  <Text className="text-primary dark:text-white font-medium">{t('auth.alreadyHaveAccount')}</Text>
                 </View>
               </Button>
             </CardFooter>

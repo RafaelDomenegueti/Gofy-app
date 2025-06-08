@@ -1,5 +1,6 @@
 import { Coffee } from "lucide-react-native";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { Linking, RefreshControl, ScrollView, TouchableOpacity, View } from "react-native";
 import Animated, { FadeInUp } from "react-native-reanimated";
 import { P } from "../../components/ui/typography";
@@ -12,6 +13,7 @@ import { EmptyState } from "./empty-state";
 export const HomeScreen = () => {
   const { contents, isLoading, getAllPurchases } = useContent();
   const { colorScheme } = useColorScheme();
+  const { t } = useTranslation();
 
   useEffect(() => {
     getAllPurchases();
@@ -31,7 +33,7 @@ export const HomeScreen = () => {
       {isLoading ? (
         <View className="flex justify-center items-center py-20">
           <View className="animate-pulse flex items-center">
-            <P className="text-muted-foreground dark:text-muted-dark-foreground text-center">Carregando seus conteúdos...</P>
+            <P className="text-muted-foreground dark:text-muted-dark-foreground text-center">{t('home.loading')}</P>
           </View>
         </View>
       ) : contents.length === 0 ? (
@@ -54,9 +56,9 @@ export const HomeScreen = () => {
                 </Animated.View>
               </Animated.View>
               <View className="flex-1">
-                <P className="font-medium text-foreground dark:text-foreground-dark">Ajude a manter o Gofy!</P>
+                <P className="font-medium text-foreground dark:text-foreground-dark">{t('home.helpKeepGofy')}</P>
                 <P className="text-sm text-muted-foreground dark:text-muted-dark-foreground">
-                  Se você gosta do app, considere pagar um café para manter o desenvolvimento.
+                  {t('home.helpKeepGofyDescription')}
                 </P>
               </View>
             </View>
@@ -64,7 +66,7 @@ export const HomeScreen = () => {
               className="mt-3 bg-primary dark:bg-primary-dark rounded-lg py-2 px-4 w-full items-center"
               onPress={() => Linking.openURL(BUY_COFFEE_URL)}
             >
-              <P className="text-white font-medium">Pagar um café ☕</P>
+              <P className="text-white font-medium">{t('home.buyCoffee')}</P>
             </TouchableOpacity>
           </Animated.View>
 
@@ -73,7 +75,7 @@ export const HomeScreen = () => {
             className="mb-2"
           >
             <P className="text-muted-foreground dark:text-muted-dark-foreground mt-1">
-              {contents.length} {contents.length === 1 ? 'conteúdo disponível' : 'conteúdos disponíveis'} para ouvir
+              {t(contents.length === 1 ? 'home.contentAvailable' : 'home.contentsAvailable', { count: contents.length })}
             </P>
           </Animated.View>
 
