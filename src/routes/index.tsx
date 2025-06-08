@@ -5,10 +5,12 @@ import { SafeAreaView, StatusBar } from 'react-native';
 import { CustomStatusBar } from '../components/custom-status-bar';
 import { useAuth } from '../hooks/useAuth';
 import { useColorScheme } from '../lib/useColorScheme';
+import { CommunityScreen } from '../screens/community';
 import { ContentFormScreen } from '../screens/content-form';
 import { HomeScreen } from '../screens/home';
 import { LoginScreen } from '../screens/login';
 import { RegisterScreen } from '../screens/register';
+import { SettingsScreen } from '../screens/settings';
 import { ContentFormStackParamList, HomeStackParamList, RootStackParamList } from '../types/navigation';
 import { CustomHeader } from './custom-header';
 import { CustomTabBar } from './custom-tab-bar';
@@ -25,10 +27,24 @@ const HomeStackNavigator = () => {
     <>
       <CustomStatusBar backgroundColor={isDarkColorScheme ? "#232336" : "#5c5d8d"} barStyle={"light-content"} />
 
-      <HomeStack.Navigator>
+      <HomeStack.Navigator
+        screenOptions={{
+          animation: 'none',
+        }}
+      >
         <HomeStack.Screen
           name="Home"
           component={HomeScreen}
+          options={{ header: CustomHeader }}
+        />
+        <HomeStack.Screen
+          name="Community"
+          component={CommunityScreen}
+          options={{ header: CustomHeader }}
+        />
+        <HomeStack.Screen
+          name="Settings"
+          component={SettingsScreen}
           options={{ header: CustomHeader }}
         />
       </HomeStack.Navigator>

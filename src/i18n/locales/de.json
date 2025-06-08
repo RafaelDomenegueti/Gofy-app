@@ -29,7 +29,8 @@
   "navigation": {
     "home": "Startseite",
     "profile": "Profil",
-    "settings": "Einstellungen"
+    "settings": "Einstellungen",
+    "community": "Community"
   },
   "login": {
     "tagline": "Verwandeln Sie Ihre Lieblings-Audios in ein immersives Audioerlebnis"

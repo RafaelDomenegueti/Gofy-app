@@ -29,7 +29,8 @@
   "navigation": {
     "home": "首页",
     "profile": "个人资料",
-    "settings": "设置"
+    "settings": "设置",
+    "community": "社区"
   },
   "login": {
     "tagline": "将您喜爱的音频转换为沉浸式音频体验"

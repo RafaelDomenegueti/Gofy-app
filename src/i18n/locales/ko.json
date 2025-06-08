@@ -29,7 +29,8 @@
   "navigation": {
     "home": "홈",
     "profile": "프로필",
-    "settings": "설정"
+    "settings": "설정",
+    "community": "커뮤니티"
   },
   "login": {
     "tagline": "좋아하는 오디오를 몰입감 있는 음성 경험으로 변환하세요"

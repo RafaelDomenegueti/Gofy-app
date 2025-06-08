@@ -7,6 +7,8 @@ export type RootStackParamList = {
 
 export type HomeStackParamList = {
   Home: undefined;
+  Community: undefined;
+  Settings: undefined;
 };
 
 export type ContentFormStackParamList = {

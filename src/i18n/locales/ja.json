@@ -29,7 +29,8 @@
   "navigation": {
     "home": "ホーム",
     "profile": "プロフィール",
-    "settings": "設定"
+    "settings": "設定",
+    "community": "コミュニティ"
   },
   "login": {
     "tagline": "お気に入りのオーディオを没入感のある音声体験に変換"
