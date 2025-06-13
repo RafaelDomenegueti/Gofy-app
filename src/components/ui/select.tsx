@@ -1,9 +1,10 @@
 import { Check, ChevronDown } from 'lucide-react-native';
 import * as React from 'react';
-import { View } from 'react-native';
+import { View, Platform, Pressable, Modal } from 'react-native';
 import { cn } from '../../lib/utils';
 import { Picker } from '@react-native-picker/picker';
 import { useColorScheme as useCustomColorScheme } from '../../lib/useColorScheme';
+import { Text } from './text';
 
 interface SelectOption {
   label: string;
@@ -41,6 +42,80 @@ interface SelectItemProps {
 
 const Select = React.forwardRef<View, SelectProps>(({ value, onValueChange, children, disabled, options, placeholder }, ref) => {
   const { isDarkColorScheme } = useCustomColorScheme();
+  const [isOpen, setIsOpen] = React.useState(false);
+  const selectedOption = options.find(option => option.value === value);
+
+  if (Platform.OS === 'ios') {
+    return (
+      <View ref={ref} className="border border-input rounded-md bg-background dark:bg-background-dark dark:border-border-dark">
+        <Pressable
+          onPress={() => !disabled && setIsOpen(true)}
+          className={cn(
+            'flex flex-row h-12 items-center justify-between px-3',
+            disabled && 'opacity-50'
+          )}
+        >
+          <Text className={cn(
+            'text-sm text-foreground dark:text-foreground-dark',
+            !selectedOption && 'text-muted-foreground dark:text-muted-dark-foreground'
+          )}>
+            {selectedOption ? selectedOption.label : placeholder}
+          </Text>
+          <ChevronDown size={16} color={isDarkColorScheme ? '#e2e8f0' : '#1e293b'} />
+        </Pressable>
+
+        <Modal
+          visible={isOpen}
+          onRequestClose={() => setIsOpen(false)}
+          presentationStyle="overFullScreen"
+          transparent
+          animationType="fade"
+        >
+          <Pressable className="flex-1 justify-end bg-black/50" onPress={() => setIsOpen(false)}>
+            <View className="bg-background dark:bg-background-dark rounded-t-xl">
+              <View className="flex flex-row justify-between items-center p-4 border-b border-border dark:border-border-dark">
+                <Pressable onPress={() => setIsOpen(false)}>
+                  <Text className="text-primary dark:text-white">Cancel</Text>
+                </Pressable>
+                <Pressable onPress={() => setIsOpen(false)}>
+                  <Text className="text-primary dark:text-white">Done</Text>
+                </Pressable>
+              </View>
+              <Picker
+                selectedValue={value}
+                onValueChange={(newValue) => {
+                  onValueChange?.(newValue);
+                  setIsOpen(false);
+                }}
+                style={{
+                  height: 200,
+                  color: isDarkColorScheme ? '#e2e8f0' : '#1e293b',
+                }}
+              >
+                {placeholder && (
+                  <Picker.Item
+                    label={placeholder}
+                    value=""
+                    enabled={false}
+                    color={isDarkColorScheme ? '#e2e8f0' : '#1e293b'}
+                  />
+                )}
+                {options.map((option) => (
+                  <Picker.Item
+                    key={option.value}
+                    label={option.label}
+                    value={option.value}
+                    enabled={!option.disabled}
+                    color={isDarkColorScheme ? '#e2e8f0' : '#1e293b'}
+                  />
+                ))}
+              </Picker>
+            </View>
+          </Pressable>
+        </Modal>
+      </View>
+    );
+  }
 
   return (
     <View ref={ref} className="border border-input rounded-md bg-background dark:bg-background-dark dark:border-border-dark">
