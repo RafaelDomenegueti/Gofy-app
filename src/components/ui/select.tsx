@@ -3,6 +3,7 @@ import * as React from 'react';
 import { View } from 'react-native';
 import { cn } from '../../lib/utils';
 import { Picker } from '@react-native-picker/picker';
+import { useColorScheme as useCustomColorScheme } from '../../lib/useColorScheme';
 
 interface SelectOption {
   label: string;
@@ -39,22 +40,26 @@ interface SelectItemProps {
 }
 
 const Select = React.forwardRef<View, SelectProps>(({ value, onValueChange, children, disabled, options, placeholder }, ref) => {
+  const { isDarkColorScheme } = useCustomColorScheme();
+
   return (
-    <View ref={ref} className="border border-input rounded-md bg-background dark:bg-background-dark">
+    <View ref={ref} className="border border-input rounded-md bg-background dark:bg-background-dark dark:border-border-dark">
       <Picker
         selectedValue={value}
         onValueChange={onValueChange}
         enabled={!disabled}
         style={{
           height: 48,
-          color: '#1e293b',
+          color: isDarkColorScheme ? '#e2e8f0' : '#1e293b',
         }}
+        dropdownIconColor={isDarkColorScheme ? '#e2e8f0' : '#1e293b'}
       >
         {placeholder && (
           <Picker.Item
             label={placeholder}
             value=""
             enabled={false}
+            color={isDarkColorScheme ? '#e2e8f0' : '#1e293b'}
           />
         )}
         {options.map((option) => (
@@ -63,6 +68,7 @@ const Select = React.forwardRef<View, SelectProps>(({ value, onValueChange, chil
             label={option.label}
             value={option.value}
             enabled={!option.disabled}
+            color={isDarkColorScheme ? '#e2e8f0' : '#1e293b'}
           />
         ))}
       </Picker>
