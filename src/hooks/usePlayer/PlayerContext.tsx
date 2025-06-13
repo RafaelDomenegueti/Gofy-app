@@ -32,6 +32,19 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
   const { position, duration } = useProgress();
 
+  const saveProgress = async (contentId: string, position: number) => {
+    try {
+      const progressData = await AsyncStorage.getItem(PROGRESS_KEY);
+      const progress = progressData ? JSON.parse(progressData) : {};
+
+      progress[contentId] = position;
+
+      await AsyncStorage.setItem(PROGRESS_KEY, JSON.stringify(progress));
+    } catch (error) {
+      console.warn("Failed to save progress:", error);
+    }
+  };
+
   useEffect(() => {
     const initializePlayer = async () => {
       try {
@@ -82,6 +95,10 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       duration,
       currentTime: position
     }));
+
+    if (playerState.currentContent?.id && position > 0) {
+      saveProgress(playerState.currentContent.id, position);
+    }
   }, [position, duration]);
 
   useTrackPlayerEvents([Event.PlaybackState], async (event) => {
