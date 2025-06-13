@@ -46,7 +46,10 @@
       "theme": "Tema",
       "light": "Claro",
       "dark": "Escuro",
-      "themeDescription": "Alternar entre tema claro e escuro"
+      "themeDescription": "Alternar entre tema claro e escuro",
+      "language": "Idioma",
+      "languageDescription": "Escolha seu idioma preferido",
+      "selectLanguage": "Selecionar idioma"
     },
     "logout": "Sair"
   },

@@ -46,7 +46,10 @@
       "theme": "主题",
       "light": "浅色",
       "dark": "深色",
-      "themeDescription": "在浅色和深色主题之间切换"
+      "themeDescription": "在浅色和深色主题之间切换",
+      "language": "语言",
+      "languageDescription": "选择您偏好的语言",
+      "selectLanguage": "选择语言"
     },
     "logout": "退出登录"
   },

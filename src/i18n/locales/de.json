@@ -46,7 +46,10 @@
       "theme": "Design",
       "light": "Hell",
       "dark": "Dunkel",
-      "themeDescription": "Zwischen hellem und dunklem Design wechseln"
+      "themeDescription": "Zwischen hellem und dunklem Design wechseln",
+      "language": "Sprache",
+      "languageDescription": "Wählen Sie Ihre bevorzugte Sprache",
+      "selectLanguage": "Sprache auswählen"
     },
     "logout": "Abmelden"
   },

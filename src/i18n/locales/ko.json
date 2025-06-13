@@ -46,7 +46,10 @@
       "theme": "테마",
       "light": "라이트",
       "dark": "다크",
-      "themeDescription": "라이트 테마와 다크 테마 전환"
+      "themeDescription": "라이트 테마와 다크 테마 전환",
+      "language": "언어",
+      "languageDescription": "선호하는 언어를 선택하세요",
+      "selectLanguage": "언어 선택"
     },
     "logout": "로그아웃"
   },

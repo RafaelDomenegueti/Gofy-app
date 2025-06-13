@@ -46,7 +46,10 @@
       "theme": "Thème",
       "light": "Clair",
       "dark": "Sombre",
-      "themeDescription": "Basculer entre le thème clair et sombre"
+      "themeDescription": "Basculer entre le thème clair et sombre",
+      "language": "Langue",
+      "languageDescription": "Choisissez votre langue préférée",
+      "selectLanguage": "Sélectionner la langue"
     },
     "logout": "Déconnexion"
   },

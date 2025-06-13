@@ -46,7 +46,10 @@
       "theme": "Tema",
       "light": "Claro",
       "dark": "Oscuro",
-      "themeDescription": "Cambiar entre tema claro y oscuro"
+      "themeDescription": "Cambiar entre tema claro y oscuro",
+      "language": "Idioma",
+      "languageDescription": "Elige tu idioma preferido",
+      "selectLanguage": "Seleccionar idioma"
     },
     "logout": "Cerrar Sesión"
   },

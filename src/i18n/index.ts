@@ -61,7 +61,7 @@ i18n
 
 const languageList = [
   { label: 'English', value: 'en', icon: '🇺🇸' },
-  { label: 'Português', value: 'pt', icon: '🇵🇹' },
+  { label: 'Português', value: 'pt', icon: '🇧🇷' },
   { label: 'Español', value: 'es', icon: '🇪🇸' },
   { label: 'Français', value: 'fr', icon: '🇫🇷' },
   { label: 'हिंदी', value: 'hi', icon: '🇮🇳' },

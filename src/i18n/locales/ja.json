@@ -46,7 +46,10 @@
       "theme": "テーマ",
       "light": "ライト",
       "dark": "ダーク",
-      "themeDescription": "ライトテーマとダークテーマを切り替え"
+      "themeDescription": "ライトテーマとダークテーマを切り替え",
+      "language": "言語",
+      "languageDescription": "希望する言語を選択してください",
+      "selectLanguage": "言語を選択"
     },
     "logout": "ログアウト"
   },

@@ -46,7 +46,10 @@
       "theme": "थीम",
       "light": "हल्का",
       "dark": "गहरा",
-      "themeDescription": "हल्के और गहरे थीम के बीच स्विच करें"
+      "themeDescription": "हल्के और गहरे थीम के बीच स्विच करें",
+      "language": "भाषा",
+      "languageDescription": "अपनी पसंदीदा भाषा चुनें",
+      "selectLanguage": "भाषा चुनें"
     },
     "logout": "लॉग आउट"
   },

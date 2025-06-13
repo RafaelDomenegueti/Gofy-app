@@ -1,4 +1,4 @@
-import { LogOut, Moon, Sun } from "lucide-react-native";
+import { LogOut, Moon, Sun, Globe } from "lucide-react-native";
 import { useTranslation } from "react-i18next";
 import { View } from "react-native";
 import { Button } from "../../components/ui/button";
@@ -8,15 +8,21 @@ import { Text } from "../../components/ui/text";
 import { useAuth } from "../../hooks/useAuth";
 import { useColorScheme } from "../../lib/useColorScheme";
 import { useNavigation } from "@react-navigation/native";
+import { Select } from "../../components/ui/select";
+import { languageList } from "../../i18n";
 
 export function SettingsScreen() {
   const { user, logout } = useAuth();
   const { isDarkColorScheme, toggleColorScheme } = useColorScheme();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const navigation = useNavigation<NavigationProp>();
 
   const handleLogout = async () => {
     await logout();
+  };
+
+  const handleLanguageChange = (value: string) => {
+    i18n.changeLanguage(value);
   };
 
   return (
@@ -79,6 +85,29 @@ export function SettingsScreen() {
               checked={isDarkColorScheme}
               onCheckedChange={toggleColorScheme}
             />
+          </View>
+
+          <View className="flex flex-row items-center justify-between">
+            <View className="flex flex-col gap-0.5">
+              <View className="flex flex-row items-center gap-2">
+                <Globe size={16} color={isDarkColorScheme ? "#94a3b8" : "#5c5d8d"} />
+                <Text className="text-foreground dark:text-foreground-dark">
+                  {t('settings.preferences.language')}
+                </Text>
+              </View>
+              <Text className="text-xs text-muted-foreground dark:text-muted-dark-foreground">{t('settings.preferences.languageDescription')}</Text>
+            </View>
+            <View className="w-[140px]">
+              <Select
+                value={i18n.language}
+                onValueChange={handleLanguageChange}
+                options={languageList.map(lang => ({
+                  label: `${lang.icon} ${lang.label}`,
+                  value: lang.value
+                }))}
+                placeholder={t('settings.preferences.selectLanguage')}
+              />
+            </View>
           </View>
         </View>
       </Card>

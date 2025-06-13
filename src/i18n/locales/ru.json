@@ -46,7 +46,10 @@
       "theme": "Тема",
       "light": "Светлая",
       "dark": "Тёмная",
-      "themeDescription": "Переключение между светлой и тёмной темой"
+      "themeDescription": "Переключение между светлой и тёмной темой",
+      "language": "Язык",
+      "languageDescription": "Выберите предпочитаемый язык",
+      "selectLanguage": "Выбрать язык"
     },
     "logout": "Выйти"
   },

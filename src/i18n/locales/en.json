@@ -46,7 +46,10 @@
       "theme": "Theme",
       "light": "Light",
       "dark": "Dark",
-      "themeDescription": "Switch between light and dark theme"
+      "themeDescription": "Switch between light and dark theme",
+      "language": "Language",
+      "languageDescription": "Choose your preferred language",
+      "selectLanguage": "Select language"
     },
     "logout": "Log Out"
   },
