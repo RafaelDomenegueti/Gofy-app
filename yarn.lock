@@ -7424,6 +7424,11 @@ react-native-localize@^3.4.1:
   resolved "https://registry.yarnpkg.com/react-native-localize/-/react-native-localize-3.4.1.tgz#df07c13231b4e8cc949e68513b124105f861229c"
   integrity sha512-NJqJGBUpHtD/MpLCCkrNiqNZ+xFwbHCivxaoN1Oeb8tBAiZr/IqgP3E+MgnqmmdTMOJ33llUfiW3EM6pEIb33w==
 
+react-native-navigation-bar-color@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/react-native-navigation-bar-color/-/react-native-navigation-bar-color-2.0.2.tgz#2e14ca79a656d81d5b4b7433ae43966ef5206444"
+  integrity sha512-ZmpLWRocyme1au11e5ZuecMS/UCi57nlzgnioi03Q6ERMbeUOqqbWgNBaNB7SsCeqBV6fZPjo3+A64zEIpzw4w==
+
 react-native-progress@^5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/react-native-progress/-/react-native-progress-5.0.1.tgz#4e15258b5661c49bad74554352326ca540bb7c58"

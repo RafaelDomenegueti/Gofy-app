@@ -1,26 +1,67 @@
 import { useNavigation } from "@react-navigation/native";
 import { HomeIcon, SettingsIcon, UsersIcon } from "lucide-react-native";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { Animated, Dimensions, TouchableOpacity, View } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { Animated, Dimensions, Platform, SafeAreaView, TouchableOpacity, View } from "react-native";
+import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import { PlayerControls } from "../components/player-controls";
 import { usePlayer } from "../hooks/usePlayer";
 import { Text } from "../components/ui/text";
+import { useColorScheme } from "../lib/useColorScheme";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const CIRCLE_SIZE = 48;
 const ICON_SIZE = 24;
 const SHADOW_SIZE = 72;
 
+const CustomSafeAreaView = ({ children }: { children: React.ReactNode }) => {
+  const insets = useSafeAreaInsets();
+
+  if (Platform.OS === 'ios') {
+    return (
+      <View className="w-full bg-background dark:bg-background-dark">
+        <View className="w-full bg-primary dark:bg-primary-dark" style={{ borderTopLeftRadius: 10, borderTopRightRadius: 10 }}>
+          {children}
+        </View>
+        <View style={{ height: insets.bottom }} className="bg-primary dark:bg-primary-dark" />
+      </View>
+    );
+  }
+
+  return (
+    <View className="w-full bg-background dark:bg-background-dark">
+      <View className="w-full bg-primary dark:bg-primary-dark" style={{ borderTopLeftRadius: 10, borderTopRightRadius: 10 }}>
+        {children}
+      </View>
+      <View style={{ height: insets.bottom }} className="bg-primary dark:bg-primary-dark" />
+    </View>
+  );
+};
+
 export function CustomTabBar() {
   const { t } = useTranslation();
   const { currentContent } = usePlayer();
   const navigation = useNavigation<NavigationProp>();
-  const insets = useSafeAreaInsets();
   const slideAnim = useRef(new Animated.Value(0)).current;
   const scaleAnim = useRef(new Animated.Value(1)).current;
   const blurAnim = useRef(new Animated.Value(0)).current;
   const { width } = Dimensions.get('window');
+  const { isDarkColorScheme } = useColorScheme();
+
+  useEffect(() => {
+    const setNavigationBarColor = async () => {
+      try {
+        await changeNavigationBarColor(
+          isDarkColorScheme ? '#232336' : '#5c5d8d',
+          !isDarkColorScheme,
+        );
+      } catch (error) {
+        console.error('Failed to set navigation bar color:', error);
+      }
+    };
+
+    setNavigationBarColor();
+  }, [isDarkColorScheme]);
 
   const handleTabPress = (route: string, index: number) => {
     blurAnim.setValue(0);
@@ -74,7 +115,7 @@ export function CustomTabBar() {
   const tabWidth = width / tabs.length;
 
   return (
-    <View className="w-full bg-background dark:bg-background-dark">
+    <CustomSafeAreaView>
       {currentContent && <PlayerControls />}
 
       <View
@@ -163,6 +204,6 @@ export function CustomTabBar() {
           );
         })}
       </View>
-    </View>
+    </CustomSafeAreaView>
   );
 }
