@@ -131,8 +131,53 @@
   },
   "community": {
     "underConstruction": "En Construcción",
-    "constructionDescription": "Estamos trabajando en nuevas funcionalidades para la comunidad. Pronto podrás interactuar con otros usuarios y compartir tus experiencias.",
+    "constructionDescription": "Estamos trabajando en nuevas funciones de la comunidad. Pronto podrás interactuar con otros usuarios y compartir tus experiencias.",
     "donationDescription": "GoFy se mantiene a través de donaciones. Si te gusta el proyecto y quieres ayudar, considera hacer una donación.",
     "donate": "Hacer una donación"
+  },
+  "changePassword": {
+    "title": "Cambiar Contraseña",
+    "description": "Ingresa tu contraseña actual y elige una nueva contraseña para actualizar la seguridad de tu cuenta.",
+    "currentPassword": "Contraseña Actual",
+    "currentPasswordPlaceholder": "Ingresa tu contraseña actual",
+    "newPassword": "Nueva Contraseña",
+    "newPasswordPlaceholder": "Ingresa tu nueva contraseña",
+    "confirmPassword": "Confirmar Contraseña",
+    "confirmPasswordPlaceholder": "Confirma tu nueva contraseña",
+    "changeButton": "Cambiar Contraseña",
+    "processing": "Procesando...",
+    "success": "Contraseña cambiada exitosamente",
+    "error": "Error al cambiar la contraseña",
+    "validation": {
+      "currentPasswordRequired": "La contraseña actual es requerida",
+      "newPasswordRequired": "La nueva contraseña es requerida",
+      "newPasswordMinLength": "La contraseña debe tener al menos 8 caracteres",
+      "confirmPasswordRequired": "Por favor confirma tu contraseña",
+      "passwordsMustMatch": "Las contraseñas deben coincidir"
+    }
+  },
+  "editProfile": {
+    "title": "Editar Perfil",
+    "description": "Actualiza tu información de perfil. Todos los campos son obligatorios.",
+    "name": "Nombre",
+    "namePlaceholder": "Ingresa tu nombre",
+    "email": "Correo Electrónico",
+    "emailPlaceholder": "Ingresa tu correo electrónico",
+    "phone": "Teléfono",
+    "phonePlaceholder": "Ingresa tu número de teléfono",
+    "saveButton": "Guardar Cambios",
+    "processing": "Procesando...",
+    "success": "Perfil actualizado exitosamente",
+    "error": "Error al editar el perfil",
+    "validation": {
+      "nameRequired": "El nombre es requerido",
+      "nameMinLength": "El nombre debe tener al menos 3 caracteres",
+      "emailRequired": "El correo electrónico es requerido",
+      "emailInvalid": "Correo electrónico inválido",
+      "phoneRequired": "El número de teléfono es requerido",
+      "phoneMinLength": "El número de teléfono debe tener al menos 10 dígitos",
+      "phoneMaxLength": "El número de teléfono no debe exceder 15 dígitos",
+      "phoneDigitsOnly": "El número de teléfono debe contener solo dígitos"
+    }
   }
 }

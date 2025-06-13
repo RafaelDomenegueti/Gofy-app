@@ -12,24 +12,26 @@ import { useAuth } from "../../hooks/useAuth";
 import { AuthService } from "../../services/auth";
 import { useNavigation } from "@react-navigation/native";
 import Toast from "react-native-toast-message";
+import { useTranslation } from "react-i18next";
 
 export const EditProfileScreen = () => {
   const { colorScheme } = useColorScheme();
   const { user, editProfile } = useAuth();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const navigation = useNavigation();
+  const { t } = useTranslation();
 
   const validationSchema = Yup.object().shape({
     name: Yup.string()
-      .min(3, 'Name must be at least 3 characters')
-      .required('Name is required'),
+      .min(3, t('editProfile.validation.nameMinLength'))
+      .required(t('editProfile.validation.nameRequired')),
     email: Yup.string()
-      .email('Invalid email address')
-      .required('Email is required'),
+      .email(t('editProfile.validation.emailInvalid'))
+      .required(t('editProfile.validation.emailRequired')),
     phone: Yup.string()
-      .min(10, 'Phone number must be at least 10 digits')
-      .max(15, 'Phone number must not exceed 15 digits')
-      .matches(/^[0-9]+$/, 'Phone number must contain only digits'),
+      .min(10, t('editProfile.validation.phoneMinLength'))
+      .max(15, t('editProfile.validation.phoneMaxLength'))
+      .matches(/^[0-9]+$/, t('editProfile.validation.phoneDigitsOnly')),
   });
 
   const handleSubmit = async (values: { name: string; email: string; phone: string }) => {
@@ -44,14 +46,14 @@ export const EditProfileScreen = () => {
 
       Toast.show({
         type: 'success',
-        text1: 'Success',
-        text2: 'Profile updated successfully',
+        text1: t('common.success'),
+        text2: t('editProfile.success'),
       });
     } catch (error: any) {
       Toast.show({
         type: 'error',
-        text1: 'Error',
-        text2: error.message || 'Error editing profile',
+        text1: t('common.error'),
+        text2: error.message || t('editProfile.error'),
       });
     } finally {
       setIsSubmitting(false);
@@ -74,12 +76,12 @@ export const EditProfileScreen = () => {
                 <ArrowLeft size={20} color={colorScheme === 'dark' ? '#fff' : '#000'} />
               </Button>
               <CardTitle className={`text-xl font-bold text-foreground dark:text-foreground-dark`}>
-                Edit Profile
+                {t('editProfile.title')}
               </CardTitle>
               <View className="w-10" />
             </View>
             <CardDescription className="text-center text-muted-foreground dark:text-muted-foreground-dark">
-              Update your profile information. All fields are required.
+              {t('editProfile.description')}
             </CardDescription>
           </CardHeader>
 
@@ -101,14 +103,14 @@ export const EditProfileScreen = () => {
                         <View className="text-sm font-medium flex flex-row items-center gap-2">
                           <UserIcon size={16} color={colorScheme === 'dark' ? '#d2d2d2' : '#000'} />
                           <Text className="text-muted-foreground dark:text-muted-foreground-dark font-bold">
-                            Name
+                            {t('editProfile.name')}
                           </Text>
                         </View>
                       </Label>
 
                       <Input
                         id="name"
-                        placeholder="Enter your name"
+                        placeholder={t('editProfile.namePlaceholder')}
                         value={values.name}
                         onChangeText={handleChange("name")}
                         onBlur={handleBlur("name")}
@@ -125,14 +127,14 @@ export const EditProfileScreen = () => {
                         <View className="text-sm font-medium flex flex-row items-center gap-2">
                           <MailIcon size={16} color={colorScheme === 'dark' ? '#d2d2d2' : '#000'} />
                           <Text className="text-muted-foreground dark:text-muted-foreground-dark font-bold">
-                            Email
+                            {t('editProfile.email')}
                           </Text>
                         </View>
                       </Label>
 
                       <Input
                         id="email"
-                        placeholder="Enter your email"
+                        placeholder={t('editProfile.emailPlaceholder')}
                         value={values.email}
                         onChangeText={handleChange("email")}
                         onBlur={handleBlur("email")}
@@ -152,14 +154,14 @@ export const EditProfileScreen = () => {
                         <View className="text-sm font-medium flex flex-row items-center gap-2">
                           <PhoneIcon size={16} color={colorScheme === 'dark' ? '#d2d2d2' : '#000'} />
                           <Text className="text-muted-foreground dark:text-muted-foreground-dark font-bold">
-                            Phone
+                            {t('editProfile.phone')}
                           </Text>
                         </View>
                       </Label>
 
                       <Input
                         id="phone"
-                        placeholder="Enter your phone number"
+                        placeholder={t('editProfile.phonePlaceholder')}
                         value={values.phone}
                         onChangeText={handleChange("phone")}
                         onBlur={handleBlur("phone")}
@@ -180,10 +182,10 @@ export const EditProfileScreen = () => {
                       {isSubmitting ? (
                         <View className="flex-row items-center gap-2">
                           <ActivityIndicator color="white" size="small" />
-                          <Text className="text-white font-medium">Processing...</Text>
+                          <Text className="text-white font-medium">{t('editProfile.processing')}</Text>
                         </View>
                       ) : (
-                        "Save Changes"
+                        t('editProfile.saveButton')
                       )}
                     </Button>
                   </View>

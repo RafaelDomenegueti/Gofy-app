@@ -134,5 +134,50 @@
     "constructionDescription": "Wir arbeiten an neuen Community-Funktionen. Bald können Sie mit anderen Benutzern interagieren und Ihre Erfahrungen teilen.",
     "donationDescription": "GoFy wird durch Spenden finanziert. Wenn Ihnen das Projekt gefällt und Sie helfen möchten, erwägen Sie eine Spende.",
     "donate": "Spenden"
+  },
+  "changePassword": {
+    "title": "Passwort ändern",
+    "description": "Geben Sie Ihr aktuelles Passwort ein und wählen Sie ein neues Passwort, um die Sicherheit Ihres Kontos zu aktualisieren.",
+    "currentPassword": "Aktuelles Passwort",
+    "currentPasswordPlaceholder": "Geben Sie Ihr aktuelles Passwort ein",
+    "newPassword": "Neues Passwort",
+    "newPasswordPlaceholder": "Geben Sie Ihr neues Passwort ein",
+    "confirmPassword": "Passwort bestätigen",
+    "confirmPasswordPlaceholder": "Bestätigen Sie Ihr neues Passwort",
+    "changeButton": "Passwort ändern",
+    "processing": "Wird verarbeitet...",
+    "success": "Passwort erfolgreich geändert",
+    "error": "Fehler beim Ändern des Passworts",
+    "validation": {
+      "currentPasswordRequired": "Aktuelles Passwort ist erforderlich",
+      "newPasswordRequired": "Neues Passwort ist erforderlich",
+      "newPasswordMinLength": "Passwort muss mindestens 8 Zeichen lang sein",
+      "confirmPasswordRequired": "Bitte bestätigen Sie Ihr Passwort",
+      "passwordsMustMatch": "Passwörter müssen übereinstimmen"
+    }
+  },
+  "editProfile": {
+    "title": "Profil bearbeiten",
+    "description": "Aktualisieren Sie Ihre Profilinformationen. Alle Felder sind erforderlich.",
+    "name": "Name",
+    "namePlaceholder": "Geben Sie Ihren Namen ein",
+    "email": "E-Mail",
+    "emailPlaceholder": "Geben Sie Ihre E-Mail-Adresse ein",
+    "phone": "Telefon",
+    "phonePlaceholder": "Geben Sie Ihre Telefonnummer ein",
+    "saveButton": "Änderungen speichern",
+    "processing": "Wird verarbeitet...",
+    "success": "Profil erfolgreich aktualisiert",
+    "error": "Fehler beim Bearbeiten des Profils",
+    "validation": {
+      "nameRequired": "Name ist erforderlich",
+      "nameMinLength": "Name muss mindestens 3 Zeichen lang sein",
+      "emailRequired": "E-Mail ist erforderlich",
+      "emailInvalid": "Ungültige E-Mail-Adresse",
+      "phoneRequired": "Telefonnummer ist erforderlich",
+      "phoneMinLength": "Telefonnummer muss mindestens 10 Ziffern lang sein",
+      "phoneMaxLength": "Telefonnummer darf nicht länger als 15 Ziffern sein",
+      "phoneDigitsOnly": "Telefonnummer darf nur Ziffern enthalten"
+    }
   }
 }

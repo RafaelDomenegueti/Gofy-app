@@ -131,8 +131,53 @@
   },
   "community": {
     "underConstruction": "निर्माणाधीन",
-    "constructionDescription": "हम नई सामुदायिक सुविधाओं पर काम कर रहे हैं। जल्द ही आप अन्य उपयोगकर्ताओं के साथ बातचीत कर सकेंगे और अपने अनुभव साझा कर सकेंगे।",
+    "constructionDescription": "हम नए सामुदायिक फीचर्स पर काम कर रहे हैं। जल्द ही आप अन्य उपयोगकर्ताओं के साथ बातचीत कर सकेंगे और अपने अनुभव साझा कर सकेंगे।",
     "donationDescription": "GoFy दान के माध्यम से बनाए रखा जाता है। यदि आप प्रोजेक्ट को पसंद करते हैं और मदद करना चाहते हैं, तो दान करने पर विचार करें।",
     "donate": "दान करें"
+  },
+  "changePassword": {
+    "title": "पासवर्ड बदलें",
+    "description": "अपना वर्तमान पासवर्ड दर्ज करें और अपने खाते की सुरक्षा अपडेट करने के लिए एक नया पासवर्ड चुनें।",
+    "currentPassword": "वर्तमान पासवर्ड",
+    "currentPasswordPlaceholder": "अपना वर्तमान पासवर्ड दर्ज करें",
+    "newPassword": "नया पासवर्ड",
+    "newPasswordPlaceholder": "अपना नया पासवर्ड दर्ज करें",
+    "confirmPassword": "पासवर्ड की पुष्टि करें",
+    "confirmPasswordPlaceholder": "अपने नए पासवर्ड की पुष्टि करें",
+    "changeButton": "पासवर्ड बदलें",
+    "processing": "प्रोसेसिंग...",
+    "success": "पासवर्ड सफलतापूर्वक बदल दिया गया",
+    "error": "पासवर्ड बदलने में त्रुटि",
+    "validation": {
+      "currentPasswordRequired": "वर्तमान पासवर्ड आवश्यक है",
+      "newPasswordRequired": "नया पासवर्ड आवश्यक है",
+      "newPasswordMinLength": "पासवर्ड कम से कम 8 अक्षरों का होना चाहिए",
+      "confirmPasswordRequired": "कृपया अपने पासवर्ड की पुष्टि करें",
+      "passwordsMustMatch": "पासवर्ड मेल खाने चाहिए"
+    }
+  },
+  "editProfile": {
+    "title": "प्रोफ़ाइल संपादित करें",
+    "description": "अपनी प्रोफ़ाइल जानकारी अपडेट करें। सभी फ़ील्ड आवश्यक हैं।",
+    "name": "नाम",
+    "namePlaceholder": "अपना नाम दर्ज करें",
+    "email": "ईमेल",
+    "emailPlaceholder": "अपना ईमेल दर्ज करें",
+    "phone": "फ़ोन",
+    "phonePlaceholder": "अपना फ़ोन नंबर दर्ज करें",
+    "saveButton": "परिवर्तन सहेजें",
+    "processing": "प्रोसेसिंग...",
+    "success": "प्रोफ़ाइल सफलतापूर्वक अपडेट की गई",
+    "error": "प्रोफ़ाइल संपादित करने में त्रुटि",
+    "validation": {
+      "nameRequired": "नाम आवश्यक है",
+      "nameMinLength": "नाम कम से कम 3 अक्षरों का होना चाहिए",
+      "emailRequired": "ईमेल आवश्यक है",
+      "emailInvalid": "अमान्य ईमेल पता",
+      "phoneRequired": "फ़ोन नंबर आवश्यक है",
+      "phoneMinLength": "फ़ोन नंबर कम से कम 10 अंकों का होना चाहिए",
+      "phoneMaxLength": "फ़ोन नंबर 15 अंकों से अधिक नहीं होना चाहिए",
+      "phoneDigitsOnly": "फ़ोन नंबर में केवल अंक होने चाहिए"
+    }
   }
 }

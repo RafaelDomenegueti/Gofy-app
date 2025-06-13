@@ -132,7 +132,52 @@
   "community": {
     "underConstruction": "開発中",
     "constructionDescription": "新しいコミュニティ機能を開発中です。まもなく他のユーザーと交流し、経験を共有できるようになります。",
-    "donationDescription": "GoFyは寄付によって維持されています。プロジェクトを気に入っていただけたなら、寄付をご検討ください。",
+    "donationDescription": "GoFyは寄付によって維持されています。プロジェクトを気に入っていただき、支援したい場合は、寄付をご検討ください。",
     "donate": "寄付する"
+  },
+  "changePassword": {
+    "title": "パスワード変更",
+    "description": "現在のパスワードを入力し、アカウントのセキュリティを更新するために新しいパスワードを選択してください。",
+    "currentPassword": "現在のパスワード",
+    "currentPasswordPlaceholder": "現在のパスワードを入力",
+    "newPassword": "新しいパスワード",
+    "newPasswordPlaceholder": "新しいパスワードを入力",
+    "confirmPassword": "パスワード確認",
+    "confirmPasswordPlaceholder": "新しいパスワードを確認",
+    "changeButton": "パスワード変更",
+    "processing": "処理中...",
+    "success": "パスワードが正常に変更されました",
+    "error": "パスワード変更中にエラーが発生しました",
+    "validation": {
+      "currentPasswordRequired": "現在のパスワードが必要です",
+      "newPasswordRequired": "新しいパスワードが必要です",
+      "newPasswordMinLength": "パスワードは8文字以上である必要があります",
+      "confirmPasswordRequired": "パスワードを確認してください",
+      "passwordsMustMatch": "パスワードが一致する必要があります"
+    }
+  },
+  "editProfile": {
+    "title": "プロフィール編集",
+    "description": "プロフィール情報を更新してください。すべての項目は必須です。",
+    "name": "名前",
+    "namePlaceholder": "名前を入力",
+    "email": "メールアドレス",
+    "emailPlaceholder": "メールアドレスを入力",
+    "phone": "電話番号",
+    "phonePlaceholder": "電話番号を入力",
+    "saveButton": "変更を保存",
+    "processing": "処理中...",
+    "success": "プロフィールが正常に更新されました",
+    "error": "プロフィール編集中にエラーが発生しました",
+    "validation": {
+      "nameRequired": "名前が必要です",
+      "nameMinLength": "名前は3文字以上である必要があります",
+      "emailRequired": "メールアドレスが必要です",
+      "emailInvalid": "無効なメールアドレスです",
+      "phoneRequired": "電話番号が必要です",
+      "phoneMinLength": "電話番号は10桁以上である必要があります",
+      "phoneMaxLength": "電話番号は15桁を超えることはできません",
+      "phoneDigitsOnly": "電話番号は数字のみを含める必要があります"
+    }
   }
 }

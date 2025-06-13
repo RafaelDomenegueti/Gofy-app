@@ -131,8 +131,53 @@
   },
   "community": {
     "underConstruction": "개발 중",
-    "constructionDescription": "새로운 커뮤니티 기능을 개발 중입니다. 곧 다른 사용자와 상호작용하고 경험을 공유할 수 있게 됩니다.",
-    "donationDescription": "GoFy는 기부금으로 유지됩니다. 프로젝트가 마음에 드시고 도움을 주고 싶으시다면, 기부를 고려해 주세요.",
+    "constructionDescription": "새로운 커뮤니티 기능을 개발 중입니다. 곧 다른 사용자와 상호작용하고 경험을 공유할 수 있게 될 것입니다.",
+    "donationDescription": "GoFy는 기부금으로 유지됩니다. 프로젝트가 마음에 들고 도움을 주고 싶다면 기부를 고려해 주세요.",
     "donate": "기부하기"
+  },
+  "changePassword": {
+    "title": "비밀번호 변경",
+    "description": "현재 비밀번호를 입력하고 계정 보안을 업데이트하기 위해 새 비밀번호를 선택하세요.",
+    "currentPassword": "현재 비밀번호",
+    "currentPasswordPlaceholder": "현재 비밀번호를 입력하세요",
+    "newPassword": "새 비밀번호",
+    "newPasswordPlaceholder": "새 비밀번호를 입력하세요",
+    "confirmPassword": "비밀번호 확인",
+    "confirmPasswordPlaceholder": "새 비밀번호를 확인하세요",
+    "changeButton": "비밀번호 변경",
+    "processing": "처리 중...",
+    "success": "비밀번호가 성공적으로 변경되었습니다",
+    "error": "비밀번호 변경 중 오류가 발생했습니다",
+    "validation": {
+      "currentPasswordRequired": "현재 비밀번호가 필요합니다",
+      "newPasswordRequired": "새 비밀번호가 필요합니다",
+      "newPasswordMinLength": "비밀번호는 최소 8자 이상이어야 합니다",
+      "confirmPasswordRequired": "비밀번호를 확인해 주세요",
+      "passwordsMustMatch": "비밀번호가 일치해야 합니다"
+    }
+  },
+  "editProfile": {
+    "title": "프로필 수정",
+    "description": "프로필 정보를 업데이트하세요. 모든 필드는 필수입니다.",
+    "name": "이름",
+    "namePlaceholder": "이름을 입력하세요",
+    "email": "이메일",
+    "emailPlaceholder": "이메일을 입력하세요",
+    "phone": "전화번호",
+    "phonePlaceholder": "전화번호를 입력하세요",
+    "saveButton": "변경사항 저장",
+    "processing": "처리 중...",
+    "success": "프로필이 성공적으로 업데이트되었습니다",
+    "error": "프로필 수정 중 오류가 발생했습니다",
+    "validation": {
+      "nameRequired": "이름이 필요합니다",
+      "nameMinLength": "이름은 최소 3자 이상이어야 합니다",
+      "emailRequired": "이메일이 필요합니다",
+      "emailInvalid": "유효하지 않은 이메일 주소입니다",
+      "phoneRequired": "전화번호가 필요합니다",
+      "phoneMinLength": "전화번호는 최소 10자리 이상이어야 합니다",
+      "phoneMaxLength": "전화번호는 15자리를 초과할 수 없습니다",
+      "phoneDigitsOnly": "전화번호는 숫자만 포함해야 합니다"
+    }
   }
 }

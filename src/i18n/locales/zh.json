@@ -132,7 +132,52 @@
   "community": {
     "underConstruction": "正在建设中",
     "constructionDescription": "我们正在开发新的社区功能。很快您就可以与其他用户互动并分享您的经验。",
-    "donationDescription": "GoFy 通过捐赠维持运营。如果您喜欢这个项目并想提供帮助，请考虑进行捐赠。",
-    "donate": "进行捐赠"
+    "donationDescription": "GoFy 通过捐赠维持运营。如果您喜欢这个项目并想提供帮助，请考虑捐赠。",
+    "donate": "捐赠"
+  },
+  "changePassword": {
+    "title": "修改密码",
+    "description": "输入当前密码并选择新密码以更新您的账户安全。",
+    "currentPassword": "当前密码",
+    "currentPasswordPlaceholder": "输入当前密码",
+    "newPassword": "新密码",
+    "newPasswordPlaceholder": "输入新密码",
+    "confirmPassword": "确认密码",
+    "confirmPasswordPlaceholder": "确认新密码",
+    "changeButton": "修改密码",
+    "processing": "处理中...",
+    "success": "密码修改成功",
+    "error": "修改密码时出错",
+    "validation": {
+      "currentPasswordRequired": "需要输入当前密码",
+      "newPasswordRequired": "需要输入新密码",
+      "newPasswordMinLength": "密码长度至少为8个字符",
+      "confirmPasswordRequired": "请确认密码",
+      "passwordsMustMatch": "两次输入的密码必须一致"
+    }
+  },
+  "editProfile": {
+    "title": "编辑个人资料",
+    "description": "更新您的个人资料信息。所有字段都是必填的。",
+    "name": "姓名",
+    "namePlaceholder": "输入您的姓名",
+    "email": "电子邮箱",
+    "emailPlaceholder": "输入您的电子邮箱",
+    "phone": "电话",
+    "phonePlaceholder": "输入您的电话号码",
+    "saveButton": "保存更改",
+    "processing": "处理中...",
+    "success": "个人资料更新成功",
+    "error": "编辑个人资料时出错",
+    "validation": {
+      "nameRequired": "需要输入姓名",
+      "nameMinLength": "姓名长度至少为3个字符",
+      "emailRequired": "需要输入电子邮箱",
+      "emailInvalid": "电子邮箱格式无效",
+      "phoneRequired": "需要输入电话号码",
+      "phoneMinLength": "电话号码长度至少为10位",
+      "phoneMaxLength": "电话号码长度不能超过15位",
+      "phoneDigitsOnly": "电话号码只能包含数字"
+    }
   }
 }

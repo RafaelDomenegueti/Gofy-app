@@ -134,5 +134,50 @@
     "constructionDescription": "We are working on new community features. Soon you will be able to interact with other users and share your experiences.",
     "donationDescription": "GoFy is maintained through donations. If you like the project and want to help, consider making a donation.",
     "donate": "Make a donation"
+  },
+  "changePassword": {
+    "title": "Change Password",
+    "description": "Enter your current password and choose a new password to update your account security.",
+    "currentPassword": "Current Password",
+    "currentPasswordPlaceholder": "Enter your current password",
+    "newPassword": "New Password",
+    "newPasswordPlaceholder": "Enter your new password",
+    "confirmPassword": "Confirm Password",
+    "confirmPasswordPlaceholder": "Confirm your new password",
+    "changeButton": "Change Password",
+    "processing": "Processing...",
+    "success": "Password changed successfully",
+    "error": "Error changing password",
+    "validation": {
+      "currentPasswordRequired": "Current password is required",
+      "newPasswordRequired": "New password is required",
+      "newPasswordMinLength": "Password must be at least 8 characters",
+      "confirmPasswordRequired": "Please confirm your password",
+      "passwordsMustMatch": "Passwords must match"
+    }
+  },
+  "editProfile": {
+    "title": "Edit Profile",
+    "description": "Update your profile information. All fields are required.",
+    "name": "Name",
+    "namePlaceholder": "Enter your name",
+    "email": "Email",
+    "emailPlaceholder": "Enter your email",
+    "phone": "Phone",
+    "phonePlaceholder": "Enter your phone number",
+    "saveButton": "Save Changes",
+    "processing": "Processing...",
+    "success": "Profile updated successfully",
+    "error": "Error editing profile",
+    "validation": {
+      "nameRequired": "Name is required",
+      "nameMinLength": "Name must be at least 3 characters",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Invalid email address",
+      "phoneRequired": "Phone number is required",
+      "phoneMinLength": "Phone number must be at least 10 digits",
+      "phoneMaxLength": "Phone number must not exceed 15 digits",
+      "phoneDigitsOnly": "Phone number must contain only digits"
+    }
   }
 }
