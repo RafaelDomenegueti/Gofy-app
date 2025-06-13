@@ -6,6 +6,7 @@ import { Animated, Dimensions, TouchableOpacity, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { PlayerControls } from "../components/player-controls";
 import { usePlayer } from "../hooks/usePlayer";
+import { Text } from "../components/ui/text";
 
 const CIRCLE_SIZE = 48;
 const ICON_SIZE = 24;
@@ -156,7 +157,7 @@ export function CustomTabBar() {
                   strokeWidth={2}
                 />
 
-                {/* <Text className="text-xs mt-1 text-white/90">{tab.label}</Text> */}
+                <Text className="text-xs mt-1 text-white/90">{tab.label}</Text>
               </Animated.View>
             </TouchableOpacity>
           );
