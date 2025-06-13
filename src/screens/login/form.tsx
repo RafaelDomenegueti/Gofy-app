@@ -17,7 +17,7 @@ type LoginFormProps = {
 };
 
 export function LoginForm({ onToggleForm }: LoginFormProps) {
-  const { login, isLoading } = useAuth();
+  const { login } = useAuth();
   const { colorScheme } = useColorScheme();
   const { t } = useTranslation();
   const initialValues = { email: '', password: '' }
@@ -57,7 +57,7 @@ export function LoginForm({ onToggleForm }: LoginFormProps) {
         onSubmit={handleLogin}
         validationSchema={loginSchema}
       >
-        {({ setFieldValue, handleSubmit, values, errors, touched }) => (
+        {({ setFieldValue, handleSubmit, values, errors, touched, isSubmitting }) => (
           <View>
             <CardContent className="flex flex-col gap-5">
               <View className="flex flex-col gap-2">
@@ -112,10 +112,10 @@ export function LoginForm({ onToggleForm }: LoginFormProps) {
             <CardFooter className="flex flex-col space-y-4 pt-2">
               <Button
                 className="w-full bg-primary dark:bg-primary-dark py-3"
-                disabled={isLoading}
+                disabled={isSubmitting}
                 onPress={() => handleSubmit()}
               >
-                {isLoading ? t('auth.signingIn') : t('auth.login')}
+                {isSubmitting ? t('auth.signingIn') : t('auth.login')}
               </Button>
               <Button
                 variant="link"

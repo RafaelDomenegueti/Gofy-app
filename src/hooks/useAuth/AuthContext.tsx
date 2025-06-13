@@ -61,14 +61,14 @@ export function AuthProvider({ children }: IAuthProviderProps) {
   }, [logout]);
 
   const login = async (data: ILoginData) => {
-    setIsLoading(true);
-
     try {
       const response = await AuthService.login(data);
 
       if (response.status !== 201) {
         throw new Error(response.data.message || 'Login failed');
       }
+
+      setIsLoading(true);
 
       const { token, refreshToken, user: userData } = response.data;
 
@@ -94,14 +94,14 @@ export function AuthProvider({ children }: IAuthProviderProps) {
   };
 
   const register = async (data: IRegisterData) => {
-    setIsLoading(true);
-
     try {
       const response = await AuthService.register(data);
 
       if (response.status !== 201) {
         throw new Error(response.data.message || 'Registration failed');
       }
+
+      setIsLoading(true);
 
       const { token, refreshToken, user: userData } = response.data;
 

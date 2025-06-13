@@ -18,7 +18,7 @@ type LoginFormProps = {
 };
 
 export function RegisterForm({ onToggleForm }: LoginFormProps) {
-  const { register, isLoading } = useAuth();
+  const { register } = useAuth();
   const navigation = useNavigation()
   const { colorScheme } = useColorScheme()
   const { t } = useTranslation()
@@ -77,7 +77,7 @@ export function RegisterForm({ onToggleForm }: LoginFormProps) {
         onSubmit={handleRegister}
         validationSchema={registerSchema}
       >
-        {({ setFieldValue, handleSubmit, values, errors, touched }) => (
+        {({ setFieldValue, handleSubmit, values, errors, touched, isSubmitting }) => (
           <View>
             <CardContent className="flex flex-col gap-5">
               <View className="flex flex-col gap-2">
@@ -188,10 +188,10 @@ export function RegisterForm({ onToggleForm }: LoginFormProps) {
             <CardFooter className="flex flex-col space-y-4 pt-2">
               <Button
                 className="w-full bg-primary dark:bg-primary-dark py-3"
-                disabled={isLoading}
+                disabled={isSubmitting}
                 onPress={() => handleSubmit()}
               >
-                {isLoading ? t('auth.creatingAccount') : t('auth.createAccount')}
+                {isSubmitting ? t('auth.creatingAccount') : t('auth.createAccount')}
               </Button>
               <Button
                 variant="link"
