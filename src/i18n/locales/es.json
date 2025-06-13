@@ -105,15 +105,17 @@
     "saveContent": "Guardar contenido",
     "saving": "Guardando...",
     "validation": {
-      "urlRequired": "El enlace es obligatorio",
-      "urlInvalid": "Por favor, ingresa una URL válida",
-      "urlNotAllowed": "Este proveedor no está permitido. Por favor, ingresa un enlace directo a un archivo de audio.",
-      "titleRequired": "El título es obligatorio",
+      "urlRequired": "El enlace es requerido",
+      "urlInvalid": "Por favor ingrese una URL válida",
+      "urlNotAllowed": "Este proveedor no está permitido. Por favor ingrese un enlace directo a un archivo de audio.",
+      "titleRequired": "El título es requerido",
+      "titleMinLength": "El título debe tener al menos 3 caracteres",
       "titleMaxLength": "El título no puede tener más de 255 caracteres",
       "descriptionMaxLength": "La descripción no puede tener más de 255 caracteres",
-      "authorRequired": "El autor es obligatorio",
+      "authorRequired": "El autor es requerido",
+      "authorMinLength": "El autor debe tener al menos 3 caracteres",
       "authorMaxLength": "El nombre del autor no puede tener más de 255 caracteres",
-      "tagsRequired": "Selecciona al menos una etiqueta",
+      "tagsRequired": "Seleccione al menos una etiqueta",
       "urlMustBeHttps": "La URL debe comenzar con https://"
     }
   },

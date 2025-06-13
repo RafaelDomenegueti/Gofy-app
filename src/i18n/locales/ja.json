@@ -107,12 +107,14 @@
     "validation": {
       "urlRequired": "リンクは必須です",
       "urlInvalid": "有効なURLを入力してください",
-      "urlNotAllowed": "このプロバイダーは許可されていません。音声ファイルの直接リンクを入力してください。",
+      "urlNotAllowed": "このプロバイダーは許可されていません。オーディオファイルへの直接リンクを入力してください。",
       "titleRequired": "タイトルは必須です",
-      "titleMaxLength": "タイトルは255文字以内で入力してください",
-      "descriptionMaxLength": "説明は255文字以内で入力してください",
+      "titleMinLength": "タイトルは3文字以上必要です",
+      "titleMaxLength": "タイトルは255文字を超えることはできません",
+      "descriptionMaxLength": "説明は255文字を超えることはできません",
       "authorRequired": "作者は必須です",
-      "authorMaxLength": "作者名は255文字以内で入力してください",
+      "authorMinLength": "作者名は3文字以上必要です",
+      "authorMaxLength": "作者名は255文字を超えることはできません",
       "tagsRequired": "少なくとも1つのタグを選択してください",
       "urlMustBeHttps": "URLはhttps://で始まる必要があります"
     }

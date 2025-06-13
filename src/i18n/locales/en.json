@@ -109,9 +109,11 @@
       "urlInvalid": "Please enter a valid URL",
       "urlNotAllowed": "This provider is not allowed. Please enter a direct link to an audio file.",
       "titleRequired": "Title is required",
+      "titleMinLength": "Title must be at least 3 characters",
       "titleMaxLength": "Title cannot be longer than 255 characters",
       "descriptionMaxLength": "Description cannot be longer than 255 characters",
       "authorRequired": "Author is required",
+      "authorMinLength": "Author must be at least 3 characters",
       "authorMaxLength": "Author name cannot be longer than 255 characters",
       "tagsRequired": "Select at least one tag",
       "urlMustBeHttps": "URL must start with https://"

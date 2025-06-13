@@ -105,15 +105,17 @@
     "saveContent": "Enregistrer le contenu",
     "saving": "Enregistrement...",
     "validation": {
-      "urlRequired": "Le lien est obligatoire",
+      "urlRequired": "Le lien est requis",
       "urlInvalid": "Veuillez entrer une URL valide",
       "urlNotAllowed": "Ce fournisseur n'est pas autorisé. Veuillez entrer un lien direct vers un fichier audio.",
-      "titleRequired": "Le titre est obligatoire",
+      "titleRequired": "Le titre est requis",
+      "titleMinLength": "Le titre doit contenir au moins 3 caractères",
       "titleMaxLength": "Le titre ne peut pas dépasser 255 caractères",
       "descriptionMaxLength": "La description ne peut pas dépasser 255 caractères",
-      "authorRequired": "L'auteur est obligatoire",
+      "authorRequired": "L'auteur est requis",
+      "authorMinLength": "L'auteur doit contenir au moins 3 caractères",
       "authorMaxLength": "Le nom de l'auteur ne peut pas dépasser 255 caractères",
-      "tagsRequired": "Sélectionnez au moins un tag",
+      "tagsRequired": "Sélectionnez au moins une étiquette",
       "urlMustBeHttps": "L'URL doit commencer par https://"
     }
   },

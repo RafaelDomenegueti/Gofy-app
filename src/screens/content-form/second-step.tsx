@@ -28,11 +28,13 @@ export const ContentFormSecondStep = ({ handleSubmit, dataForm }: IProps) => {
   const validationSchema = Yup.object().shape({
     title: Yup.string()
       .required(t('contentForm.validation.titleRequired'))
+      .min(3, t('contentForm.validation.titleMinLength'))
       .max(255, t('contentForm.validation.titleMaxLength')),
     description: Yup.string()
       .max(255, t('contentForm.validation.descriptionMaxLength')),
     author: Yup.string()
       .required(t('contentForm.validation.authorRequired'))
+      .min(3, t('contentForm.validation.authorMinLength'))
       .max(255, t('contentForm.validation.authorMaxLength')),
     tags: Yup.array()
       .of(Yup.string())

@@ -106,15 +106,17 @@
     "saving": "सहेजा जा रहा है...",
     "validation": {
       "urlRequired": "लिंक आवश्यक है",
-      "urlInvalid": "कृपया एक वैध यूआरएल दर्ज करें",
-      "urlNotAllowed": "यह प्रदाता अनुमत नहीं है। कृपया ऑडियो फ़ाइल का सीधा लिंक दर्ज करें।",
+      "urlInvalid": "कृपया एक वैध URL दर्ज करें",
+      "urlNotAllowed": "यह प्रदाता अनुमत नहीं है। कृपया एक ऑडियो फ़ाइल का सीधा लिंक दर्ज करें।",
       "titleRequired": "शीर्षक आवश्यक है",
+      "titleMinLength": "शीर्षक में कम से कम 3 अक्षर होने चाहिए",
       "titleMaxLength": "शीर्षक 255 अक्षरों से अधिक नहीं हो सकता",
       "descriptionMaxLength": "विवरण 255 अक्षरों से अधिक नहीं हो सकता",
       "authorRequired": "लेखक आवश्यक है",
+      "authorMinLength": "लेखक का नाम कम से कम 3 अक्षर का होना चाहिए",
       "authorMaxLength": "लेखक का नाम 255 अक्षरों से अधिक नहीं हो सकता",
       "tagsRequired": "कम से कम एक टैग चुनें",
-      "urlMustBeHttps": "URL https:// से शुरू होनी चाहिए"
+      "urlMustBeHttps": "URL https:// से शुरू होना चाहिए"
     }
   },
   "tags": {
