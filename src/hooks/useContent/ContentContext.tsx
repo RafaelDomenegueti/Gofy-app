@@ -51,23 +51,36 @@ export function ContentProvider({ children }: IContentProviderProps) {
       setContents(data => [...data, createdContent])
 
       if (!content.url?.startsWith("http")) {
-        const dir = getGofyDownloadsDir();
-        if (!(await RNFS.exists(dir))) {
-          await RNFS.mkdir(dir);
+        try {
+          const dir = getGofyDownloadsDir();
+          if (!(await RNFS.exists(dir))) {
+            await RNFS.mkdir(dir);
+          }
+
+          const fileName = `content_${createdContent.id}.mp3`;
+          const destinationPath = `${dir}${fileName}`;
+
+          const sourcePath = decodeURIComponent(content.url!);
+          if (!(await RNFS.exists(sourcePath))) {
+            throw new Error(`Source file not found: ${sourcePath}`);
+          }
+
+          await RNFS.copyFile(sourcePath, destinationPath);
+          setDownloadedContent(createdContent.id);
+        } catch (fileError: any) {
+          Toast.show({
+            autoHide: true,
+            text1: "Error processing local file",
+            text2: fileError.message,
+            swipeable: true,
+            type: "error"
+          });
         }
-
-        const fileName = `content_${createdContent.id}.mp3`;
-        const destinationPath = `${dir}${fileName}`;
-
-        await RNFS.copyFile(content.url!, destinationPath);
-
-        setDownloadedContent(createdContent.id);
       }
 
       setIsLoading(false)
     } catch (error: any) {
       const message = error?.response?.data?.message
-
       Toast.show({
         autoHide: true,
         text1: "Error creating content",
