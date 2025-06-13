@@ -12,6 +12,7 @@ import { useNavigation } from "@react-navigation/native";
 import { useAuth } from "../../hooks/useAuth";
 import Toast from "react-native-toast-message";
 import { useTranslation } from "react-i18next";
+import { PasswordInput } from "../../components/password-input";
 
 export const ChangePasswordScreen = () => {
   const { colorScheme } = useColorScheme();
@@ -101,14 +102,13 @@ export const ChangePasswordScreen = () => {
                         </View>
                       </Label>
 
-                      <Input
+                      <PasswordInput
                         id="currentPassword"
                         placeholder={t('changePassword.currentPasswordPlaceholder')}
                         value={values.currentPassword}
                         onChangeText={handleChange("currentPassword")}
                         onBlur={handleBlur("currentPassword")}
                         className="bg-muted/30 dark:bg-muted-dark/30 border-primary/20 dark:border-primary-dark/20 focus:border-primary dark:focus:border-primary-dark h-12"
-                        secureTextEntry
                       />
 
                       {touched.currentPassword && errors.currentPassword && (
@@ -126,14 +126,13 @@ export const ChangePasswordScreen = () => {
                         </View>
                       </Label>
 
-                      <Input
+                      <PasswordInput
                         id="newPassword"
                         placeholder={t('changePassword.newPasswordPlaceholder')}
                         value={values.newPassword}
                         onChangeText={handleChange("newPassword")}
                         onBlur={handleBlur("newPassword")}
                         className="bg-muted/30 dark:bg-muted-dark/30 border-primary/20 dark:border-primary-dark/20 focus:border-primary dark:focus:border-primary-dark h-12"
-                        secureTextEntry
                       />
 
                       {touched.newPassword && errors.newPassword && (
@@ -151,14 +150,13 @@ export const ChangePasswordScreen = () => {
                         </View>
                       </Label>
 
-                      <Input
+                      <PasswordInput
                         id="confirmPassword"
                         placeholder={t('changePassword.confirmPasswordPlaceholder')}
                         value={values.confirmPassword}
                         onChangeText={handleChange("confirmPassword")}
                         onBlur={handleBlur("confirmPassword")}
                         className="bg-muted/30 dark:bg-muted-dark/30 border-primary/20 dark:border-primary-dark/20 focus:border-primary dark:focus:border-primary-dark h-12"
-                        secureTextEntry
                       />
 
                       {touched.confirmPassword && errors.confirmPassword && (

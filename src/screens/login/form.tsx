@@ -11,6 +11,7 @@ import { Label } from "../../components/ui/label";
 import { Text } from "../../components/ui/text";
 import { useAuth } from "../../hooks/useAuth";
 import { useColorScheme } from '../../lib/useColorScheme';
+import { PasswordInput } from '../../components/password-input';
 
 type LoginFormProps = {
   onToggleForm: () => void;
@@ -89,12 +90,11 @@ export function LoginForm({ onToggleForm }: LoginFormProps) {
                   {t('auth.password')}
                 </Label>
                 <View className="relative">
-                  <Input
+                  <PasswordInput
                     ref={passwordRef}
                     placeholder={t('auth.passwordPlaceholder')}
                     value={values.password}
                     onChangeText={(v) => setFieldValue("password", v)}
-                    secureTextEntry
                     className={`pl-11 ${touched.password && errors.password ? 'border-red-500' : 'border-input'}`}
                     returnKeyType="done"
                     onSubmitEditing={() => handleSubmit()}
