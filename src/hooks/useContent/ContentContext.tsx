@@ -4,6 +4,7 @@ import Toast from 'react-native-toast-message';
 import { ContentService } from '../../services/content';
 import { usePlayer } from '../usePlayer';
 import { Content, ContentContextData, IContentProviderProps } from './types';
+import { Platform } from 'react-native';
 
 export const ContentContext = createContext({} as ContentContextData);
 
@@ -60,12 +61,17 @@ export function ContentProvider({ children }: IContentProviderProps) {
           const fileName = `content_${createdContent.id}.mp3`;
           const destinationPath = `${dir}${fileName}`;
 
-          const sourcePath = decodeURIComponent(content.url!);
-          if (!(await RNFS.exists(sourcePath))) {
-            throw new Error(`Source file not found: ${sourcePath}`);
+          if (Platform.OS === 'ios') {
+            const sourcePath = decodeURIComponent(content.url!);
+            if (!(await RNFS.exists(sourcePath))) {
+              throw new Error(`Source file not found: ${sourcePath}`);
+            }
+
+            await RNFS.copyFile(sourcePath, destinationPath);
+          } else {
+            await RNFS.copyFile(content.url!, destinationPath);
           }
 
-          await RNFS.copyFile(sourcePath, destinationPath);
           setDownloadedContent(createdContent.id);
         } catch (fileError: any) {
           Toast.show({
