@@ -13,4 +13,6 @@ export type HomeStackParamList = {
 
 export type ContentFormStackParamList = {
   ContentForm: undefined;
+  EditProfile: undefined;
+  ChangePassword: undefined;
 };

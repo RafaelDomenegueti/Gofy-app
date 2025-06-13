@@ -4,7 +4,7 @@ export interface IUser {
   id: string;
   name: string;
   email: string;
-  phone: string;
+  phone?: string;
 }
 
 export interface IAuthProviderProps {
@@ -31,6 +31,8 @@ export interface IAuthContextData {
   logout: () => Promise<void>;
   register: (data: IRegisterData) => Promise<boolean>;
   refreshToken: () => Promise<boolean>;
+  editProfile: (data: IEditProfileData) => Promise<EditProfileResponse | undefined>;
+  changePassword: (data: IChangePasswordData) => Promise<ChangePasswordResponse | undefined>;
 }
 
 export interface LoginDataResponse {
@@ -50,4 +52,29 @@ export interface RegisterDataResponse {
 export interface ValidateTokenResponse {
   user: IUser;
   message?: string;
+}
+
+export interface IChangePasswordData {
+  currentPassword: string;
+  newPassword: string;
+}
+
+export interface IEditProfileData {
+  name?: string;
+  email?: string;
+  phone?: string;
+}
+
+export interface ChangePasswordResponse {
+  message: string;
+}
+
+export interface EditProfileResponse {
+  user: {
+    id: string;
+    name: string;
+    email: string;
+    phone?: string;
+  };
+  message: string;
 }

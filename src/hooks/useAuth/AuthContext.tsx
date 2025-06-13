@@ -2,9 +2,9 @@ import { createContext, useCallback, useEffect, useMemo, useState } from 'react'
 import Toast from 'react-native-toast-message';
 import { AuthService } from '../../services/auth';
 import { clearStorage, getStorage, setStorage, storageKeys } from '../../utils/storage';
-import { IAuthContextData, IAuthProviderProps, ILoginData, IRegisterData, IUser } from './types';
+import { IAuthContextData, IAuthProviderProps, ILoginData, IRegisterData, IUser, IChangePasswordData, IEditProfileData } from './types';
 
-export const AuthContext = createContext({} as IAuthContextData);
+export const AuthContext = createContext<IAuthContextData>({} as IAuthContextData);
 
 export function AuthProvider({ children }: IAuthProviderProps) {
   const [user, setUser] = useState<IUser | null>(null);
@@ -167,6 +167,38 @@ export function AuthProvider({ children }: IAuthProviderProps) {
     checkIsSigned();
   }, [checkIsSigned]);
 
+  const changePassword = async (data: IChangePasswordData) => {
+    try {
+      const token = await getStorage(storageKeys.token);
+
+      if (!token) {
+        throw new Error('No token found');
+      }
+
+      const response = await AuthService.changePassword(data, token);
+
+      return response.data;
+    } catch (error: any) {
+      throw new Error(typeof error.response?.data?.message === 'string' ? error.response?.data?.message : 'Error changing password');
+    }
+  };
+
+  const editProfile = async (data: IEditProfileData) => {
+    try {
+      const token = await getStorage(storageKeys.token);
+
+      if (!token) {
+        throw new Error('No token found');
+      }
+
+      const response = await AuthService.editProfile(data, token);
+      setUser(response.data.user);
+      return response.data;
+    } catch (error: any) {
+      throw new Error(typeof error.response?.data?.message === 'string' ? error.response?.data?.message : 'Error editing profile');
+    }
+  };
+
   const value = useMemo(
     () => ({
       login,
@@ -177,8 +209,10 @@ export function AuthProvider({ children }: IAuthProviderProps) {
       isLoading,
       isRefreshing,
       refreshToken,
+      changePassword,
+      editProfile,
     }),
-    [signed, user, isLoading, isRefreshing, refreshToken]
+    [signed, user, isLoading, isRefreshing, refreshToken, changePassword, editProfile]
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

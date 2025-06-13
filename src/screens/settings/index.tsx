@@ -7,11 +7,13 @@ import { Switch } from "../../components/ui/switch";
 import { Text } from "../../components/ui/text";
 import { useAuth } from "../../hooks/useAuth";
 import { useColorScheme } from "../../lib/useColorScheme";
+import { useNavigation } from "@react-navigation/native";
 
 export function SettingsScreen() {
   const { user, logout } = useAuth();
   const { isDarkColorScheme, toggleColorScheme } = useColorScheme();
   const { t } = useTranslation();
+  const navigation = useNavigation<NavigationProp>();
 
   const handleLogout = async () => {
     await logout();
@@ -45,10 +47,10 @@ export function SettingsScreen() {
             </View>
 
             <View className="flex flex-row gap-3">
-              <Button variant="outline" className="flex-1">
+              <Button variant="outline" className="flex-1" onPress={() => navigation.navigate(`ContentFormStack`, { screen: 'EditProfile' })}>
                 {t('settings.profile.editProfile')}
               </Button>
-              <Button variant="outline" className="flex-1">
+              <Button variant="outline" className="flex-1" onPress={() => navigation.navigate(`ContentFormStack`, { screen: 'ChangePassword' })}>
                 {t('settings.profile.changePassword')}
               </Button>
             </View>

@@ -15,6 +15,8 @@ import { ContentFormStackParamList, HomeStackParamList, RootStackParamList } fro
 import { CustomHeader } from './custom-header';
 import { CustomTabBar } from './custom-tab-bar';
 import { LoadingScreen } from './loading-screen';
+import { EditProfileScreen } from '../screens/settings/edit-profile';
+import { ChangePasswordScreen } from '../screens/settings/change-password';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 const HomeStack = createNativeStackNavigator<HomeStackParamList>();
@@ -64,6 +66,16 @@ const ContentFormStackNavigator = () => {
         <ContentFormStack.Screen
           name="ContentForm"
           component={ContentFormScreen}
+          options={{ header: () => <SafeAreaView /> }}
+        />
+        <ContentFormStack.Screen
+          name="EditProfile"
+          component={EditProfileScreen}
+          options={{ header: () => <SafeAreaView /> }}
+        />
+        <ContentFormStack.Screen
+          name="ChangePassword"
+          component={ChangePasswordScreen}
           options={{ header: () => <SafeAreaView /> }}
         />
       </ContentFormStack.Navigator>
