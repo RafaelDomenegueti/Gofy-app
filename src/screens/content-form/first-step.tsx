@@ -24,6 +24,7 @@ export const ContentFormFirstStep = ({ handleFirstStep }: IProps) => {
   const validationSchema = Yup.object().shape({
     url: Yup.string()
       .url(t('contentForm.validation.urlInvalid'))
+      .matches(/^https:\/\//, t('contentForm.validation.urlMustBeHttps'))
       .test('not-video-platforms', t('contentForm.validation.urlNotAllowed'), function (value) {
         if (!value) return true;
         const blockedDomains = [

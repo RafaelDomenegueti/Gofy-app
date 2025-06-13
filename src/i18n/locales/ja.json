@@ -113,7 +113,8 @@
       "descriptionMaxLength": "説明は255文字以内で入力してください",
       "authorRequired": "作者は必須です",
       "authorMaxLength": "作者名は255文字以内で入力してください",
-      "tagsRequired": "少なくとも1つのタグを選択してください"
+      "tagsRequired": "少なくとも1つのタグを選択してください",
+      "urlMustBeHttps": "URLはhttps://で始まる必要があります"
     }
   },
   "tags": {

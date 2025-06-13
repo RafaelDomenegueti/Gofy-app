@@ -113,7 +113,8 @@
       "descriptionMaxLength": "Beschreibung darf nicht länger als 255 Zeichen sein",
       "authorRequired": "Autor ist erforderlich",
       "authorMaxLength": "Autorenname darf nicht länger als 255 Zeichen sein",
-      "tagsRequired": "Wählen Sie mindestens einen Tag aus"
+      "tagsRequired": "Wählen Sie mindestens einen Tag aus",
+      "urlMustBeHttps": "Die URL muss mit https:// beginnen"
     }
   },
   "tags": {

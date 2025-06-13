@@ -113,7 +113,8 @@
       "descriptionMaxLength": "描述不能超过255个字符",
       "authorRequired": "作者是必填项",
       "authorMaxLength": "作者名称不能超过255个字符",
-      "tagsRequired": "请至少选择一个标签"
+      "tagsRequired": "请至少选择一个标签",
+      "urlMustBeHttps": "URL必须以https://开头"
     }
   },
   "tags": {

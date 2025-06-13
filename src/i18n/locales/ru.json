@@ -113,7 +113,8 @@
       "descriptionMaxLength": "Описание не может быть длиннее 255 символов",
       "authorRequired": "Автор обязателен",
       "authorMaxLength": "Имя автора не может быть длиннее 255 символов",
-      "tagsRequired": "Выберите хотя бы один тег"
+      "tagsRequired": "Выберите хотя бы один тег",
+      "urlMustBeHttps": "URL должен начинаться с https://"
     }
   },
   "tags": {

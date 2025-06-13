@@ -113,7 +113,8 @@
       "descriptionMaxLength": "Descrição não pode ter mais de 255 caracteres",
       "authorRequired": "Autor é obrigatório",
       "authorMaxLength": "Nome do autor não pode ter mais de 255 caracteres",
-      "tagsRequired": "Selecione pelo menos uma tag"
+      "tagsRequired": "Selecione pelo menos uma tag",
+      "urlMustBeHttps": "A URL deve começar com https://"
     }
   },
   "tags": {

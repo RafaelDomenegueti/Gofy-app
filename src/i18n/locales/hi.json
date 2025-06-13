@@ -113,7 +113,8 @@
       "descriptionMaxLength": "विवरण 255 अक्षरों से अधिक नहीं हो सकता",
       "authorRequired": "लेखक आवश्यक है",
       "authorMaxLength": "लेखक का नाम 255 अक्षरों से अधिक नहीं हो सकता",
-      "tagsRequired": "कम से कम एक टैग चुनें"
+      "tagsRequired": "कम से कम एक टैग चुनें",
+      "urlMustBeHttps": "URL https:// से शुरू होनी चाहिए"
     }
   },
   "tags": {
