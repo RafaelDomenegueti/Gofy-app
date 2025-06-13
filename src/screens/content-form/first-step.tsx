@@ -192,7 +192,7 @@ export const ContentFormFirstStep = ({ handleFirstStep }: IProps) => {
             ) : (
               <Pressable
                 onPress={handleFilePick}
-                className="mt-5 border-2 border-dashed border-primary/20 dark:border-primary-dark/20 rounded-xl p-6 bg-primary/5 dark:bg-primary-dark/5"
+                className="mt-5 border-2 border-dashed border-primary/20 dark:border-primary-dark rounded-xl p-6 bg-primary/5 dark:bg-primary-dark/5"
               >
                 <View className="flex items-center justify-center gap-3">
                   <View className="w-12 h-12 rounded-full bg-primary/10 dark:bg-primary-dark/10 flex items-center justify-center">

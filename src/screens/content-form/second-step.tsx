@@ -171,7 +171,7 @@ export const ContentFormSecondStep = ({ handleSubmit, dataForm }: IProps) => {
                     }}
                     className={`rounded-full ${values.tags?.includes(tag.id)
                       ? "bg-primary dark:bg-primary-dark"
-                      : "bg-transparent border-primary/20 dark:border-primary-dark/20"
+                      : "bg-transparent border-primary/20 dark:border-gray-500/80"
                       }`}
                     accessibilityLabel={`${t('contentForm.tags')} ${getTagName(tag)}`}
                     accessibilityHint={values.tags?.includes(tag.id) ? t('contentForm.validation.tagsRequired') : t('contentForm.validation.tagsRequired')}
@@ -181,7 +181,7 @@ export const ContentFormSecondStep = ({ handleSubmit, dataForm }: IProps) => {
                     <Text
                       className={`${values.tags?.includes(tag.id)
                         ? "text-white"
-                        : "text-primary dark:text-primary-dark"
+                        : "text-primary dark:text-gray-500"
                         }`}
                     >
                       {getTagName(tag)}
