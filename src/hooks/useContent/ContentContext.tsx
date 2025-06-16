@@ -1,10 +1,11 @@
 import { createContext, useState } from 'react';
+import { Platform } from 'react-native';
 import RNFS from 'react-native-fs';
 import Toast from 'react-native-toast-message';
 import { ContentService } from '../../services/content';
+import { ensureDirectoryExists } from '../../utils/mediaStore';
 import { usePlayer } from '../usePlayer';
 import { Content, ContentContextData, IContentProviderProps } from './types';
-import { Platform } from 'react-native';
 
 export const ContentContext = createContext({} as ContentContextData);
 
@@ -53,13 +54,11 @@ export function ContentProvider({ children }: IContentProviderProps) {
 
       if (!content.url?.startsWith("http")) {
         try {
-          const dir = getGofyDownloadsDir();
-          if (!(await RNFS.exists(dir))) {
-            await RNFS.mkdir(dir);
-          }
+          const dir = await getGofyDownloadsDir();
+          await ensureDirectoryExists(dir);
 
           const fileName = `content_${createdContent.id}.mp3`;
-          const destinationPath = `${dir}${fileName}`;
+          const destinationPath = `${dir}/${fileName}`;
 
           if (Platform.OS === 'ios') {
             const sourcePath = decodeURIComponent(content.url!);

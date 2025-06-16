@@ -1,8 +1,8 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { createContext, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Platform } from "react-native";
 import RNFS from 'react-native-fs';
 import TrackPlayer, { Capability, Event, State, useProgress, useTrackPlayerEvents } from "react-native-track-player";
+import { checkStoragePermission, ensureDirectoryExists, getAudioDirectory, requestStoragePermission } from "../../utils/mediaStore";
 import { Content } from "../useContent/types";
 import { PlayerContextType, PlayerState } from "./types";
 
@@ -18,13 +18,13 @@ export const PlayerContext = createContext<PlayerContextType | null>(null);
 export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [playerState, setPlayerState] = useState<PlayerState>({
     isPlaying: false,
-    currentTrack: null,
     currentContent: null,
     progress: 0,
     duration: 0,
     currentTime: 0,
     downloadingContent: [],
-    downloadedContent: []
+    downloadedContent: [],
+    error: null
   });
 
   const activeDownloads = useRef<Record<string, RNFS.DownloadProgressCallbackResult>>({});
@@ -57,24 +57,21 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
             const isContentDownloaded = await isDownloaded(contentId);
 
             if (isContentDownloaded) {
-              const currentContent: Partial<Content> = {
+              const currentContent: Content = {
                 id: contentId,
                 title: track.title || "",
                 author: track.artist || "",
                 banner: track.artwork as string,
                 url: track.url,
-              };
-
-              const currentTrack = {
-                ...track,
-                title: track.title || "",
-                artist: track.artist || "",
+                description: "",
+                created_at: new Date().toISOString(),
+                isPublic: true,
+                tags: []
               };
 
               setPlayerState(prev => ({
                 ...prev,
-                currentTrack,
-                currentContent: currentContent as Content,
+                currentContent,
                 isPlaying: state === State.Playing,
               }));
             }
@@ -119,22 +116,22 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     }
   }, []);
 
-  const getGofyDownloadsDir = useCallback(() => {
-    const baseDir = Platform.OS === 'ios'
-      ? RNFS.DocumentDirectoryPath
-      : RNFS.ExternalDirectoryPath;
-
-    return `${baseDir}/${GOFY_APP_DIR}/${GOFY_AUDIO_DIR}/`;
+  const getGofyDownloadsDir = useCallback(async () => {
+    const hasPermission = await checkStoragePermission();
+    if (!hasPermission) {
+      const granted = await requestStoragePermission();
+      if (!granted) {
+        throw new Error('Storage permission not granted');
+      }
+    }
+    return getAudioDirectory();
   }, []);
 
   useEffect(() => {
     const loadDownloadedContent = async () => {
       try {
-        const dir = getGofyDownloadsDir();
-        const exists = await RNFS.exists(dir);
-        if (!exists) {
-          await RNFS.mkdir(dir, { NSURLIsExcludedFromBackupKey: true });
-        }
+        const dir = await getGofyDownloadsDir();
+        await ensureDirectoryExists(dir);
 
         const downloadedContent = await AsyncStorage.getItem(GOFY_DOWNLOADS_KEY);
 
@@ -157,7 +154,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
   const verifyDownloadedFiles = async (contentIds: string[]) => {
     try {
-      const dir = getGofyDownloadsDir();
+      const dir = await getGofyDownloadsDir();
       const files = await RNFS.readDir(dir);
       const fileNames = files.map(file => file.name);
 
@@ -185,7 +182,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       const isTracked = playerState.downloadedContent.includes(contentId);
       if (!isTracked) return false;
 
-      const filepath = `${getGofyDownloadsDir()}content_${contentId}.mp3`;
+      const filepath = `${await getGofyDownloadsDir()}/content_${contentId}.mp3`;
       const exists = await RNFS.exists(filepath);
 
       if (!exists) {
@@ -239,7 +236,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         await TrackPlayer.reset();
       }
 
-      const filePath = `${getGofyDownloadsDir()}content_${content.id}.mp3`;
+      const filePath = `${await getGofyDownloadsDir()}/content_${content.id}.mp3`;
 
       if (!(await RNFS.exists(filePath))) {
         throw new Error(`File not found at path: ${filePath}`);
@@ -290,7 +287,6 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
       setPlayerState(prev => ({
         ...prev,
-        currentTrack: track,
         currentContent: content,
         isPlaying: true,
         currentTime: shouldStartFromBeginning ? 0 : savedProgress,
@@ -330,7 +326,6 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       setPlayerState(prev => ({
         ...prev,
         isPlaying: false,
-        currentTrack: null,
         currentContent: null,
         progress: 0,
         duration: 0,
@@ -368,24 +363,23 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   }, []);
 
   const download = useCallback(async (content: Content): Promise<void> => {
-    if (!content?.id || !content?.url) {
-      throw new Error("Invalid content for download");
-    }
-
     const contentId = content.id;
     const downloadUrl = content.url;
-    const localFilePath = `${getGofyDownloadsDir()}content_${contentId}.mp3`;
+
+    if (!downloadUrl) {
+      throw new Error("No download URL provided");
+    }
 
     try {
       if (downloadJobIds.current[contentId]) {
         await cancelDownload(contentId);
       }
 
-      // Ensure download directory exists
-      const dir = getGofyDownloadsDir();
-      if (!(await RNFS.exists(dir))) {
-        await RNFS.mkdir(dir);
-      }
+      // Ensure download directory exists and has permission
+      const dir = await getGofyDownloadsDir();
+      await ensureDirectoryExists(dir);
+
+      const localFilePath = `${dir}/content_${contentId}.mp3`;
 
       // Clean up existing file if any
       if (await RNFS.exists(localFilePath)) {
@@ -442,33 +436,21 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       }));
 
     } catch (error) {
-      // Cleanup on error
-      try {
-        if (await RNFS.exists(localFilePath)) {
-          await RNFS.unlink(localFilePath);
-        }
-      } catch {
-        // Ignore cleanup errors
-      }
-
-      delete downloadJobIds.current[contentId];
-      delete activeDownloads.current[contentId];
-
+      console.error("Download error:", error);
       setPlayerState(prev => ({
         ...prev,
         downloadingContent: prev.downloadingContent.filter(id => id !== contentId)
       }));
-
       throw error;
     }
-  }, [getGofyDownloadsDir, playerState.downloadedContent, safeUpdateStorage, cancelDownload]);
+  }, [playerState.downloadedContent, getGofyDownloadsDir]);
 
   const deleteDownloadedContent = useCallback(async (contentId: string): Promise<void> => {
     try {
       const isContentDownloaded = await isDownloaded(contentId);
       if (!isContentDownloaded) return;
 
-      const filePath = `${getGofyDownloadsDir()}content_${contentId}.mp3`;
+      const filePath = `${await getGofyDownloadsDir()}/content_${contentId}.mp3`;
 
       // Delete the file if it exists
       if (await RNFS.exists(filePath)) {
@@ -519,6 +501,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     stop,
     seekTo,
     download,
+    cancelDownload,
     isDownloaded,
     isDownloading,
     deleteDownloadedContent,
@@ -532,6 +515,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     stop,
     seekTo,
     download,
+    cancelDownload,
     isDownloaded,
     isDownloading,
     deleteDownloadedContent,
