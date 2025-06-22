@@ -138,7 +138,7 @@
   "community": {
     "underConstruction": "Under Construction",
     "constructionDescription": "We are working on new community features. Soon you will be able to interact with other users and share your experiences.",
-    "donationDescription": "GoFy is maintained through donations. If you like the project and want to help, consider making a donation.",
+    "donationDescription": "Gofy is maintained through donations. If you like the project and want to help, consider making a donation.",
     "donate": "Make a donation"
   },
   "changePassword": {
@@ -184,6 +184,26 @@
       "phoneMinLength": "Phone number must be at least 10 digits",
       "phoneMaxLength": "Phone number must not exceed 15 digits",
       "phoneDigitsOnly": "Phone number must contain only digits"
+    }
+  },
+  "toast": {
+    "offline": {
+      "title": "You are offline",
+      "message": "Please check your internet connection"
+    },
+    "content": {
+      "searchError": "Error searching content",
+      "createError": "Error creating content",
+      "deleteError": "Error deleting content",
+      "localFileError": "Error processing local file"
+    },
+    "auth": {
+      "logoutError": "Error",
+      "logoutMessage": "Failed to logout properly",
+      "loginError": "Login Error",
+      "loginMessage": "An error occurred during login",
+      "registerError": "Registration Error",
+      "registerMessage": "An error occurred during registration"
     }
   }
 }

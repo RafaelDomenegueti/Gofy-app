@@ -2,7 +2,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const storageKeys = {
   token: 'token',
-  refreshToken: 'refreshToken'
+  refreshToken: 'refreshToken',
+  user: 'user',
+  lastSearchedContents: 'lastSearchedContents',
 };
 
 export const setStorage = async (key: string, value: string) => {

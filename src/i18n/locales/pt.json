@@ -138,7 +138,7 @@
   "community": {
     "underConstruction": "Em Construção",
     "constructionDescription": "Estamos trabalhando em novos recursos da comunidade. Em breve você poderá interagir com outros usuários e compartilhar suas experiências.",
-    "donationDescription": "O GoFy é mantido através de doações. Se você gosta do projeto e quer ajudar, considere fazer uma doação.",
+    "donationDescription": "O Gofy é mantido através de doações. Se você gosta do projeto e quer ajudar, considere fazer uma doação.",
     "donate": "Fazer uma doação"
   },
   "changePassword": {
@@ -167,8 +167,8 @@
     "description": "Atualize suas informações de perfil. Todos os campos são obrigatórios.",
     "name": "Nome",
     "namePlaceholder": "Digite seu nome",
-    "email": "E-mail",
-    "emailPlaceholder": "Digite seu e-mail",
+    "email": "Email",
+    "emailPlaceholder": "Digite seu email",
     "phone": "Telefone",
     "phonePlaceholder": "Digite seu número de telefone",
     "saveButton": "Salvar Alterações",
@@ -176,14 +176,34 @@
     "success": "Perfil atualizado com sucesso",
     "error": "Erro ao editar perfil",
     "validation": {
-      "nameRequired": "O nome é obrigatório",
-      "nameMinLength": "O nome deve ter pelo menos 3 caracteres",
-      "emailRequired": "O e-mail é obrigatório",
-      "emailInvalid": "E-mail inválido",
-      "phoneRequired": "O número de telefone é obrigatório",
-      "phoneMinLength": "O número de telefone deve ter pelo menos 10 dígitos",
-      "phoneMaxLength": "O número de telefone não deve exceder 15 dígitos",
-      "phoneDigitsOnly": "O número de telefone deve conter apenas dígitos"
+      "nameRequired": "Nome é obrigatório",
+      "nameMinLength": "Nome deve ter pelo menos 3 caracteres",
+      "emailRequired": "Email é obrigatório",
+      "emailInvalid": "Endereço de email inválido",
+      "phoneRequired": "Número de telefone é obrigatório",
+      "phoneMinLength": "Número de telefone deve ter pelo menos 10 dígitos",
+      "phoneMaxLength": "Número de telefone não deve exceder 15 dígitos",
+      "phoneDigitsOnly": "Número de telefone deve conter apenas dígitos"
+    }
+  },
+  "toast": {
+    "offline": {
+      "title": "Você está offline",
+      "message": "Verifique sua conexão com a internet"
+    },
+    "content": {
+      "searchError": "Erro ao buscar conteúdo",
+      "createError": "Erro ao criar conteúdo",
+      "deleteError": "Erro ao excluir conteúdo",
+      "localFileError": "Erro ao processar arquivo local"
+    },
+    "auth": {
+      "logoutError": "Erro",
+      "logoutMessage": "Falha ao fazer logout corretamente",
+      "loginError": "Erro de Login",
+      "loginMessage": "Ocorreu um erro durante o login",
+      "registerError": "Erro de Registro",
+      "registerMessage": "Ocorreu um erro durante o registro"
     }
   }
 }

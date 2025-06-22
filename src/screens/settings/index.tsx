@@ -1,21 +1,24 @@
-import { LogOut, Moon, Sun, Globe } from "lucide-react-native";
+import { useNetInfo } from "@react-native-community/netinfo";
+import { useNavigation } from "@react-navigation/native";
+import { Globe, LogOut, Moon, Sun } from "lucide-react-native";
 import { useTranslation } from "react-i18next";
 import { ScrollView, View } from "react-native";
+import Toast from "react-native-toast-message";
 import { Button } from "../../components/ui/button";
 import { Card } from "../../components/ui/card";
+import { Select } from "../../components/ui/select";
 import { Switch } from "../../components/ui/switch";
 import { Text } from "../../components/ui/text";
 import { useAuth } from "../../hooks/useAuth";
-import { useColorScheme } from "../../lib/useColorScheme";
-import { useNavigation } from "@react-navigation/native";
-import { Select } from "../../components/ui/select";
 import { languageList } from "../../i18n";
+import { useColorScheme } from "../../lib/useColorScheme";
 
 export function SettingsScreen() {
   const { user, logout } = useAuth();
   const { isDarkColorScheme, toggleColorScheme } = useColorScheme();
   const { t, i18n } = useTranslation();
   const navigation = useNavigation<NavigationProp>();
+  const { isConnected } = useNetInfo();
 
   const handleLogout = async () => {
     await logout();
@@ -56,10 +59,32 @@ export function SettingsScreen() {
               </View>
 
               <View className="flex flex-row gap-3">
-                <Button variant="outline" className="flex-1" onPress={() => navigation.navigate(`ContentFormStack`, { screen: 'EditProfile' })}>
+                <Button variant="outline" className="flex-1" onPress={() => {
+                  if (isConnected) {
+                    navigation.navigate(`ContentFormStack`, { screen: 'EditProfile' })
+                  } else {
+                    Toast.show({
+                      type: 'error',
+                      text1: t('toast.offline.title'),
+                      text2: t('toast.offline.message'),
+                      swipeable: true,
+                    });
+                  }
+                }}>
                   {t('settings.profile.editProfile')}
                 </Button>
-                <Button variant="outline" className="flex-1" onPress={() => navigation.navigate(`ContentFormStack`, { screen: 'ChangePassword' })}>
+                <Button variant="outline" className="flex-1" onPress={() => {
+                  if (isConnected) {
+                    navigation.navigate(`ContentFormStack`, { screen: 'ChangePassword' })
+                  } else {
+                    Toast.show({
+                      type: 'error',
+                      text1: t('toast.offline.title'),
+                      text2: t('toast.offline.message'),
+                      swipeable: true,
+                    });
+                  }
+                }}>
                   {t('settings.profile.changePassword')}
                 </Button>
               </View>

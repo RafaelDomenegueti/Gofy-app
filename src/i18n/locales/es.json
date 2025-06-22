@@ -138,7 +138,7 @@
   "community": {
     "underConstruction": "En Construcción",
     "constructionDescription": "Estamos trabajando en nuevas funciones de la comunidad. Pronto podrás interactuar con otros usuarios y compartir tus experiencias.",
-    "donationDescription": "GoFy se mantiene a través de donaciones. Si te gusta el proyecto y quieres ayudar, considera hacer una donación.",
+    "donationDescription": "Gofy se mantiene a través de donaciones. Si te gusta el proyecto y quieres ayudar, considera hacer una donación.",
     "donate": "Hacer una donación"
   },
   "changePassword": {
@@ -164,26 +164,46 @@
   },
   "editProfile": {
     "title": "Editar Perfil",
-    "description": "Actualiza tu información de perfil. Todos los campos son obligatorios.",
+    "description": "Actualiza la información de tu perfil. Todos los campos son obligatorios.",
     "name": "Nombre",
     "namePlaceholder": "Ingresa tu nombre",
-    "email": "Correo Electrónico",
-    "emailPlaceholder": "Ingresa tu correo electrónico",
+    "email": "Email",
+    "emailPlaceholder": "Ingresa tu email",
     "phone": "Teléfono",
     "phonePlaceholder": "Ingresa tu número de teléfono",
     "saveButton": "Guardar Cambios",
     "processing": "Procesando...",
     "success": "Perfil actualizado exitosamente",
-    "error": "Error al editar el perfil",
+    "error": "Error al editar perfil",
     "validation": {
-      "nameRequired": "El nombre es requerido",
+      "nameRequired": "El nombre es obligatorio",
       "nameMinLength": "El nombre debe tener al menos 3 caracteres",
-      "emailRequired": "El correo electrónico es requerido",
-      "emailInvalid": "Correo electrónico inválido",
-      "phoneRequired": "El número de teléfono es requerido",
+      "emailRequired": "El email es obligatorio",
+      "emailInvalid": "Dirección de email inválida",
+      "phoneRequired": "El número de teléfono es obligatorio",
       "phoneMinLength": "El número de teléfono debe tener al menos 10 dígitos",
       "phoneMaxLength": "El número de teléfono no debe exceder 15 dígitos",
       "phoneDigitsOnly": "El número de teléfono debe contener solo dígitos"
+    }
+  },
+  "toast": {
+    "offline": {
+      "title": "Estás desconectado",
+      "message": "Verifica tu conexión a internet"
+    },
+    "content": {
+      "searchError": "Error al buscar contenido",
+      "createError": "Error al crear contenido",
+      "deleteError": "Error al eliminar contenido",
+      "localFileError": "Error al procesar archivo local"
+    },
+    "auth": {
+      "logoutError": "Error",
+      "logoutMessage": "Error al cerrar sesión correctamente",
+      "loginError": "Error de Inicio de Sesión",
+      "loginMessage": "Ocurrió un error durante el inicio de sesión",
+      "registerError": "Error de Registro",
+      "registerMessage": "Ocurrió un error durante el registro"
     }
   }
 }

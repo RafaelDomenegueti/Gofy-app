@@ -138,7 +138,7 @@
   "community": {
     "underConstruction": "개발 중",
     "constructionDescription": "새로운 커뮤니티 기능을 개발 중입니다. 곧 다른 사용자와 상호작용하고 경험을 공유할 수 있게 될 것입니다.",
-    "donationDescription": "GoFy는 기부금으로 유지됩니다. 프로젝트가 마음에 들고 도움을 주고 싶다면 기부를 고려해 주세요.",
+    "donationDescription": "Gofy는 기부금으로 유지됩니다. 프로젝트가 마음에 들고 도움을 주고 싶다면 기부를 고려해 주세요.",
     "donate": "기부하기"
   },
   "changePassword": {
@@ -163,7 +163,7 @@
     }
   },
   "editProfile": {
-    "title": "프로필 수정",
+    "title": "프로필 편집",
     "description": "프로필 정보를 업데이트하세요. 모든 필드는 필수입니다.",
     "name": "이름",
     "namePlaceholder": "이름을 입력하세요",
@@ -174,16 +174,36 @@
     "saveButton": "변경사항 저장",
     "processing": "처리 중...",
     "success": "프로필이 성공적으로 업데이트되었습니다",
-    "error": "프로필 수정 중 오류가 발생했습니다",
+    "error": "프로필 편집 중 오류가 발생했습니다",
     "validation": {
-      "nameRequired": "이름이 필요합니다",
+      "nameRequired": "이름은 필수입니다",
       "nameMinLength": "이름은 최소 3자 이상이어야 합니다",
-      "emailRequired": "이메일이 필요합니다",
+      "emailRequired": "이메일은 필수입니다",
       "emailInvalid": "유효하지 않은 이메일 주소입니다",
-      "phoneRequired": "전화번호가 필요합니다",
+      "phoneRequired": "전화번호는 필수입니다",
       "phoneMinLength": "전화번호는 최소 10자리 이상이어야 합니다",
       "phoneMaxLength": "전화번호는 15자리를 초과할 수 없습니다",
       "phoneDigitsOnly": "전화번호는 숫자만 포함해야 합니다"
+    }
+  },
+  "toast": {
+    "offline": {
+      "title": "오프라인 상태입니다",
+      "message": "인터넷 연결을 확인하세요"
+    },
+    "content": {
+      "searchError": "콘텐츠 검색 중 오류가 발생했습니다",
+      "createError": "콘텐츠 생성 중 오류가 발생했습니다",
+      "deleteError": "콘텐츠 삭제 중 오류가 발생했습니다",
+      "localFileError": "로컬 파일 처리 중 오류가 발생했습니다"
+    },
+    "auth": {
+      "logoutError": "오류",
+      "logoutMessage": "로그아웃에 실패했습니다",
+      "loginError": "로그인 오류",
+      "loginMessage": "로그인 중 오류가 발생했습니다",
+      "registerError": "등록 오류",
+      "registerMessage": "등록 중 오류가 발생했습니다"
     }
   }
 }

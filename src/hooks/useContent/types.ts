@@ -35,4 +35,5 @@ export type ContentContextData = {
   getAllPurchases: () => void;
   deleteContent: (contentId: string) => Promise<void>;
   isLoading: boolean;
+  isShowingOfflineContents: boolean;
 };

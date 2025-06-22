@@ -1,9 +1,13 @@
-import { createContext, useState } from 'react';
+import { useNetInfo } from '@react-native-community/netinfo';
+import { createContext, useCallback, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Platform } from 'react-native';
 import RNFS from 'react-native-fs';
 import Toast from 'react-native-toast-message';
 import { ContentService } from '../../services/content';
 import { ensureDirectoryExists } from '../../utils/mediaStore';
+import { getStorage, setStorage, storageKeys } from '../../utils/storage';
+import { IPurchasesContentDataResponse } from '../purchase/types';
 import { usePlayer } from '../usePlayer';
 import { Content, ContentContextData, IContentProviderProps } from './types';
 
@@ -13,13 +17,41 @@ export function ContentProvider({ children }: IContentProviderProps) {
   const { setDownloadedContent, getGofyDownloadsDir } = usePlayer();
   const [contents, setContents] = useState<Content[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isShowingOfflineContents, setIsShowingOfflineContents] = useState(false);
+  const { isConnected } = useNetInfo();
+  const { t } = useTranslation();
 
-  const getAllPurchases = async () => {
+  const getAllPurchases = useCallback(async () => {
+    if (!isConnected) {
+      setIsLoading(true);
+      const lastSearchedContents = JSON.parse(await getStorage(storageKeys.lastSearchedContents) || '[]') as IPurchasesContentDataResponse[] | [];
+
+      if (lastSearchedContents.length === 0) {
+        return;
+      }
+
+      setContents(lastSearchedContents.map(purchase => purchase.content))
+      setIsShowingOfflineContents(true);
+      setIsLoading(false);
+
+      Toast.show({
+        autoHide: true,
+        text1: t('toast.offline.title'),
+        text2: t('toast.offline.message'),
+        swipeable: true,
+        type: "error"
+      })
+      return;
+    }
+
     try {
       setIsLoading(true)
 
       const response = await ContentService.getAllPurchase()
 
+      await setStorage(storageKeys.lastSearchedContents, JSON.stringify(response.data));
+
+      setIsShowingOfflineContents(false);
       setContents(response.data.map(purchase => purchase.content))
 
       setIsLoading(false)
@@ -28,15 +60,27 @@ export function ContentProvider({ children }: IContentProviderProps) {
 
       Toast.show({
         autoHide: true,
-        text1: "Error searching content",
+        text1: t('toast.content.searchError'),
         text2: message,
         swipeable: true,
         type: "error"
       })
     }
-  }
+  }, [isConnected, t])
 
   const createContent = async (content: Omit<Content, 'id'>) => {
+    if (!isConnected) {
+      Toast.show({
+        autoHide: true,
+        text1: t('toast.offline.title'),
+        text2: t('toast.offline.message'),
+        swipeable: true,
+        type: "error"
+      })
+
+      return;
+    }
+
     try {
       setIsLoading(true)
 
@@ -75,7 +119,7 @@ export function ContentProvider({ children }: IContentProviderProps) {
         } catch (fileError: any) {
           Toast.show({
             autoHide: true,
-            text1: "Error processing local file",
+            text1: t('toast.content.localFileError'),
             text2: fileError.message,
             swipeable: true,
             type: "error"
@@ -88,7 +132,7 @@ export function ContentProvider({ children }: IContentProviderProps) {
       const message = error?.response?.data?.message
       Toast.show({
         autoHide: true,
-        text1: "Error creating content",
+        text1: t('toast.content.createError'),
         text2: message,
         swipeable: true,
         type: "error"
@@ -105,7 +149,7 @@ export function ContentProvider({ children }: IContentProviderProps) {
 
       Toast.show({
         autoHide: true,
-        text1: "Error deleting content",
+        text1: t('toast.content.deleteError'),
         text2: message,
         swipeable: true,
         type: "error"
@@ -121,6 +165,7 @@ export function ContentProvider({ children }: IContentProviderProps) {
         getAllPurchases,
         deleteContent,
         isLoading,
+        isShowingOfflineContents,
       }}
     >
       {children}

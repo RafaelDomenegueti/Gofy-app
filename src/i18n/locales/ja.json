@@ -138,7 +138,7 @@
   "community": {
     "underConstruction": "開発中",
     "constructionDescription": "新しいコミュニティ機能を開発中です。まもなく他のユーザーと交流し、経験を共有できるようになります。",
-    "donationDescription": "GoFyは寄付によって維持されています。プロジェクトを気に入っていただき、支援したい場合は、寄付をご検討ください。",
+    "donationDescription": "Gofyは寄付によって維持されています。プロジェクトを気に入っていただき、支援したい場合は、寄付をご検討ください。",
     "donate": "寄付する"
   },
   "changePassword": {
@@ -164,26 +164,46 @@
   },
   "editProfile": {
     "title": "プロフィール編集",
-    "description": "プロフィール情報を更新してください。すべての項目は必須です。",
+    "description": "プロフィール情報を更新します。すべての項目は必須です。",
     "name": "名前",
-    "namePlaceholder": "名前を入力",
+    "namePlaceholder": "お名前を入力してください",
     "email": "メールアドレス",
-    "emailPlaceholder": "メールアドレスを入力",
+    "emailPlaceholder": "メールアドレスを入力してください",
     "phone": "電話番号",
-    "phonePlaceholder": "電話番号を入力",
+    "phonePlaceholder": "電話番号を入力してください",
     "saveButton": "変更を保存",
     "processing": "処理中...",
     "success": "プロフィールが正常に更新されました",
-    "error": "プロフィール編集中にエラーが発生しました",
+    "error": "プロフィール編集でエラーが発生しました",
     "validation": {
-      "nameRequired": "名前が必要です",
+      "nameRequired": "名前は必須です",
       "nameMinLength": "名前は3文字以上である必要があります",
-      "emailRequired": "メールアドレスが必要です",
+      "emailRequired": "メールアドレスは必須です",
       "emailInvalid": "無効なメールアドレスです",
-      "phoneRequired": "電話番号が必要です",
+      "phoneRequired": "電話番号は必須です",
       "phoneMinLength": "電話番号は10桁以上である必要があります",
       "phoneMaxLength": "電話番号は15桁を超えることはできません",
-      "phoneDigitsOnly": "電話番号は数字のみを含める必要があります"
+      "phoneDigitsOnly": "電話番号は数字のみを含む必要があります"
+    }
+  },
+  "toast": {
+    "offline": {
+      "title": "オフラインです",
+      "message": "インターネット接続を確認してください"
+    },
+    "content": {
+      "searchError": "コンテンツ検索でエラーが発生しました",
+      "createError": "コンテンツ作成でエラーが発生しました",
+      "deleteError": "コンテンツ削除でエラーが発生しました",
+      "localFileError": "ローカルファイル処理でエラーが発生しました"
+    },
+    "auth": {
+      "logoutError": "エラー",
+      "logoutMessage": "ログアウトに失敗しました",
+      "loginError": "ログインエラー",
+      "loginMessage": "ログイン中にエラーが発生しました",
+      "registerError": "登録エラー",
+      "registerMessage": "登録中にエラーが発生しました"
     }
   }
 }

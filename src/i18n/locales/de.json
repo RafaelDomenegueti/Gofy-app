@@ -138,7 +138,7 @@
   "community": {
     "underConstruction": "In Bearbeitung",
     "constructionDescription": "Wir arbeiten an neuen Community-Funktionen. Bald können Sie mit anderen Benutzern interagieren und Ihre Erfahrungen teilen.",
-    "donationDescription": "GoFy wird durch Spenden finanziert. Wenn Ihnen das Projekt gefällt und Sie helfen möchten, erwägen Sie eine Spende.",
+    "donationDescription": "Gofy wird durch Spenden finanziert. Wenn Ihnen das Projekt gefällt und Sie helfen möchten, erwägen Sie eine Spende.",
     "donate": "Spenden"
   },
   "changePassword": {
@@ -163,27 +163,47 @@
     }
   },
   "editProfile": {
-    "title": "Profil bearbeiten",
+    "title": "Profil Bearbeiten",
     "description": "Aktualisieren Sie Ihre Profilinformationen. Alle Felder sind erforderlich.",
     "name": "Name",
     "namePlaceholder": "Geben Sie Ihren Namen ein",
     "email": "E-Mail",
-    "emailPlaceholder": "Geben Sie Ihre E-Mail-Adresse ein",
+    "emailPlaceholder": "Geben Sie Ihre E-Mail ein",
     "phone": "Telefon",
     "phonePlaceholder": "Geben Sie Ihre Telefonnummer ein",
-    "saveButton": "Änderungen speichern",
-    "processing": "Wird verarbeitet...",
+    "saveButton": "Änderungen Speichern",
+    "processing": "Verarbeitung...",
     "success": "Profil erfolgreich aktualisiert",
     "error": "Fehler beim Bearbeiten des Profils",
     "validation": {
       "nameRequired": "Name ist erforderlich",
-      "nameMinLength": "Name muss mindestens 3 Zeichen lang sein",
+      "nameMinLength": "Name muss mindestens 3 Zeichen haben",
       "emailRequired": "E-Mail ist erforderlich",
       "emailInvalid": "Ungültige E-Mail-Adresse",
       "phoneRequired": "Telefonnummer ist erforderlich",
-      "phoneMinLength": "Telefonnummer muss mindestens 10 Ziffern lang sein",
-      "phoneMaxLength": "Telefonnummer darf nicht länger als 15 Ziffern sein",
+      "phoneMinLength": "Telefonnummer muss mindestens 10 Ziffern haben",
+      "phoneMaxLength": "Telefonnummer darf 15 Ziffern nicht überschreiten",
       "phoneDigitsOnly": "Telefonnummer darf nur Ziffern enthalten"
+    }
+  },
+  "toast": {
+    "offline": {
+      "title": "Sie sind offline",
+      "message": "Überprüfen Sie Ihre Internetverbindung"
+    },
+    "content": {
+      "searchError": "Fehler beim Suchen von Inhalten",
+      "createError": "Fehler beim Erstellen von Inhalten",
+      "deleteError": "Fehler beim Löschen von Inhalten",
+      "localFileError": "Fehler beim Verarbeiten der lokalen Datei"
+    },
+    "auth": {
+      "logoutError": "Fehler",
+      "logoutMessage": "Abmeldung fehlgeschlagen",
+      "loginError": "Anmeldefehler",
+      "loginMessage": "Bei der Anmeldung ist ein Fehler aufgetreten",
+      "registerError": "Registrierungsfehler",
+      "registerMessage": "Bei der Registrierung ist ein Fehler aufgetreten"
     }
   }
 }

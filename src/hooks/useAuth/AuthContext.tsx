@@ -1,8 +1,10 @@
+import { useNetInfo } from '@react-native-community/netinfo';
 import { createContext, useCallback, useEffect, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import Toast from 'react-native-toast-message';
 import { AuthService } from '../../services/auth';
-import { clearStorage, getStorage, setStorage, storageKeys } from '../../utils/storage';
-import { IAuthContextData, IAuthProviderProps, ILoginData, IRegisterData, IUser, IChangePasswordData, IEditProfileData } from './types';
+import { clearStorage, getJsonItem, getStorage, setStorage, storageKeys } from '../../utils/storage';
+import { IAuthContextData, IAuthProviderProps, IChangePasswordData, IEditProfileData, ILoginData, IRegisterData, IUser } from './types';
 
 export const AuthContext = createContext<IAuthContextData>({} as IAuthContextData);
 
@@ -11,6 +13,8 @@ export function AuthProvider({ children }: IAuthProviderProps) {
   const [signed, setSigned] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isRefreshing, setIsRefreshing] = useState<boolean>(false);
+  const { isConnected } = useNetInfo();
+  const { t } = useTranslation();
 
   const logout = useCallback(async () => {
     try {
@@ -21,11 +25,11 @@ export function AuthProvider({ children }: IAuthProviderProps) {
       console.error('Error during logout:', error);
       Toast.show({
         type: 'error',
-        text1: 'Error',
-        text2: 'Failed to logout properly',
+        text1: t('toast.auth.logoutError'),
+        text2: t('toast.auth.logoutMessage'),
       });
     }
-  }, []);
+  }, [t]);
 
   const refreshToken = useCallback(async () => {
     try {
@@ -74,17 +78,18 @@ export function AuthProvider({ children }: IAuthProviderProps) {
 
       await Promise.all([
         setStorage(storageKeys.token, token),
-        setStorage(storageKeys.refreshToken, refreshToken)
+        setStorage(storageKeys.refreshToken, refreshToken),
+        setStorage(storageKeys.user, JSON.stringify(userData))
       ]);
 
       setUser(userData);
       setSigned(true);
       return true;
     } catch (error: any) {
-      const message = error?.response?.data?.message || 'An error occurred during login';
+      const message = error?.response?.data?.message || t('toast.auth.loginMessage');
       Toast.show({
         type: 'error',
-        text1: 'Login Error',
+        text1: t('toast.auth.loginError'),
         text2: message,
       });
       return false;
@@ -107,17 +112,18 @@ export function AuthProvider({ children }: IAuthProviderProps) {
 
       await Promise.all([
         setStorage(storageKeys.token, token),
-        setStorage(storageKeys.refreshToken, refreshToken)
+        setStorage(storageKeys.refreshToken, refreshToken),
+        setStorage(storageKeys.user, JSON.stringify(userData))
       ]);
 
       setUser(userData);
       setSigned(true);
       return true;
     } catch (error: any) {
-      const message = error?.response?.data?.message || 'An error occurred during registration';
+      const message = error?.response?.data?.message || t('toast.auth.registerMessage');
       Toast.show({
         type: 'error',
-        text1: 'Registration Error',
+        text1: t('toast.auth.registerError'),
         text2: message,
       });
       return false;
@@ -141,6 +147,8 @@ export function AuthProvider({ children }: IAuthProviderProps) {
 
         if (response.status === 201 || response.status === 200) {
           setUser(response.data.user);
+          await setStorage(storageKeys.user, JSON.stringify(response.data.user));
+
           setSigned(true);
         } else {
           throw new Error('Invalid token');
@@ -163,9 +171,28 @@ export function AuthProvider({ children }: IAuthProviderProps) {
     }
   }, [refreshToken, logout]);
 
+  const loginWithStoredData = useCallback(async () => {
+    const token = await getStorage(storageKeys.token);
+    const refreshToken = await getStorage(storageKeys.refreshToken);
+    const user = await getJsonItem(storageKeys.user);
+
+    if (!token || !refreshToken || !user) {
+      await logout();
+      return;
+    }
+
+    setUser(user);
+    setSigned(true);
+    setIsLoading(false);
+  }, [logout]);
+
   useEffect(() => {
-    checkIsSigned();
-  }, [checkIsSigned]);
+    if (isConnected) {
+      checkIsSigned();
+    } else {
+      loginWithStoredData();
+    }
+  }, [checkIsSigned, isConnected, loginWithStoredData]);
 
   const changePassword = async (data: IChangePasswordData) => {
     try {

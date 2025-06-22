@@ -138,7 +138,7 @@
   "community": {
     "underConstruction": "正在建设中",
     "constructionDescription": "我们正在开发新的社区功能。很快您就可以与其他用户互动并分享您的经验。",
-    "donationDescription": "GoFy 通过捐赠维持运营。如果您喜欢这个项目并想提供帮助，请考虑捐赠。",
+    "donationDescription": "Gofy 通过捐赠维持运营。如果您喜欢这个项目并想提供帮助，请考虑捐赠。",
     "donate": "捐赠"
   },
   "changePassword": {
@@ -167,8 +167,8 @@
     "description": "更新您的个人资料信息。所有字段都是必填的。",
     "name": "姓名",
     "namePlaceholder": "输入您的姓名",
-    "email": "电子邮箱",
-    "emailPlaceholder": "输入您的电子邮箱",
+    "email": "邮箱",
+    "emailPlaceholder": "输入您的邮箱",
     "phone": "电话",
     "phonePlaceholder": "输入您的电话号码",
     "saveButton": "保存更改",
@@ -176,14 +176,34 @@
     "success": "个人资料更新成功",
     "error": "编辑个人资料时出错",
     "validation": {
-      "nameRequired": "需要输入姓名",
-      "nameMinLength": "姓名长度至少为3个字符",
-      "emailRequired": "需要输入电子邮箱",
-      "emailInvalid": "电子邮箱格式无效",
-      "phoneRequired": "需要输入电话号码",
-      "phoneMinLength": "电话号码长度至少为10位",
-      "phoneMaxLength": "电话号码长度不能超过15位",
+      "nameRequired": "姓名是必填项",
+      "nameMinLength": "姓名至少需要3个字符",
+      "emailRequired": "邮箱是必填项",
+      "emailInvalid": "无效的邮箱地址",
+      "phoneRequired": "电话号码是必填项",
+      "phoneMinLength": "电话号码至少需要10位数字",
+      "phoneMaxLength": "电话号码不能超过15位数字",
       "phoneDigitsOnly": "电话号码只能包含数字"
+    }
+  },
+  "toast": {
+    "offline": {
+      "title": "您处于离线状态",
+      "message": "请检查您的网络连接"
+    },
+    "content": {
+      "searchError": "搜索内容时出错",
+      "createError": "创建内容时出错",
+      "deleteError": "删除内容时出错",
+      "localFileError": "处理本地文件时出错"
+    },
+    "auth": {
+      "logoutError": "错误",
+      "logoutMessage": "退出登录失败",
+      "loginError": "登录错误",
+      "loginMessage": "登录过程中发生错误",
+      "registerError": "注册错误",
+      "registerMessage": "注册过程中发生错误"
     }
   }
 }
