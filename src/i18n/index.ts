@@ -72,7 +72,5 @@ const languageList = [
   { label: '한국어', value: 'ko', icon: '🇰🇷' }
 ];
 
-i18n.changeLanguage('pt');
-
 export default i18n;
 export { languageList };
