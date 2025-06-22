@@ -15,7 +15,7 @@ export const HomeScreen = () => {
   const { contents, isLoading, getAllPurchases } = useContent();
   const { colorScheme } = useColorScheme();
   const { t } = useTranslation();
-  const { isPlaying } = usePlayer();
+  const { currentContent } = usePlayer();
 
   useEffect(() => {
     getAllPurchases();
@@ -31,7 +31,7 @@ export const HomeScreen = () => {
       refreshControl={
         <RefreshControl refreshing={isLoading} onRefresh={handleRefresh} colors={['#5c5d8d']} progressBackgroundColor={colorScheme === 'dark' ? '#000' : '#fff'} />
       }
-      contentContainerStyle={{ paddingBottom: isPlaying ? 100 : 0 }}
+      contentContainerStyle={{ paddingBottom: currentContent ? 100 : 0 }}
     >
       {isLoading ? (
         <View className="flex justify-center items-center py-20">
