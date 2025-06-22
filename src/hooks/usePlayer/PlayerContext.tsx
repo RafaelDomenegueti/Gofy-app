@@ -273,11 +273,8 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
       // Load and seek to saved progress
       const savedProgress = await loadProgress(content.id);
-      const trackDuration = await TrackPlayer.getDuration();
 
-      const shouldStartFromBeginning = savedProgress >= (trackDuration - 5);
-
-      if (savedProgress > 0 && !shouldStartFromBeginning) {
+      if (savedProgress > 0) {
         await TrackPlayer.seekTo(savedProgress);
       } else {
         await TrackPlayer.seekTo(0);
@@ -289,7 +286,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         ...prev,
         currentContent: content,
         isPlaying: true,
-        currentTime: shouldStartFromBeginning ? 0 : savedProgress,
+        currentTime: savedProgress,
       }));
     } catch (error) {
       throw error;
