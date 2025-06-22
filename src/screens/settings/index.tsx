@@ -10,12 +10,14 @@ import { Select } from "../../components/ui/select";
 import { Switch } from "../../components/ui/switch";
 import { Text } from "../../components/ui/text";
 import { useAuth } from "../../hooks/useAuth";
+import { usePlayer } from "../../hooks/usePlayer";
 import { languageList } from "../../i18n";
 import { useColorScheme } from "../../lib/useColorScheme";
 
 export function SettingsScreen() {
   const { user, logout } = useAuth();
   const { isDarkColorScheme, toggleColorScheme } = useColorScheme();
+  const { isPlaying } = usePlayer();
   const { t, i18n } = useTranslation();
   const navigation = useNavigation<NavigationProp>();
   const { isConnected } = useNetInfo();
@@ -31,6 +33,7 @@ export function SettingsScreen() {
   return (
     <ScrollView
       className="flex-1 bg-background dark:bg-background-dark"
+      contentContainerStyle={{ paddingBottom: isPlaying ? 100 : 0 }}
     >
       <View className="flex-1 flex flex-col gap-3 p-6 bg-background dark:bg-background-dark">
         <Card className="p-6 flex">

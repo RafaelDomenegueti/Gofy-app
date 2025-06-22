@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import { HomeIcon, SettingsIcon, UsersIcon } from "lucide-react-native";
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { Animated, Dimensions, Platform, TouchableOpacity, View } from "react-native";
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
@@ -118,95 +118,99 @@ export function CustomTabBar() {
   const tabWidth = width / tabs.length;
 
   return (
-    <CustomSafeAreaView>
-      {currentContent && <PlayerControls />}
-
-      <View
-        className="flex-row items-center justify-between bg-primary dark:bg-primary-dark border-t border-border/10 backdrop-blur-lg py-3"
-        style={{ borderTopLeftRadius: 10, borderTopRightRadius: 10 }}
-      >
-        {/* Shadow/Blur effect */}
-        <Animated.View
-          className="absolute rounded-full bg-white/10 dark:bg-white/5"
-          style={{
-            height: SHADOW_SIZE,
-            width: SHADOW_SIZE,
-            transform: [
-              {
-                translateX: slideAnim.interpolate({
-                  inputRange: [0, 1, 2],
-                  outputRange: [0, tabWidth, tabWidth * 2],
-                }),
-              },
-              {
-                scale: blurAnim.interpolate({
-                  inputRange: [0, 1],
-                  outputRange: [1, 1.8],
-                }),
-              },
-            ],
-            left: tabWidth / 2 - SHADOW_SIZE / 2,
-            opacity: blurAnim.interpolate({
-              inputRange: [0, 1],
-              outputRange: [0.15, 0.35],
-            }),
-          }}
-        />
-
-        {/* Main circle */}
-        <Animated.View
-          className="absolute rounded-full bg-white/5 dark:bg-white/5 backdrop-blur-sm"
-          style={{
-            height: CIRCLE_SIZE,
-            width: CIRCLE_SIZE,
-            transform: [
-              {
-                translateX: slideAnim.interpolate({
-                  inputRange: [0, 1, 2],
-                  outputRange: [0, tabWidth, tabWidth * 2],
-                }),
-              },
-              {
-                scale: scaleAnim,
-              },
-            ],
-            left: tabWidth / 2 - CIRCLE_SIZE / 2,
-          }}
-        />
-
-        {tabs.map((tab, index) => {
-          const inputRange = [index - 1, index, index + 1];
-          const scale = slideAnim.interpolate({
-            inputRange,
-            outputRange: [1, 1.2, 1],
-            extrapolate: 'clamp',
-          });
-
-          return (
-            <TouchableOpacity
-              key={tab.route}
-              className="items-center justify-center flex-1"
-              onPress={() => handleTabPress(tab.route, index)}
-              style={{ height: CIRCLE_SIZE }}
-            >
-              <Animated.View
-                style={{
-                  transform: [{ scale }],
-                }}
-                className="items-center justify-center flex"
-              >
-                <tab.icon
-                  size={ICON_SIZE}
-                  color={"white"}
-                  strokeWidth={2}
-                />
-
-                <Text className="text-xs mt-1 text-white/90">{tab.label}</Text>
-              </Animated.View>
-            </TouchableOpacity>
-          );
-        })}
+    <>
+      <View className="relative">
+        {currentContent && <PlayerControls />}
       </View>
-    </CustomSafeAreaView>
+
+      <CustomSafeAreaView>
+        <View
+          className="flex-row items-center justify-between bg-primary dark:bg-primary-dark border-t border-border/10 backdrop-blur-lg py-3"
+          style={{ borderTopLeftRadius: 10, borderTopRightRadius: 10 }}
+        >
+          {/* Shadow/Blur effect */}
+          <Animated.View
+            className="absolute rounded-full bg-white/10 dark:bg-white/5"
+            style={{
+              height: SHADOW_SIZE,
+              width: SHADOW_SIZE,
+              transform: [
+                {
+                  translateX: slideAnim.interpolate({
+                    inputRange: [0, 1, 2],
+                    outputRange: [0, tabWidth, tabWidth * 2],
+                  }),
+                },
+                {
+                  scale: blurAnim.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [1, 1.8],
+                  }),
+                },
+              ],
+              left: tabWidth / 2 - SHADOW_SIZE / 2,
+              opacity: blurAnim.interpolate({
+                inputRange: [0, 1],
+                outputRange: [0.15, 0.35],
+              }),
+            }}
+          />
+
+          {/* Main circle */}
+          <Animated.View
+            className="absolute rounded-full bg-white/5 dark:bg-white/5 backdrop-blur-sm"
+            style={{
+              height: CIRCLE_SIZE,
+              width: CIRCLE_SIZE,
+              transform: [
+                {
+                  translateX: slideAnim.interpolate({
+                    inputRange: [0, 1, 2],
+                    outputRange: [0, tabWidth, tabWidth * 2],
+                  }),
+                },
+                {
+                  scale: scaleAnim,
+                },
+              ],
+              left: tabWidth / 2 - CIRCLE_SIZE / 2,
+            }}
+          />
+
+          {tabs.map((tab, index) => {
+            const inputRange = [index - 1, index, index + 1];
+            const scale = slideAnim.interpolate({
+              inputRange,
+              outputRange: [1, 1.2, 1],
+              extrapolate: 'clamp',
+            });
+
+            return (
+              <TouchableOpacity
+                key={tab.route}
+                className="items-center justify-center flex-1"
+                onPress={() => handleTabPress(tab.route, index)}
+                style={{ height: CIRCLE_SIZE }}
+              >
+                <Animated.View
+                  style={{
+                    transform: [{ scale }],
+                  }}
+                  className="items-center justify-center flex"
+                >
+                  <tab.icon
+                    size={ICON_SIZE}
+                    color={"white"}
+                    strokeWidth={2}
+                  />
+
+                  <Text className="text-xs mt-1 text-white/90">{tab.label}</Text>
+                </Animated.View>
+              </TouchableOpacity>
+            );
+          })}
+        </View>
+      </CustomSafeAreaView>
+    </>
   );
 }

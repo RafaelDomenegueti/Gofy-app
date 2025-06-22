@@ -5,6 +5,7 @@ import { Linking, RefreshControl, ScrollView, TouchableOpacity, View } from "rea
 import Animated, { FadeInUp } from "react-native-reanimated";
 import { P } from "../../components/ui/typography";
 import { useContent } from "../../hooks/useContent";
+import { usePlayer } from "../../hooks/usePlayer";
 import { useColorScheme } from "../../lib/useColorScheme";
 import { BUY_COFFEE_URL } from "../../utils/constants";
 import { ContentList } from "./content-list";
@@ -14,6 +15,7 @@ export const HomeScreen = () => {
   const { contents, isLoading, getAllPurchases } = useContent();
   const { colorScheme } = useColorScheme();
   const { t } = useTranslation();
+  const { isPlaying } = usePlayer();
 
   useEffect(() => {
     getAllPurchases();
@@ -29,6 +31,7 @@ export const HomeScreen = () => {
       refreshControl={
         <RefreshControl refreshing={isLoading} onRefresh={handleRefresh} colors={['#5c5d8d']} progressBackgroundColor={colorScheme === 'dark' ? '#000' : '#fff'} />
       }
+      contentContainerStyle={{ paddingBottom: isPlaying ? 100 : 0 }}
     >
       {isLoading ? (
         <View className="flex justify-center items-center py-20">
