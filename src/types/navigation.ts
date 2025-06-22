@@ -6,9 +6,9 @@ export type RootStackParamList = {
 };
 
 export type HomeStackParamList = {
-  Home: undefined;
-  Community: undefined;
-  Settings: undefined;
+  Main: {
+    screen?: 'home' | 'community' | 'settings';
+  };
 };
 
 export type ContentFormStackParamList = {

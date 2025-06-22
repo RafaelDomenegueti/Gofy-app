@@ -5,18 +5,16 @@ import { SafeAreaView, StatusBar } from 'react-native';
 import { CustomStatusBar } from '../components/custom-status-bar';
 import { useAuth } from '../hooks/useAuth';
 import { useColorScheme } from '../lib/useColorScheme';
-import { CommunityScreen } from '../screens/community';
 import { ContentFormScreen } from '../screens/content-form';
-import { HomeScreen } from '../screens/home';
 import { LoginScreen } from '../screens/login';
+import { MainScreen } from '../screens/main';
 import { RegisterScreen } from '../screens/register';
-import { SettingsScreen } from '../screens/settings';
+import { ChangePasswordScreen } from '../screens/settings/change-password';
+import { EditProfileScreen } from '../screens/settings/edit-profile';
 import { ContentFormStackParamList, HomeStackParamList, RootStackParamList } from '../types/navigation';
 import { CustomHeader } from './custom-header';
 import { CustomTabBar } from './custom-tab-bar';
 import { LoadingScreen } from './loading-screen';
-import { EditProfileScreen } from '../screens/settings/edit-profile';
-import { ChangePasswordScreen } from '../screens/settings/change-password';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 const HomeStack = createNativeStackNavigator<HomeStackParamList>();
@@ -35,18 +33,8 @@ const HomeStackNavigator = () => {
         }}
       >
         <HomeStack.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{ header: CustomHeader }}
-        />
-        <HomeStack.Screen
-          name="Community"
-          component={CommunityScreen}
-          options={{ header: CustomHeader }}
-        />
-        <HomeStack.Screen
-          name="Settings"
-          component={SettingsScreen}
+          name="Main"
+          component={MainScreen}
           options={{ header: CustomHeader }}
         />
       </HomeStack.Navigator>

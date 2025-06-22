@@ -1,14 +1,14 @@
 import { useNavigation } from "@react-navigation/native";
 import { HomeIcon, SettingsIcon, UsersIcon } from "lucide-react-native";
-import { useRef, useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { Animated, Dimensions, Platform, SafeAreaView, TouchableOpacity, View } from "react-native";
+import { Animated, Dimensions, Platform, TouchableOpacity, View } from "react-native";
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
-import { PlayerControls } from "../components/player-controls";
-import { usePlayer } from "../hooks/usePlayer";
-import { Text } from "../components/ui/text";
-import { useColorScheme } from "../lib/useColorScheme";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { PlayerControls } from "../components/player-controls";
+import { Text } from "../components/ui/text";
+import { usePlayer } from "../hooks/usePlayer";
+import { useColorScheme } from "../lib/useColorScheme";
 
 const CIRCLE_SIZE = 48;
 const ICON_SIZE = 24;
@@ -103,13 +103,16 @@ export function CustomTabBar() {
       ]),
     ]).start();
 
-    navigation.navigate('HomeStack', { screen: route });
+    navigation.navigate('HomeStack', {
+      screen: 'Main',
+      params: { screen: route }
+    });
   };
 
   const tabs = [
-    { route: 'Home', icon: HomeIcon, label: t('navigation.home') },
-    { route: 'Community', icon: UsersIcon, label: t('navigation.community') },
-    { route: 'Settings', icon: SettingsIcon, label: t('navigation.settings') },
+    { route: 'home', icon: HomeIcon, label: t('navigation.home') },
+    { route: 'community', icon: UsersIcon, label: t('navigation.community') },
+    { route: 'settings', icon: SettingsIcon, label: t('navigation.settings') },
   ];
 
   const tabWidth = width / tabs.length;
