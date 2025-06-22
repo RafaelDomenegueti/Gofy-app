@@ -1,7 +1,7 @@
 import Slider from '@react-native-community/slider';
 import { Pause, Play } from "lucide-react-native";
-import React, { useState } from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import React, { useEffect, useRef, useState } from "react";
+import { Animated, Text, TouchableOpacity, View } from "react-native";
 import { usePlayer } from "../hooks/usePlayer";
 import { useColorScheme } from '../lib/useColorScheme';
 
@@ -19,6 +19,39 @@ export const PlayerControls = () => {
 
   const [isDragging, setIsDragging] = useState(false);
   const [dragValue, setDragValue] = useState(0);
+  const slideAnim = useRef(new Animated.Value(100)).current;
+  const tooltipAnim = useRef(new Animated.Value(0)).current;
+
+  // Animation on mount
+  useEffect(() => {
+    if (currentContent) {
+      Animated.spring(slideAnim, {
+        toValue: 0,
+        useNativeDriver: true,
+        tension: 100,
+        friction: 8,
+      }).start();
+    }
+  }, [currentContent, slideAnim]);
+
+  // Tooltip animation
+  useEffect(() => {
+    if (isDragging) {
+      Animated.spring(tooltipAnim, {
+        toValue: 1,
+        useNativeDriver: true,
+        tension: 200,
+        friction: 10,
+      }).start();
+    } else {
+      Animated.spring(tooltipAnim, {
+        toValue: 0,
+        useNativeDriver: true,
+        tension: 200,
+        friction: 10,
+      }).start();
+    }
+  }, [isDragging, tooltipAnim]);
 
   const handlePlayPause = () => {
     if (!currentContent) return;
@@ -61,18 +94,34 @@ export const PlayerControls = () => {
   }
 
   return (
-    <View className="absolute bottom-3 left-0 right-0 mx-4 bg-gray-200 dark:bg-gray-900 backdrop-blur-2xl rounded-3xl">
+    <Animated.View
+      className="absolute bottom-3 left-0 right-0 mx-4 bg-gray-200 dark:bg-gray-900 backdrop-blur-2xl rounded-3xl"
+      style={{
+        transform: [{ translateY: slideAnim }],
+      }}
+    >
       {/* Tooltip */}
-      {isDragging && (
-        <View className="relative flex justify-center items-center">
-          <View className="absolute -mt-14 bg-gray-800 dark:bg-gray-700 px-3 py-2 rounded-lg shadow-lg">
-            <Text className="text-xs font-medium text-white text-center">
-              {formatTime(dragValue)} / {formatTime(duration)}
-            </Text>
-            <View className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-800 dark:border-t-gray-700" />
-          </View>
+      <Animated.View
+        className="relative flex justify-center items-center"
+        style={{
+          opacity: tooltipAnim,
+          transform: [
+            {
+              translateY: tooltipAnim.interpolate({
+                inputRange: [0, 1],
+                outputRange: [10, 0],
+              }),
+            },
+          ],
+        }}
+      >
+        <View className="absolute -mt-14 bg-gray-800 dark:bg-gray-700 px-3 py-2 rounded-lg shadow-lg">
+          <Text className="text-xs font-medium text-white text-center">
+            {formatTime(dragValue)} / {formatTime(duration)}
+          </Text>
+          <View className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-800 dark:border-t-gray-700" />
         </View>
-      )}
+      </Animated.View>
 
       <Slider
         style={{ width: '100%', position: 'absolute', top: 0, height: 34, marginTop: -16, zIndex: 1000 }}
@@ -117,6 +166,6 @@ export const PlayerControls = () => {
           </TouchableOpacity>
         </View>
       </View>
-    </View>
+    </Animated.View>
   );
 };
